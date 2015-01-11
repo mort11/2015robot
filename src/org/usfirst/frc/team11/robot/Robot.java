@@ -1,6 +1,9 @@
 
 package org.usfirst.frc.team11.robot;
 
+import org.usfirst.frc.team11.robot.commands.ee.Elevate;
+import org.usfirst.frc.team11.robot.subsystems.ee.VerticalActuator;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -18,7 +21,7 @@ public class Robot extends IterativeRobot {
 
 //	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
-
+	public static VerticalActuator elevator;
     Command autonomousCommand;
 
     /**
@@ -27,6 +30,7 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
+		elevator = new VerticalActuator();
         // instantiate the command used for the autonomous period
 //        autonomousCommand = new ExampleCommand();
     }
