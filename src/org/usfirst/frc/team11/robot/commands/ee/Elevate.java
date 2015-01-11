@@ -1,5 +1,5 @@
 package org.usfirst.frc.team11.robot.commands.ee;
-import org.usfirst.frc.team11.robot.Robot;
+import static org.usfirst.frc.team11.robot.Robot.*;
 import org.usfirst.frc.team11.robot.subsystems.ee.VerticalActuator;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -12,7 +12,7 @@ public class Elevate extends Command
 
     public Elevate()
     {
-        requires(Robot.elevator);
+        requires(elevator);
     }
 
     // Called just before this Command runs the first time

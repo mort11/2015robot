@@ -1,7 +1,7 @@
 package org.usfirst.frc.team11.robot.subsystems.ee;
 
 import org.usfirst.frc.team11.robot.commands.ee.Elevate;
-import org.usfirst.frc.team11.robot.util.EEConstants;
+import static org.usfirst.frc.team11.robot.util.EEConstants.*;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class VerticalActuator extends Subsystem 
 {
     
-	AnalogInput ir = new AnalogInput(EEConstants.IRPort);
+	AnalogInput ir = new AnalogInput(IRPort);
 	double height;
 	
 	/**
