@@ -2,6 +2,7 @@ package org.usfirst.frc.team11.robot.subsystems.ee;
 
 import org.usfirst.frc.team11.robot.commands.ee.Elevate;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -9,10 +10,23 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class VerticalActuator extends Subsystem {
     
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-
-    public void initDefaultCommand() {
+	AnalogInput ir = new AnalogInput(0);
+	double height;
+	
+	/**
+	 * get height of elevator
+	 * @return displacement of elevator from origin
+	 */
+	public double getDisplacement()
+	{
+		return 0;
+	}
+	public void zero()
+	{
+		
+	}
+    public void initDefaultCommand()
+	{
        setDefaultCommand(new Elevate());
     }
 }
