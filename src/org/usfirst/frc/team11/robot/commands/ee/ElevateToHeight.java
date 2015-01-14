@@ -7,9 +7,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ElevateToHeight extends Command {
 
-    public ElevateToHeight() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public ElevateToHeight(int totesOnStack) {
+        
     }
 
     // Called just before this Command runs the first time

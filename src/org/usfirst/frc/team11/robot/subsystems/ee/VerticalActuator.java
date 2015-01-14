@@ -26,6 +26,10 @@ public class VerticalActuator extends Subsystem
 	{
 		
 	}
+	public double getHeight()
+	{
+		return height;
+	}
 	public void setDisplacement()
 	{
 		
