@@ -28,6 +28,7 @@ public class VerticalActuator extends Subsystem
 	}
 	public double getHeight()
 	{
+		height = ir.getVoltage()*IRVoltsToInches;
 		return height;
 	}
 	public void setDisplacement()
