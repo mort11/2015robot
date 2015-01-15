@@ -18,7 +18,8 @@ public class ElevateToHeight extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.setHeight(toteheight);
+    	double error = toteheight - Robot.elevator.getHeight();
+    	Robot.elevator.setSpeed(error * EEConstants.HeightP);
     }
 
     // Make this return true when this Command no longer needs to run execute()

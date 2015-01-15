@@ -31,7 +31,7 @@ public class VerticalActuator extends Subsystem
 		height = ir.getVoltage()*IRVoltsToInches;
 		return height;
 	}
-	public void setHeight(double height)
+	public void setSpeed(double speed)
 	{
 		
 	}
