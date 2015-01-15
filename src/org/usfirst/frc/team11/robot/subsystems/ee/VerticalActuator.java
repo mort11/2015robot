@@ -30,7 +30,7 @@ public class VerticalActuator extends Subsystem
 	{
 		return height;
 	}
-	public void setDisplacement()
+	public void setHeight(double height)
 	{
 		
 	}
