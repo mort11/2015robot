@@ -1,12 +1,11 @@
 package org.usfirst.frc.team11.robot;
 
-import org.usfirst.frc.team11.robot.util.TeleopConstants;
 import org.usfirst.frc.team11.robot.commands.ee.ElevateToHeight;
+import org.usfirst.frc.team11.robot.util.TeleopConstants;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.buttons.Trigger;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -16,15 +15,27 @@ public class OI {
 	Joystick left = new Joystick(1);
 	Joystick right = new Joystick(2);
 	Joystick ee = new Joystick(3);
-	Button scoringOffset = new JoystickButton(ee,2);
-	Button presetOneTote = new JoystickButton(ee,11);
-	Button presetTwoTote = new JoystickButton(ee,12);
-	Button presetThreeTote = new JoystickButton(ee,9);
-	Button presetFourTote = new JoystickButton(ee,10);
-	Button presetFiveTote = new JoystickButton(ee,7);
-	Button presetSixTote = new JoystickButton(ee,8);
-	public OI()
-	{
+	Button scoringOffset = new JoystickButton(ee, 2);
+
+	// Move to one tote level
+	Button presetOneTote = new JoystickButton(ee, 11);
+
+	// Move to two totes level
+	Button presetTwoTote = new JoystickButton(ee, 12);
+
+	// Move to three totes level
+	Button presetThreeTote = new JoystickButton(ee, 9);
+
+	// Move to four totes level
+	Button presetFourTote = new JoystickButton(ee, 10);
+
+	// Move to five totes level
+	Button presetFiveTote = new JoystickButton(ee, 7);
+
+	// Move to six totes level
+	Button presetSixTote = new JoystickButton(ee, 8);
+
+	public OI() {
 		presetOneTote.whenPressed(new ElevateToHeight(0));
 		presetTwoTote.whenPressed(new ElevateToHeight(1));
 		presetThreeTote.whenPressed(new ElevateToHeight(2));
@@ -32,28 +43,29 @@ public class OI {
 		presetFiveTote.whenPressed(new ElevateToHeight(4));
 		presetSixTote.whenPressed(new ElevateToHeight(5));
 	}
-	public boolean getPlatformOffset()
-	{
+
+	public boolean getPlatformOffset() {
 		return scoringOffset.get();
 	}
-	public boolean getSteppeOffset()
-	{
+
+	public boolean getSteppeOffset() {
 		return ee.getTrigger();
 	}
-	public double getLeftJoy()
-	{
+
+	public double getLeftJoy() {
 		return left.getY();
 	}
-	public double getRightJoy()
-	{
+
+	public double getRightJoy() {
 		return right.getY();
 	}
+
 	public static double doThreshold(double input) {
-        if (Math.abs(input) <= TeleopConstants.deadband) {
-            return 0;
-        }
-        return input / Math.abs(input) * (Math.abs(input)
-                - TeleopConstants.deadband)
-                / (1 - TeleopConstants.deadband);
-    }
-}											
+		if (Math.abs(input) <= TeleopConstants.deadband) {
+			return 0;
+		}
+		return input / Math.abs(input)
+				* (Math.abs(input) - TeleopConstants.deadband)
+				/ (1 - TeleopConstants.deadband);
+	}
+}
