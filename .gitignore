@@ -37,3 +37,6 @@ Thumbs.db
 # Other
 # TODO: Make this a script generated thing
 /bin/
+
+# Ignore eclipse genereated classpath file
+.classpath
