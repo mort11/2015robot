@@ -12,35 +12,32 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+	// Joystick Mapping
 	Joystick left = new Joystick(1);
 	Joystick right = new Joystick(2);
 	Joystick ee = new Joystick(3);
+
+	// Button Mapping
 	Button scoringOffset = new JoystickButton(ee, 2);
-
-	// Move to one tote level
 	Button presetOneTote = new JoystickButton(ee, 11);
-
-	// Move to two totes level
 	Button presetTwoTote = new JoystickButton(ee, 12);
-
-	// Move to three totes level
 	Button presetThreeTote = new JoystickButton(ee, 9);
-
-	// Move to four totes level
 	Button presetFourTote = new JoystickButton(ee, 10);
-
-	// Move to five totes level
 	Button presetFiveTote = new JoystickButton(ee, 7);
-
-	// Move to six totes level
 	Button presetSixTote = new JoystickButton(ee, 8);
 
 	public OI() {
+		// Move to one tote level
 		presetOneTote.whenPressed(new ElevateToHeight(0));
+		// Move to two totes level
 		presetTwoTote.whenPressed(new ElevateToHeight(1));
+		// Move to three totes level
 		presetThreeTote.whenPressed(new ElevateToHeight(2));
+		// Move to four totes level
 		presetFourTote.whenPressed(new ElevateToHeight(3));
+		// Move to five totes level
 		presetFiveTote.whenPressed(new ElevateToHeight(4));
+		// Move to six totes level
 		presetSixTote.whenPressed(new ElevateToHeight(5));
 	}
 
