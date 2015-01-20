@@ -1,8 +1,9 @@
-package org.usfirst.frc.team11.robot.subsystems.ee;
+package org.mort11.subsystems.ee;
 
-import org.usfirst.frc.team11.robot.commands.ee.Elevate;
-import org.usfirst.frc.team11.robot.RobotMap;
-import static org.usfirst.frc.team11.robot.util.EEConstants.*;
+import org.mort11.RobotMap;
+import org.mort11.commands.ee.Elevate;
+
+import static org.mort11.util.EEConstants.*;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 

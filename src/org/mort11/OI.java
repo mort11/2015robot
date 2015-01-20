@@ -1,7 +1,7 @@
-package org.usfirst.frc.team11.robot;
+package org.mort11;
 
-import org.usfirst.frc.team11.robot.commands.ee.ElevateToHeight;
-import org.usfirst.frc.team11.robot.util.TeleopConstants;
+import org.mort11.commands.ee.ElevateToHeight;
+import org.mort11.util.TeleopConstants;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;

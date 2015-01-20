@@ -1,8 +1,8 @@
 
-package org.usfirst.frc.team11.robot;
+package org.mort11;
 
-import org.usfirst.frc.team11.robot.commands.ee.Elevate;
-import org.usfirst.frc.team11.robot.subsystems.ee.VerticalActuator;
+import org.mort11.commands.ee.Elevate;
+import org.mort11.subsystems.ee.VerticalActuator;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;

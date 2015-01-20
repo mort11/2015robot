@@ -1,6 +1,7 @@
-package org.usfirst.frc.team11.robot.commands.ee;
-import static org.usfirst.frc.team11.robot.Robot.*;
-import org.usfirst.frc.team11.robot.subsystems.ee.VerticalActuator;
+package org.mort11.commands.ee;
+import static org.mort11.Robot.*;
+
+import org.mort11.subsystems.ee.VerticalActuator;
 
 import edu.wpi.first.wpilibj.command.Command;
 
