@@ -11,20 +11,20 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI {
+public class OI extends TeleopConstants { //for some reason this let the constants be used, even though they are public
 	// Joystick Mapping
-	Joystick left = new Joystick(1);
-	Joystick right = new Joystick(2);
-	Joystick ee = new Joystick(3);
+	Joystick left = new Joystick(super.leftJoystickPortNum);
+	Joystick right = new Joystick(super.rightJoystickPortNum);
+	Joystick ee = new Joystick(super.eeJoystickPortNum);
 
 	// Button Mapping
-	Button scoringOffset = new JoystickButton(ee, 2);
-	Button presetOneTote = new JoystickButton(ee, 11);
-	Button presetTwoTote = new JoystickButton(ee, 12);
-	Button presetThreeTote = new JoystickButton(ee, 9);
-	Button presetFourTote = new JoystickButton(ee, 10);
-	Button presetFiveTote = new JoystickButton(ee, 7);
-	Button presetSixTote = new JoystickButton(ee, 8);
+	Button scoringOffset = new JoystickButton(ee, super.scoringOffsetButton);
+	Button presetOneTote = new JoystickButton(ee, super.presetOneToteButton);
+	Button presetTwoTote = new JoystickButton(ee, super.presetTwoToteButton);
+	Button presetThreeTote = new JoystickButton(ee, super.presetThreeToteButton);
+	Button presetFourTote = new JoystickButton(ee, super.presetFourToteButton);
+	Button presetFiveTote = new JoystickButton(ee, super.presetFiveToteButton);
+	Button presetSixTote = new JoystickButton(ee, super.presetSixToteButton);
 
 	public OI() {
 		// Move to one tote level
