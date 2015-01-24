@@ -1,7 +1,7 @@
 package org.mort11.util;
 
 public class TeleopConstants {
-	public static final double deadband = 1;
+	public static final double deadband = 0.035;
 	public static final int scoringOffsetButton = 2;
 	public static final int presetOneToteButton = 11;
 	public static final int presetTwoToteButton = 12;
