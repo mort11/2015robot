@@ -21,7 +21,7 @@ public abstract class DTSide extends Subsystem
     {
     	motors = new Talon(motorPort);
     	enc = new Encoder(encAPort, encBPort, encReverse);
-    	this.motorReverse = motorReverse;
+    	this.motorReverse = motorReverse; 
     	
     }
     
