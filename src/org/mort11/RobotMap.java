@@ -8,6 +8,7 @@ package org.mort11;
 public class RobotMap {
     
 	public static final int IRPort = 0; 
+
 	public static final int DT_LEFT_PORT = 1;
 	public static final int DT_RIGHT_PORT = 1;
 	public static final int DT_ENC_LEFT_A = 1;
@@ -15,4 +16,10 @@ public class RobotMap {
 	public static final int DT_ENC_LEFT_B = 1;
 	public static final int DT_ENC_RIGHT_B = 1;
 	
+
+	public static final int elevatorPortOne = 1;
+	public static final int elevatorPortTwo = 2;
+	public static final int elevatorEncoderA = 1;
+	public static final int elevatorEncoderB = 2;
+
 }
