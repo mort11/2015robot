@@ -18,10 +18,10 @@ public class VerticalActuator extends Subsystem {
 
 	AnalogInput ir = new AnalogInput(RobotMap.IRPort);
 	double height;
-	Talon motor1 = new Talon(1);
-	Talon motor2 = new Talon(2);
-	DigitalInput elevatorLim = new DigitalInput(1);
-	Encoder elevatorEnc = new Encoder(1, 2);
+	Talon motor1 = new Talon(RobotMap.elevatorPortOne);
+	Talon motor2 = new Talon(RobotMap.elevatorPortTwo);
+	DigitalInput elevatorLim = new DigitalInput(1); 
+	Encoder elevatorEnc = new Encoder(RobotMap.elevatorEncoderA, RobotMap.elevatorEncoderB);
 
 	/**
 	 * get height of elevator

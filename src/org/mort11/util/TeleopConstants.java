@@ -13,3 +13,4 @@ public class TeleopConstants {
 	public static final int rightJoystickPortNum = 2;
 	public static final int eeJoystickPortNum = 3;
 }
+// all constants are up to date

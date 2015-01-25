@@ -14,5 +14,8 @@ public class RobotMap {
 	public final int DT_ENC_RIGHT_A = 1;
 	public final int DT_ENC_LEFT_B = 1;
 	public final int DT_ENC_RIGHT_B = 1;
-	
+	public static final int elevatorPortOne = 1;
+	public static final int elevatorPortTwo = 2;
+	public static final int elevatorEncoderA = 1;
+	public static final int elevatorEncoderB = 2;
 }
