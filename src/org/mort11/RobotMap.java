@@ -6,14 +6,13 @@ package org.mort11;
  * floating around.
  */
 public class RobotMap {
-    // For example to map the left and right motors, you could define the
-    // following variables to use with your drivetrain subsystem.
-    // public static final int leftMotor = 1;
-    // public static final int rightMotor = 2;
     
-    // If you are using multiple modules, make sure to define both the port
-    // number and the module. For example you with a rangefinder:
-    // public static final int rangefinderPort = 1;
-    // public static final int rangefinderModule = 1;
 	public static final int IRPort = 0; 
+	public final int DT_LEFT_PORT = 1;
+	public final int DT_RIGHT_PORT = 1;
+	public final int DT_ENC_LEFT_A = 1;
+	public final int DT_ENC_RIGHT_A = 1;
+	public final int DT_ENC_LEFT_B = 1;
+	public final int DT_ENC_RIGHT_B = 1;
+	
 }
