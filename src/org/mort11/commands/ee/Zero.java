@@ -21,7 +21,10 @@ public class Zero extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.elevator.setSpeed(-1);
+		while (!Robot.elevator.getLimSwitch()) {
+			Robot.elevator.setSpeed(1);
+		}
+		Robot.elevator.resetEnc();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
