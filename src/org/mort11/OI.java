@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI extends TeleopConstants { //for some reason this let the constants be used, even though they are public
-	// Joystick Mapping
+public class OI extends TeleopConstants
+{
 	Joystick left = new Joystick(super.LEFT_JOYSTICK);
 	Joystick right = new Joystick(super.RIGHT_JOYSTICK);
 	Joystick ee = new Joystick(super.EE_JOYSTICK);
@@ -26,35 +26,39 @@ public class OI extends TeleopConstants { //for some reason this let the constan
 	Button presetFiveTote = new JoystickButton(ee, super.FIVE_TOTE_PRESET);
 	Button presetSixTote = new JoystickButton(ee, super.SIX_TOTE_PRESET);
 
-	public OI() {
+	public OI() 
+	{
 		// Move to one tote level
 		presetOneTote.whenPressed(new ElevateToHeight(0));
-		// Move to two totes level
 		presetTwoTote.whenPressed(new ElevateToHeight(1));
-		// Move to three totes level
 		presetThreeTote.whenPressed(new ElevateToHeight(2));
-		// Move to four totes level
 		presetFourTote.whenPressed(new ElevateToHeight(3));
-		// Move to five totes level
 		presetFiveTote.whenPressed(new ElevateToHeight(4));
-		// Move to six totes level
 		presetSixTote.whenPressed(new ElevateToHeight(5));
 	}
 
-	public boolean getPlatformOffset() {
+	public boolean getPlatformOffset() 
+	{
 		return scoringOffset.get();
 	}
 
-	public boolean getSteppeOffset() {
+	public boolean getSteppeOffset() 
+	{
 		return ee.getTrigger();
 	}
-
-	public double getLeftJoy() {
-		return left.getY();
+	
+	public double getLeftJoy() 
+	{
+		return doThreshold(left.getY());
 	}
 
-	public double getRightJoy() {
-		return right.getY();
+	public double getRightJoy()
+	{
+		return doThreshold(right.getY());
+	}
+	public double getEEJoy()
+	{
+		return doThreshold(ee.getY());
 	}
 
 	public static double doThreshold(double input) {

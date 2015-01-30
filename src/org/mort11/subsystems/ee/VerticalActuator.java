@@ -13,13 +13,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class VerticalActuator extends Subsystem {
-
-	AnalogInput ir = new AnalogInput(RobotMap.IRPort);
 	double height;
-	Talon motor1 = new Talon(RobotMap.elevatorPortOne);
-	Talon motor2 = new Talon(RobotMap.elevatorPortTwo);
+	Talon motor1 = new Talon(RobotMap.ELEVATOR_TAL1);
+	Talon motor2 = new Talon(RobotMap.ELEVATOR_TAL2);
 	DigitalInput elevatorLim = new DigitalInput(1); 
-	Encoder elevatorEnc = new Encoder(RobotMap.elevatorEncoderA, RobotMap.elevatorEncoderB);
+	Encoder elevatorEnc = new Encoder(RobotMap.ELEVATOR_ENC_A, RobotMap.ELEVATOR_ENC_B);
 
 	/**
 	 * get height of elevator

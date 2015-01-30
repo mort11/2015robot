@@ -25,13 +25,14 @@ public class Elevate extends Command
     // Called repeatedly when this Command is scheduled to run
     protected void execute() 
     {
-    	
+    	//TODO - some form of PID Control?
+    	elevator.setSpeed(oi.getEEJoy());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() 
     {
-        return false;
+        return elevator.getLimSwitch();
     }
 
     // Called once after isFinished returns true
@@ -43,5 +44,6 @@ public class Elevate extends Command
     // subsystems is scheduled to run
     protected void interrupted() 
     {
+    	//cri
     }
 }

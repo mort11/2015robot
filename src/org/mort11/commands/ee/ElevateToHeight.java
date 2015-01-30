@@ -26,7 +26,7 @@ public class ElevateToHeight extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return (Robot.elevator.getHeight()/
-        		EEConstants.TOTES_TO_INCHES == toteheight);
+        		EEConstants.TOTES_TO_INCHES == toteheight || elevator.getLimSwitch());
     }
 
     // Called once after isFinished returns true
