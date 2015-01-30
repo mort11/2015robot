@@ -17,7 +17,7 @@ public class rightDT extends DTSide
 
     public void initDefaultCommand() 
     {
-    	setDefaultCommand();	
+    	//setDefaultCommand();	
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }

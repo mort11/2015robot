@@ -1,7 +1,5 @@
 package org.mort11.subsystems.ee;
 
-import static org.mort11.util.EEConstants.IRVoltsToInches;
-
 import org.mort11.RobotMap;
 import org.mort11.commands.ee.Elevate;
 
@@ -37,7 +35,6 @@ public class VerticalActuator extends Subsystem {
 	}
 
 	public double getHeight() {
-		height = ir.getVoltage() * IRVoltsToInches;
 		return height;
 	}
 

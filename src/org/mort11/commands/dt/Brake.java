@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Break extends Command {
+public class Brake extends Command {
 
-    public Break() {
+    public Brake() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

@@ -13,18 +13,18 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI extends TeleopConstants { //for some reason this let the constants be used, even though they are public
 	// Joystick Mapping
-	Joystick left = new Joystick(super.leftJoystickPortNum);
-	Joystick right = new Joystick(super.rightJoystickPortNum);
-	Joystick ee = new Joystick(super.eeJoystickPortNum);
+	Joystick left = new Joystick(super.LEFT_JOYSTICK);
+	Joystick right = new Joystick(super.RIGHT_JOYSTICK);
+	Joystick ee = new Joystick(super.EE_JOYSTICK);
 
 	// Button Mapping
-	Button scoringOffset = new JoystickButton(ee, super.scoringOffsetButton);
-	Button presetOneTote = new JoystickButton(ee, super.presetOneToteButton);
-	Button presetTwoTote = new JoystickButton(ee, super.presetTwoToteButton);
-	Button presetThreeTote = new JoystickButton(ee, super.presetThreeToteButton);
-	Button presetFourTote = new JoystickButton(ee, super.presetFourToteButton);
-	Button presetFiveTote = new JoystickButton(ee, super.presetFiveToteButton);
-	Button presetSixTote = new JoystickButton(ee, super.presetSixToteButton);
+	Button scoringOffset = new JoystickButton(ee, super.SCORING_OFFSET);
+	Button presetOneTote = new JoystickButton(ee, super.ONE_TOTE_PRESET);
+	Button presetTwoTote = new JoystickButton(ee, super.TWO_TOTE_PRESET);
+	Button presetThreeTote = new JoystickButton(ee, super.THREE_TOTE_PRESET);
+	Button presetFourTote = new JoystickButton(ee, super.FOUR_TOTE_PRESET);
+	Button presetFiveTote = new JoystickButton(ee, super.FIVE_TOTE_PRESET);
+	Button presetSixTote = new JoystickButton(ee, super.SIX_TOTE_PRESET);
 
 	public OI() {
 		// Move to one tote level
@@ -58,11 +58,11 @@ public class OI extends TeleopConstants { //for some reason this let the constan
 	}
 
 	public static double doThreshold(double input) {
-		if (Math.abs(input) <= TeleopConstants.deadband) {
+		if (Math.abs(input) <= TeleopConstants.DEADBAND) {
 			return 0;
 		}
 		return input / Math.abs(input)
-				* (Math.abs(input) - TeleopConstants.deadband)
-				/ (1 - TeleopConstants.deadband);
+				* (Math.abs(input) - TeleopConstants.DEADBAND)
+				/ (1 - TeleopConstants.DEADBAND);
 	}
 }
