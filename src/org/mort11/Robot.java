@@ -27,7 +27,6 @@ public class Robot extends IterativeRobot {
 	public static Claw claw;
 	public static LeftDT left;
 	public static RightDT right;
-    Command autonomousCommand;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -41,14 +40,11 @@ public class Robot extends IterativeRobot {
 		claw = new Claw();
 		left = new LeftDT();
 		right = new RightDT();
-        // instantiate the command used for the autonomous period
-		// autonomousCommand = new ExampleCommand();
     }
 
     public void autonomousInit() 
     {
-        // schedule the autonomous command (example)
-        autonomousCommand.start();
+        // schedule the autonomous command 
     }
 
     /**
@@ -66,7 +62,6 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        autonomousCommand.cancel();
     }
 
     /**
