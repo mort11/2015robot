@@ -9,6 +9,7 @@
  
         Copyright (c) 2015 Mount Olive Robotics Team
  */
+
 package org.mort11;
 
 import org.mort11.subsystems.dt.LeftDT;
@@ -17,7 +18,6 @@ import org.mort11.subsystems.ee.Claw;
 import org.mort11.subsystems.ee.VerticalActuator;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -39,13 +39,10 @@ public class Robot extends IterativeRobot {
 	public static LeftDT left;
 	public static RightDT right;
 
-	Command autonomousCommand;
-
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
-
 
 	public void robotInit() {
 		oi = new OI();
@@ -53,23 +50,11 @@ public class Robot extends IterativeRobot {
 		claw = new Claw();
 		left = new LeftDT();
 		right = new RightDT();
-
-    }
-
-    public void autonomousInit() 
-    {
-        // schedule the autonomous command 
-    }
-
-		// instantiate the command used for the autonomous period
-		// autonomousCommand = new ExampleCommand();
 	}
 
 	public void autonomousInit() {
-		// schedule the autonomous command (example)
-		autonomousCommand.start();
+		// schedule the autonomous command
 	}
-
 
 	/**
 	 * This function is called periodically during autonomous
@@ -81,16 +66,9 @@ public class Robot extends IterativeRobot {
 
 	public void teleopInit() {
 		// This makes sure that the autonomous stops running when
-
-        // teleop starts running. If you want the autonomous to 
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
-    }
-
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		autonomousCommand.cancel();
 	}
 
 	/**
@@ -99,7 +77,6 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 	}
-s
 
 	/**
 	 * This function is called periodically during test mode

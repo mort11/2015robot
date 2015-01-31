@@ -24,26 +24,26 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 
-public class OI 
-{
+public class OI {
 	Joystick left = new Joystick(TeleopConstants.LEFT_JOYSTICK);
 	Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);
 	Joystick ee = new Joystick(TeleopConstants.EE_JOYSTICK);
 
-public class OI extends TeleopConstants {
-	Joystick left = new Joystick(super.LEFT_JOYSTICK);
-	Joystick right = new Joystick(super.RIGHT_JOYSTICK);
-	Joystick ee = new Joystick(super.EE_JOYSTICK);
-
-
 	// Button Mapping
-	Button scoringOffset = new JoystickButton(ee, TeleopConstants.SCORING_OFFSET);
-	Button presetOneTote = new JoystickButton(ee, TeleopConstants.ONE_TOTE_PRESET);
-	Button presetTwoTote = new JoystickButton(ee, TeleopConstants.TWO_TOTE_PRESET);
-	Button presetThreeTote = new JoystickButton(ee, TeleopConstants.THREE_TOTE_PRESET);
-	Button presetFourTote = new JoystickButton(ee, TeleopConstants.FOUR_TOTE_PRESET);
-	Button presetFiveTote = new JoystickButton(ee, TeleopConstants.FIVE_TOTE_PRESET);
-	Button presetSixTote = new JoystickButton(ee, TeleopConstants.SIX_TOTE_PRESET);
+	Button scoringOffset = new JoystickButton(ee,
+			TeleopConstants.SCORING_OFFSET);
+	Button presetOneTote = new JoystickButton(ee,
+			TeleopConstants.ONE_TOTE_PRESET);
+	Button presetTwoTote = new JoystickButton(ee,
+			TeleopConstants.TWO_TOTE_PRESET);
+	Button presetThreeTote = new JoystickButton(ee,
+			TeleopConstants.THREE_TOTE_PRESET);
+	Button presetFourTote = new JoystickButton(ee,
+			TeleopConstants.FOUR_TOTE_PRESET);
+	Button presetFiveTote = new JoystickButton(ee,
+			TeleopConstants.FIVE_TOTE_PRESET);
+	Button presetSixTote = new JoystickButton(ee,
+			TeleopConstants.SIX_TOTE_PRESET);
 	Button clawClose = new JoystickButton(ee, TeleopConstants.CLAW_CLOSE);
 
 	public OI() {
@@ -85,3 +85,4 @@ public class OI extends TeleopConstants {
 				* (Math.abs(input) - TeleopConstants.DEADBAND)
 				/ (1 - TeleopConstants.DEADBAND);
 	}
+}
