@@ -1,5 +1,6 @@
 package org.mort11;
 
+import org.mort11.commands.ee.CloseClaw;
 import org.mort11.commands.ee.ElevateToHeight;
 import org.mort11.util.TeleopConstants;
 
@@ -25,6 +26,7 @@ public class OI extends TeleopConstants
 	Button presetFourTote = new JoystickButton(ee, super.FOUR_TOTE_PRESET);
 	Button presetFiveTote = new JoystickButton(ee, super.FIVE_TOTE_PRESET);
 	Button presetSixTote = new JoystickButton(ee, super.SIX_TOTE_PRESET);
+	Button clawClose = new JoystickButton(ee, super.CLAW_CLOSE);
 
 	public OI() 
 	{
@@ -35,6 +37,7 @@ public class OI extends TeleopConstants
 		presetFourTote.whenPressed(new ElevateToHeight(3));
 		presetFiveTote.whenPressed(new ElevateToHeight(4));
 		presetSixTote.whenPressed(new ElevateToHeight(5));
+		clawClose.whenPressed(new CloseClaw(true));
 	}
 
 	public boolean getPlatformOffset() 
