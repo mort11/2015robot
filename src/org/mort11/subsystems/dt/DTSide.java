@@ -1,5 +1,7 @@
 package org.mort11.subsystems.dt;
 
+import org.mort11.commands.dt.DriveLinear;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -24,7 +26,11 @@ public abstract class DTSide extends Subsystem
     	this.motorReverse = motorReverse; 
     	
     }
-    
+    protected abstract DriveLinear getLinearDrive();
+    protected void initDefaultCommand()
+    {
+    	setDefaultCommand(getLinearDrive());
+    }
     public void set(double lspeed)
     {
         curVal = lspeed;
@@ -45,7 +51,10 @@ public abstract class DTSide extends Subsystem
     {
     	return enc.getDistance();
     }
-    
+    public void resetEnc()
+    {
+    	enc.reset();
+    }
     
 }
 

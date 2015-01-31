@@ -1,7 +1,9 @@
 
 package org.mort11;
 
-import org.mort11.commands.ee.Elevate;
+import org.mort11.subsystems.dt.LeftDT;
+import org.mort11.subsystems.dt.RightDT;
+import org.mort11.subsystems.ee.Claw;
 import org.mort11.subsystems.ee.VerticalActuator;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -22,6 +24,9 @@ public class Robot extends IterativeRobot {
 //	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	public static VerticalActuator elevator;
+	public static Claw claw;
+	public static LeftDT left;
+	public static RightDT right;
     Command autonomousCommand;
 
     /**
@@ -33,6 +38,9 @@ public class Robot extends IterativeRobot {
     {
 		oi = new OI();
 		elevator = new VerticalActuator();
+		claw = new Claw();
+		left = new LeftDT();
+		right = new RightDT();
         // instantiate the command used for the autonomous period
 		// autonomousCommand = new ExampleCommand();
     }

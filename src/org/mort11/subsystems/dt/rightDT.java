@@ -1,13 +1,15 @@
 package org.mort11.subsystems.dt;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+
 import org.mort11.RobotMap;
+import org.mort11.commands.dt.DriveLinear;
 /**
  *
  */
-public class rightDT extends DTSide 
+public class RightDT extends DTSide 
 {
-	public rightDT()
+	public RightDT()
 	{
 		super(RobotMap.DT_RIGHT_PORT, RobotMap.DT_ENC_RIGHT_A,RobotMap.DT_ENC_RIGHT_B,false, true);
 	}
@@ -21,4 +23,10 @@ public class rightDT extends DTSide
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+
+	@Override
+	protected DriveLinear getLinearDrive() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
