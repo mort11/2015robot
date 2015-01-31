@@ -12,6 +12,7 @@ public class Claw extends Subsystem {
     
     
 	DoubleSolenoid clawSol	= new DoubleSolenoid(RobotMap.CLAW_IN, RobotMap.CLAW_OUT);
+	boolean isClosed = true;
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
@@ -23,6 +24,11 @@ public class Claw extends Subsystem {
     	} else {
     		clawSol.set(DoubleSolenoid.Value.kReverse);
     	}
+    	isClosed = closed;
+    }
+    public boolean getClawState()
+    {
+    	return isClosed;
     }
 }
 
