@@ -8,25 +8,24 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class Claw extends Subsystem {
-    
-    
-	DoubleSolenoid clawSol	= new DoubleSolenoid(RobotMap.CLAW_IN, RobotMap.CLAW_OUT);
-	boolean isClosed = true;
+public class Claw extends Subsystem {    
+	DoubleSolenoid clawSol	= new DoubleSolenoid(RobotMap.CLAW_CLOSED,
+			RobotMap.CLAW_OPEN);
+	boolean isClosed = true; //tbd (assumed to be closed)
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    public void setClaw(boolean closed)
+    public void setClawClosed(boolean closed)
     {
     	if(closed){
-    		clawSol.set(DoubleSolenoid.Value.kForward);
+    		clawSol.set(DoubleSolenoid.Value.kForward); //tbd
     	} else {
-    		clawSol.set(DoubleSolenoid.Value.kReverse);
+    		clawSol.set(DoubleSolenoid.Value.kReverse); //tbd
     	}
     	isClosed = closed;
     }
-    public boolean getClawState()
+    public boolean isClawClosed()
     {
     	return isClosed;
     }

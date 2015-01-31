@@ -9,27 +9,25 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Brake extends Subsystem {
-    
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
-	DoubleSolenoid brake = new DoubleSolenoid(RobotMap.BREAK_OUT, RobotMap.BREAK_IN);
-	boolean isBreakOff = true;
+	DoubleSolenoid brake = new DoubleSolenoid(RobotMap.BRAKE_DISENGAGED, 
+			RobotMap.BRAKE_ENGAGED);
+	boolean isBreakOn = false;
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    public void setBrake(boolean off)
+    public void setBrake(boolean on)
     {
-    	if(off) {
-    		brake.set(DoubleSolenoid.Value.kReverse);
-    	} else {
+    	if(on) {
     		brake.set(DoubleSolenoid.Value.kForward);
+    	} else {
+    		brake.set(DoubleSolenoid.Value.kReverse);
     	}
-    	isBreakOff = off;
+    	isBreakOn = on;
     }
     public boolean getBrakeState()
     {
-    	return isBreakOff;
+    	return isBreakOn;
     }
 }
 
