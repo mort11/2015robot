@@ -5,21 +5,24 @@ package org.mort11;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
-public class RobotMap {
-    
-	public static final int IRPort = 0; 
-
+public class RobotMap 
+{
 	public static final int DT_LEFT_PORT = 1;
 	public static final int DT_RIGHT_PORT = 1;
 	public static final int DT_ENC_LEFT_A = 1;
 	public static final int DT_ENC_RIGHT_A = 1;
 	public static final int DT_ENC_LEFT_B = 1;
 	public static final int DT_ENC_RIGHT_B = 1;
-	
 
 	public static final int ELEVATOR_TAL1 = 1;
 	public static final int ELEVATOR_TAL2 = 2;
 	public static final int ELEVATOR_ENC_A = 1;
 	public static final int ELEVATOR_ENC_B = 2;
+	
+	public static final int CLAW_IN = 1;
+	public static final int CLAW_OUT = 2;
+	
+	public static final int BREAK_IN = 1;
+	public static final int BREAK_OUT = 2;
 
 }
