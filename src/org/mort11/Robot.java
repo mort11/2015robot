@@ -1,4 +1,14 @@
-
+/*       __  __  ____  _____ _______   __ __
+        |  \/  |/ __ \|  __ \__   __| /_ /_ |
+        | \  / | |  | | |__) | | |     | || |
+        | |\/| | |  | |  _  /  | |     | || |
+        | |  | | |__| | | \ \  | |     | || |
+        |_|  |_|\____/|_|  \_\ |_|     |_||_|
+ 
+           FRC Team 11, Flanders NJ 07836
+ 
+        Copyright (c) 2015 Mount Olive Robotics Team
+ */
 package org.mort11;
 
 import org.mort11.subsystems.dt.LeftDT;
@@ -21,25 +31,29 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 public class Robot extends IterativeRobot {
 
-//	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+	// public static final ExampleSubsystem exampleSubsystem = new
+	// ExampleSubsystem();
 	public static OI oi;
 	public static VerticalActuator elevator;
 	public static Claw claw;
 	public static LeftDT left;
 	public static RightDT right;
 
-    /**
-     * This function is run when the robot is first started up and should be
-     * used for any initialization code.
-     */
-    
-    public void robotInit() 
-    {
+	Command autonomousCommand;
+
+	/**
+	 * This function is run when the robot is first started up and should be
+	 * used for any initialization code.
+	 */
+
+
+	public void robotInit() {
 		oi = new OI();
 		elevator = new VerticalActuator();
 		claw = new Claw();
 		left = new LeftDT();
 		right = new RightDT();
+
     }
 
     public void autonomousInit() 
@@ -47,36 +61,50 @@ public class Robot extends IterativeRobot {
         // schedule the autonomous command 
     }
 
-    /**
-     * This function is called periodically during autonomous
-     */
-    
-    public void autonomousPeriodic() 
-    {
-        Scheduler.getInstance().run();
-    }
+		// instantiate the command used for the autonomous period
+		// autonomousCommand = new ExampleCommand();
+	}
 
-    public void teleopInit() 
-    {
+	public void autonomousInit() {
+		// schedule the autonomous command (example)
+		autonomousCommand.start();
+	}
+
+
+	/**
+	 * This function is called periodically during autonomous
+	 */
+
+	public void autonomousPeriodic() {
+		Scheduler.getInstance().run();
+	}
+
+	public void teleopInit() {
 		// This makes sure that the autonomous stops running when
+
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
     }
 
-    /**
-     * This function is called periodically during operator control
-     */
-    public void teleopPeriodic() 
-    {
-        Scheduler.getInstance().run();
-    }
-    
-    /**
-     * This function is called periodically during test mode
-     */
-    public void testPeriodic() 
-    {
-        LiveWindow.run();
-    }
+		// teleop starts running. If you want the autonomous to
+		// continue until interrupted by another command, remove
+		// this line or comment it out.
+		autonomousCommand.cancel();
+	}
+
+	/**
+	 * This function is called periodically during operator control
+	 */
+	public void teleopPeriodic() {
+		Scheduler.getInstance().run();
+	}
+s
+
+	/**
+	 * This function is called periodically during test mode
+	 */
+	public void testPeriodic() {
+		LiveWindow.run();
+	}
 }
