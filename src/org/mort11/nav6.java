@@ -1,3 +1,15 @@
+/*       __  __  ____  _____ _______   __ __
+        |  \/  |/ __ \|  __ \__   __| /_ /_ |
+        | \  / | |  | | |__) | | |     | || |
+        | |\/| | |  | |  _  /  | |     | || |
+        | |  | | |__| | | \ \  | |     | || |
+        |_|  |_|\____/|_|  \_\ |_|     |_||_|
+ 
+           FRC Team 11, Flanders NJ 07836
+ 
+        Copyright (c) 2015 Mount Olive Robotics Team
+ */
+
 package org.mort11;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
@@ -9,7 +21,19 @@ public class nav6 {
 
 	private static SerialPort serial_port;
 	private static IMUAdvanced imu;
+	// Timer stuff
 	private static double lastTimerVal = 0;
+	// private static double timerMin = 2000;
+	// //private static double timerMax = -1;
+	private static int counter = 0;
+	// Velocity stuff
+	private static double changedVelocity;
+	private static double currentVelocity;
+	private static double lastVelocity = 0;
+	// Position stuff
+	private static double changedPosition;
+	private static double currentPosition;
+	private static double lastPosition;
 
 	public static void initIMU() {
 		try {
@@ -53,25 +77,31 @@ public class nav6 {
 	public static void getChangedVelocity() {
 		double timerChange = getTimerChange();
 		float xAccel = imu.getWorldLinearAccelX();
+		changedVelocity = timerChange * xAccel;
 		// System.out.println(timerChange * xAccel);
-		System.out.println(xAccel);
-		try {
-			Thread.sleep(750);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		/*
+		 * System.out.println(timerChange); if (timerChange > timerMax) {
+		 * timerMax = timerChange; }
+		 * 
+		 * if (timerChange < timerMin) { timerMin = timerChange; }
+		 * 
+		 * if (counter == 50) { System.out.println("Min: " + timerMin);
+		 * System.out.println("Max: " + timerMax); counter = 0; }
+		 */
+		counter++;
+		lastVelocity = currentVelocity;
 	}
 
-	public static double getCurrentVelocity() {
-		return 0;
+	public static void getCurrentVelocity() {
+		currentVelocity = lastVelocity + changedVelocity;
 	}
 
-	public static double getChangedPos() {
-		return 0;
+	public static void getChangedPos() {
+		double timerChange = getTimerChange();
+		changedPosition = currentVelocity * timerChange;
 	}
 
-	public double getCurrentPos() {
-		return 0;
+	public static void getCurrentPos() {
+		currentPosition = changedPosition + lastPosition;
 	}
 }
