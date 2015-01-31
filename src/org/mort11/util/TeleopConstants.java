@@ -12,4 +12,5 @@ public class TeleopConstants {
 	public static final int LEFT_JOYSTICK = 1;
 	public static final int RIGHT_JOYSTICK = 2;
 	public static final int EE_JOYSTICK = 3;
+	// each tote has a dimension of 26.9 inches long, 16.9 inches wide, and 12.1 inches tall
 }
