@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Elevate extends Command 
+public class ElevateByJoystick extends Command 
 {
 
-    public Elevate()
+    public ElevateByJoystick()
     {
         requires(elevator);
     }

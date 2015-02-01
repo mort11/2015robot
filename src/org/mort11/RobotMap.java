@@ -9,15 +9,15 @@ public class RobotMap
 {
 	public static final int DT_LEFT_PORT = 1;
 	public static final int DT_RIGHT_PORT = 1;
-	public static final int DT_ENC_LEFT_A = 1;
-	public static final int DT_ENC_RIGHT_A = 1;
-	public static final int DT_ENC_LEFT_B = 1;
-	public static final int DT_ENC_RIGHT_B = 1;
+	public static final int DT_ENC_LEFT_A = 2;
+	public static final int DT_ENC_RIGHT_A = 2;
+	public static final int DT_ENC_LEFT_B = 2;
+	public static final int DT_ENC_RIGHT_B = 2;
 
-	public static final int ELEVATOR_TAL1 = 1;
+	public static final int ELEVATOR_TAL1 = 9;
 	public static final int ELEVATOR_TAL2 = 2;
-	public static final int ELEVATOR_ENC_A = 1;
-	public static final int ELEVATOR_ENC_B = 2;
+	public static final int ELEVATOR_ENC_A = 0;
+	public static final int ELEVATOR_ENC_B = 1;
 	
 	public static final int CLAW_CLOSED = 1;
 	public static final int CLAW_OPEN = 2;

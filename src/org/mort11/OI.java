@@ -14,8 +14,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI 
 {
-	Joystick left = new Joystick(TeleopConstants.LEFT_JOYSTICK);
-	Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);
+	//Joystick left = new Joystick(TeleopConstants.LEFT_JOYSTICK);
+	//Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);
 	Joystick ee = new Joystick(TeleopConstants.EE_JOYSTICK);
 
 	// Button Mapping
@@ -37,7 +37,7 @@ public class OI
 		presetFourTote.whenPressed(new ElevateToHeight(3));
 		presetFiveTote.whenPressed(new ElevateToHeight(4));
 		presetSixTote.whenPressed(new ElevateToHeight(5));
-		clawClose.whenPressed(new CloseClaw(true));
+		/**clawClose.whenPressed(new CloseClaw(true));**/
 	}
 
 	public boolean getPlatformOffset() 
@@ -52,12 +52,14 @@ public class OI
 	
 	public double getLeftJoy() 
 	{
-		return doThreshold(left.getY());
+		//return doThreshold(left.getY());
+		return 0;
 	}
 
 	public double getRightJoy()
 	{
-		return doThreshold(right.getY());
+		//return doThreshold(right.getY());
+		return 0;
 	}
 	public double getEEJoy()
 	{

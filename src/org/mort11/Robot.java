@@ -1,6 +1,7 @@
 
 package org.mort11;
 
+import org.mort11.commands.ee.ElevateToHeight;
 import org.mort11.subsystems.dt.LeftDT;
 import org.mort11.subsystems.dt.RightDT;
 import org.mort11.subsystems.ee.Claw;
@@ -20,13 +21,12 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 
 public class Robot extends IterativeRobot {
-
-//	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-	public static OI oi;
+	
 	public static VerticalActuator elevator;
 	public static Claw claw;
 	public static LeftDT left;
 	public static RightDT right;
+	public static OI oi;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -35,16 +35,18 @@ public class Robot extends IterativeRobot {
     
     public void robotInit() 
     {
-		oi = new OI();
 		elevator = new VerticalActuator();
 		claw = new Claw();
 		left = new LeftDT();
 		right = new RightDT();
+		oi = new OI();
+		System.out.println("starting");
     }
 
     public void autonomousInit() 
     {
-        // schedule the autonomous command 
+    	new ElevateToHeight(2).start();//tbd
+    	System.out.println("auton started");
     }
 
     /**
