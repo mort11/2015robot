@@ -1,12 +1,24 @@
+/*       __  __  ____  _____ _______   __ __
+        |  \/  |/ __ \|  __ \__   __| /_ /_ |
+        | \  / | |  | | |__) | | |     | || |
+        | |\/| | |  | |  _  /  | |     | || |
+        | |  | | |__| | | \ \  | |     | || |
+        |_|  |_|\____/|_|  \_\ |_|     |_||_|
+ 
+           FRC Team 11, Flanders NJ 07836
+ 
+        Copyright (c) 2015 Mount Olive Robotics Team
+ */
+
 package org.mort11;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
-public class RobotMap 
-{
+public class RobotMap {
 	public static final int DT_LEFT_PORT = 1;
 	public static final int DT_RIGHT_PORT = 1;
 	public static final int DT_ENC_LEFT_A = 2;

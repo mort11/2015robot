@@ -1,7 +1,6 @@
 package org.mort11.commands.ee;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.mort11.subsystems.ee.Claw;
 import org.mort11.Robot;
 /**
  *
@@ -23,12 +22,12 @@ public class CloseClaw extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.claw.setClawClosed(isClosed);
+    	Robot.claw.setPart(isClosed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

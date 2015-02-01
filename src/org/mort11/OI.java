@@ -1,3 +1,14 @@
+/*       __  __  ____  _____ _______   __ __
+        |  \/  |/ __ \|  __ \__   __| /_ /_ |
+        | \  / | |  | | |__) | | |     | || |
+        | |\/| | |  | |  _  /  | |     | || |
+        | |  | | |__| | | \ \  | |     | || |
+        |_|  |_|\____/|_|  \_\ |_|     |_||_|
+
+           FRC Team 11, Flanders NJ 07836
+
+        Copyright (c) 2015 Mount Olive Robotics Team
+ */
 package org.mort11;
 
 import org.mort11.commands.ee.CloseClaw;
@@ -16,20 +27,28 @@ public class OI
 {
 	//Joystick left = new Joystick(TeleopConstants.LEFT_JOYSTICK);
 	//Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);
+	Joystick left = new Joystick(TeleopConstants.LEFT_JOYSTICK);
+	Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);
 	Joystick ee = new Joystick(TeleopConstants.EE_JOYSTICK);
 
 	// Button Mapping
-	Button scoringOffset = new JoystickButton(ee, TeleopConstants.SCORING_OFFSET);
-	Button presetOneTote = new JoystickButton(ee, TeleopConstants.ONE_TOTE_PRESET);
-	Button presetTwoTote = new JoystickButton(ee, TeleopConstants.TWO_TOTE_PRESET);
-	Button presetThreeTote = new JoystickButton(ee, TeleopConstants.THREE_TOTE_PRESET);
-	Button presetFourTote = new JoystickButton(ee, TeleopConstants.FOUR_TOTE_PRESET);
-	Button presetFiveTote = new JoystickButton(ee, TeleopConstants.FIVE_TOTE_PRESET);
-	Button presetSixTote = new JoystickButton(ee, TeleopConstants.SIX_TOTE_PRESET);
+	Button scoringOffset = new JoystickButton(ee,
+			TeleopConstants.SCORING_OFFSET);
+	Button presetOneTote = new JoystickButton(ee,
+			TeleopConstants.ONE_TOTE_PRESET);
+	Button presetTwoTote = new JoystickButton(ee,
+			TeleopConstants.TWO_TOTE_PRESET);
+	Button presetThreeTote = new JoystickButton(ee,
+			TeleopConstants.THREE_TOTE_PRESET);
+	Button presetFourTote = new JoystickButton(ee,
+			TeleopConstants.FOUR_TOTE_PRESET);
+	Button presetFiveTote = new JoystickButton(ee,
+			TeleopConstants.FIVE_TOTE_PRESET);
+	Button presetSixTote = new JoystickButton(ee,
+			TeleopConstants.SIX_TOTE_PRESET);
 	Button clawClose = new JoystickButton(ee, TeleopConstants.CLAW_CLOSE);
 
-	public OI() 
-	{
+	public OI() {
 		// Move to one tote level
 		presetOneTote.whenPressed(new ElevateToHeight(0));
 		presetTwoTote.whenPressed(new ElevateToHeight(1));
@@ -40,29 +59,23 @@ public class OI
 		/**clawClose.whenPressed(new CloseClaw(true));**/
 	}
 
-	public boolean getPlatformOffset() 
-	{
+	public boolean getPlatformOffset() {
 		return scoringOffset.get();
 	}
 
-	public boolean getSteppeOffset() 
-	{
+	public boolean getSteppeOffset() {
 		return ee.getTrigger();
 	}
-	
-	public double getLeftJoy() 
-	{
-		//return doThreshold(left.getY());
-		return 0;
+
+	public double getLeftJoy() {
+		return doThreshold(left.getY());
 	}
 
-	public double getRightJoy()
-	{
-		//return doThreshold(right.getY());
-		return 0;
+	public double getRightJoy() {
+		return doThreshold(right.getY());
 	}
-	public double getEEJoy()
-	{
+
+	public double getEEJoy() {
 		return doThreshold(ee.getY());
 	}
 
