@@ -3,11 +3,10 @@ package org.mort11;
 
 import org.mort11.subsystems.dt.LeftDT;
 import org.mort11.subsystems.dt.RightDT;
-import org.mort11.subsystems.ee.Claw;
+import org.mort11.subsystems.ee.PneumaticSubsystem;
 import org.mort11.subsystems.ee.VerticalActuator;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -24,10 +23,11 @@ public class Robot extends IterativeRobot {
 //	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	public static VerticalActuator elevator;
-	public static Claw claw;
 	public static LeftDT left;
 	public static RightDT right;
-
+	public static PneumaticSubsystem claw;
+	public static PneumaticSubsystem brake;
+	//PS claw = new PS(rm.clawin,rm.clawout);
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -37,7 +37,8 @@ public class Robot extends IterativeRobot {
     {
 		oi = new OI();
 		elevator = new VerticalActuator();
-		claw = new Claw();
+		claw = new PneumaticSubsystem (RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN);
+		brake = new PneumaticSubsystem (RobotMap.BRAKE_ENGAGED, RobotMap.BRAKE_DISENGAGED);
 		left = new LeftDT();
 		right = new RightDT();
     }
