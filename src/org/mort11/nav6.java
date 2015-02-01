@@ -19,27 +19,45 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class nav6 {
 
+	// IMU
 	private static SerialPort serial_port;
 	private static IMUAdvanced imu;
-	// Timer stuff
+
+	// Timer
 	private static double lastTimerVal = 0;
 	private static double currentTimeChange = 0;
-	// private static double timerMin = 2000;
-	// private static double timerMax = -1;
-	// private static int counter = 0;
-	// Velocity stuff
-	private static double changedVelocity;
-	private static double currentVelocity = 0;
-	private static double lastVelocity = 0;
-	// Position stuff
-	private static double changedPosition;
-	private static double currentPosition;
-	private static double lastPosition;
+
+	// Velocity
+	private static double changedVelocityX;
+	private static double changedVelocityY;
+	private static double changedVelocityZ;
+
+	private static double currentVelocityX = 0;
+	private static double currentVelocityY = 0;
+	private static double currentVelocityZ = 0;
+	private static double lastVelocityX = 0;
+	private static double lastVelocityY = 0;
+	private static double lastVelocityZ = 0;
+
+	// Position
+	private static double changedPositionX;
+	private static double changedPositionY;
+	private static double changedPositionZ;
+
+	private static double currentPositionX;
+	private static double currentPositionY;
+	private static double currentPositionZ;
+
+	private static double lastPositionX;
+	private static double lastPositionY;
+	private static double lastPositionZ;
+
+	// Orientation
+	private static double orientation;
 
 	public class navigationalState {
 
 		// Current velocity in feet per second
-		public double currentVelocity;
 		public double velX;
 		public double velY;
 		public double velZ;
@@ -74,32 +92,105 @@ public class nav6 {
 		currentTimeChange = timerChange;
 	}
 
-	private static void setChangedVelocity() {
-		// double timerChange = getTimerChange();
+	private static void setChangedVelocityX() {
 		float xAccel = imu.getWorldLinearAccelX();
-		changedVelocity = currentTimeChange * xAccel;
-
+		changedVelocityX = currentTimeChange * xAccel;
 	}
 
-	private static void setCurrentVelocity() {
-		lastVelocity = currentVelocity;
-		currentVelocity = lastVelocity + changedVelocity;
+	private static void setChangedVelocityY() {
+		float yAccel = imu.getWorldLinearAccelY();
+		changedVelocityY = currentTimeChange * yAccel;
 	}
 
-	private static void setChangedPos() {
-		changedPosition = currentVelocity * currentTimeChange;
+	private static void setChangedVelocityZ() {
+		float zAccel = imu.getWorldLinearAccelZ();
+		changedVelocityZ = currentTimeChange * zAccel;
 	}
 
-	private static void setCurrentPos() {
-		lastPosition = currentPosition;
-		currentPosition = changedPosition + lastPosition;
+	private static void setCurrentVelocityX() {
+		lastVelocityX = currentVelocityX;
+		currentVelocityX = lastVelocityX + changedVelocityX;
+	}
+
+	private static void setCurrentVelocityY() {
+		lastVelocityY = currentVelocityY;
+		currentVelocityY = lastVelocityY + changedVelocityY;
+	}
+
+	private static void setCurrentVelocityZ() {
+		lastVelocityZ = currentVelocityZ;
+		currentVelocityZ = lastVelocityZ + changedVelocityZ;
+	}
+
+	private static void setChangedPosX() {
+		changedPositionX = ((currentVelocityX + lastVelocityX) / 2)
+				* currentTimeChange;
+	}
+
+	private static void setChangedPosY() {
+		changedPositionY = ((currentVelocityY + lastVelocityY) / 2)
+				* currentTimeChange;
+	}
+
+	private static void setChangedPosZ() {
+		changedPositionZ = ((currentVelocityZ + lastVelocityZ) / 2)
+				* currentTimeChange;
+	}
+
+	private static void setCurrentPosX() {
+		lastPositionX = currentPositionX;
+		currentPositionX = changedPositionX + lastPositionX;
+	}
+
+	private static void setCurrentPosY() {
+		lastPositionY = currentPositionY;
+		currentPositionY = changedPositionY + lastPositionY;
+	}
+
+	private static void setCurrentPosZ() {
+		lastPositionZ = currentPositionZ;
+		currentPositionZ = changedPositionZ + lastPositionZ;
+	}
+
+	private static void setOrientation() {
+		// In degrees clockwise
+		orientation = imu.getYaw();
 	}
 
 	public navigationalState getPosition() {
 		navigationalState navState = new navigationalState();
 
+		// Call position & velocity functions to set internal vars
+		setTimerChange();
+
+		setChangedVelocityX();
+		setChangedVelocityY();
+		setChangedVelocityZ();
+
+		setCurrentVelocityX();
+		setCurrentVelocityY();
+		setCurrentVelocityZ();
+
+		setChangedPosX();
+		setChangedPosY();
+		setChangedPosZ();
+
+		setCurrentPosX();
+		setCurrentPosY();
+		setCurrentPosZ();
+
+		setOrientation();
+
 		// Setup output values
-		navState.currentVelocity = currentVelocity;
-		return null;
+		navState.velX = currentVelocityX;
+		navState.velY = currentVelocityY;
+		navState.velZ = currentVelocityZ;
+
+		navState.x = currentPositionX;
+		navState.y = currentPositionY;
+		navState.z = currentPositionZ;
+
+		navState.orientation = orientation;
+		return navState;
 	}
 }
