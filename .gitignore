@@ -24,16 +24,14 @@
 # Logs and databases #
 ######################
 
-*.log*
-#*.sql
+*.log
+*.sql
 *.sqlite
 
 # OS generated files #
 ######################
-.DS_Store?
+.DS_Store
 ehthumbs.db
-Icon?
+Icon
 Thumbs.db
 # Other
-# TODO: Make this a script generated thing
-/bin/
