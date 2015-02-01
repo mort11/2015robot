@@ -47,20 +47,22 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		elevator = new VerticalActuator();
-		claw = new PneumaticSubsystem (RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN);
-		brake = new PneumaticSubsystem (RobotMap.BRAKE_ENGAGED, RobotMap.BRAKE_DISENGAGED);
+		claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN);
+		brake = new PneumaticSubsystem(RobotMap.BRAKE_ENGAGED,
+				RobotMap.BRAKE_DISENGAGED);
 		left = new LeftDT();
 		right = new RightDT();
 		oi = new OI();
+
 		System.out.println("starting");
-    }
+	}
 
-    public void autonomousInit() 
-    {
-    	new ElevateToHeight(2).start();//tbd
-    	System.out.println("auton started");
-    }
-
+	public void autonomousInit() {
+		nav6.initIMU();
+		nav6.timer.start();
+		new ElevateToHeight(2).start();// tbd
+		System.out.println("auton started");
+	}
 
 	/**
 	 * This function is called periodically during autonomous
