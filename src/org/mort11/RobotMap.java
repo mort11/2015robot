@@ -30,22 +30,12 @@ public class RobotMap {
 	public static final int ELEVATOR_TAL2 = 2;
 	public static final int ELEVATOR_ENC_A = 1;
 	public static final int ELEVATOR_ENC_B = 2;
-<<<<<<< HEAD
-	
-	public static final int CLAW_CLOSED = 1; //probably gonna delete
-	public static final int CLAW_OPEN = 2; //probably gonna delete
-	
-	public static final int BRAKE_ENGAGED = 1; //probably gonna delete
-	public static final int BRAKE_DISENGAGED = 2; //probably gonna delete
-	
-=======
 
-	public static final int CLAW_CLOSED = 1;
-	public static final int CLAW_OPEN = 2;
+	public static final int CLAW_CLOSED = 1; // probably gonna delete
+	public static final int CLAW_OPEN = 2; // probably gonna delete
 
-	public static final int BRAKE_ENGAGED = 1;
-	public static final int BRAKE_DISENGAGED = 2;
->>>>>>> 7cccdcfa9b75c07d7d9906a4eb4844cf5995882c
+	public static final int BRAKE_ENGAGED = 1; // probably gonna delete
+	public static final int BRAKE_DISENGAGED = 2; // probably gonna delete
 
 	public static final int CLAW_IN = 1;
 	public static final int CLAW_OUT = 2;
