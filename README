@@ -1,4 +1,4 @@
-/*       __  __  ____  _____ _______   __ __
+         __  __  ____  _____ _______   __ __
         |  \/  |/ __ \|  __ \__   __| /_ /_ |
         | \  / | |  | | |__) | | |     | || |
         | |\/| | |  | |  _  /  | |     | || |
@@ -8,4 +8,9 @@
            FRC Team 11, Flanders NJ 07836
  
         Copyright (c) 2015 Mount Olive Robotics Team
- */
+
+        Robot code for the 2015 FRC game, Recycle Rush.
+
+        Some links:
+
+        USFIRST: http://www.usfirst.org/roboticsprograms/frc/2015-game
