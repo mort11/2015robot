@@ -19,89 +19,178 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class nav6 {
 
+	// IMU
 	private static SerialPort serial_port;
 	private static IMUAdvanced imu;
-	// Timer stuff
-	private static double lastTimerVal = 0;
-	// private static double timerMin = 2000;
-	// //private static double timerMax = -1;
-	private static int counter = 0;
-	// Velocity stuff
-	private static double changedVelocity;
-	private static double currentVelocity;
-	private static double lastVelocity = 0;
-	// Position stuff
-	private static double changedPosition;
-	private static double currentPosition;
-	private static double lastPosition;
 
+	// Timer
+	private static double lastTimerVal = 0;
+	private static double currentTimeChange = 0;
+
+	// Velocity
+	private static double changedVelocityX;
+	private static double changedVelocityY;
+	private static double changedVelocityZ;
+
+	private static double currentVelocityX = 0;
+	private static double currentVelocityY = 0;
+	private static double currentVelocityZ = 0;
+	private static double lastVelocityX = 0;
+	private static double lastVelocityY = 0;
+	private static double lastVelocityZ = 0;
+
+	// Position
+	private static double changedPositionX;
+	private static double changedPositionY;
+	private static double changedPositionZ;
+
+	private static double currentPositionX;
+	private static double currentPositionY;
+	private static double currentPositionZ;
+
+	private static double lastPositionX;
+	private static double lastPositionY;
+	private static double lastPositionZ;
+
+	// Orientation
+	private static double orientation;
+
+	public class navigationalState {
+
+		// Current velocity in feet per second
+		public double velX;
+		public double velY;
+		public double velZ;
+
+		// Position in feet from init
+		public double x;
+		public double y;
+		public double z;
+
+		// In degrees from init
+		public double orientation; // Todo
+	}
+
+	// Init timer
+	public static Timer timer = new Timer();
+
+	// Init IMU unit
 	public static void initIMU() {
 		try {
 			serial_port = new SerialPort(57600, SerialPort.Port.kUSB);
-
-			// You can add a second parameter to modify the
-			// update rate (in hz) from 4 to 100. The default is 100.
-			// If you need to minimize CPU load, you can set it to a
-			// lower value, as shown here, depending upon your needs.
-
-			// You can also use the IMUAdvanced class for advanced
-			// features.
-
 			byte update_rate_hz = 50;
-			// imu = new IMU(serial_port,update_rate_hz);
 			imu = new IMUAdvanced(serial_port, update_rate_hz);
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}
 	}
 
-	public static Timer timer = new Timer();
-
-	// Handling methods
-
-	public static void initTimer() {
-		timer.start(); // Counts from 0 in seconds
-	}
-
-	public static double getTimerChange() {
+	private static void setTimerChange() {
 		double currentTime = timer.get(); // Get "wall" clock value
 		double timerChange = currentTime - lastTimerVal;
 		lastTimerVal = currentTime;
-		return timerChange;
+		currentTimeChange = timerChange;
 	}
 
-	public static void stopTimer() {
-		timer.stop();
-	}
-
-	public static void getChangedVelocity() {
-		double timerChange = getTimerChange();
+	private static void setChangedVelocityX() {
 		float xAccel = imu.getWorldLinearAccelX();
-		changedVelocity = timerChange * xAccel;
-		// System.out.println(timerChange * xAccel);
-		/*
-		 * System.out.println(timerChange); if (timerChange > timerMax) {
-		 * timerMax = timerChange; }
-		 * 
-		 * if (timerChange < timerMin) { timerMin = timerChange; }
-		 * 
-		 * if (counter == 50) { System.out.println("Min: " + timerMin);
-		 * System.out.println("Max: " + timerMax); counter = 0; }
-		 */
-		counter++;
-		lastVelocity = currentVelocity;
+		changedVelocityX = currentTimeChange * xAccel;
 	}
 
-	public static void getCurrentVelocity() {
-		currentVelocity = lastVelocity + changedVelocity;
+	private static void setChangedVelocityY() {
+		float yAccel = imu.getWorldLinearAccelY();
+		changedVelocityY = currentTimeChange * yAccel;
 	}
 
-	public static void getChangedPos() {
-		double timerChange = getTimerChange();
-		changedPosition = currentVelocity * timerChange;
+	private static void setChangedVelocityZ() {
+		float zAccel = imu.getWorldLinearAccelZ();
+		changedVelocityZ = currentTimeChange * zAccel;
 	}
 
-	public static void getCurrentPos() {
-		currentPosition = changedPosition + lastPosition;
+	private static void setCurrentVelocityX() {
+		lastVelocityX = currentVelocityX;
+		currentVelocityX = lastVelocityX + changedVelocityX;
+	}
+
+	private static void setCurrentVelocityY() {
+		lastVelocityY = currentVelocityY;
+		currentVelocityY = lastVelocityY + changedVelocityY;
+	}
+
+	private static void setCurrentVelocityZ() {
+		lastVelocityZ = currentVelocityZ;
+		currentVelocityZ = lastVelocityZ + changedVelocityZ;
+	}
+
+	private static void setChangedPosX() {
+		changedPositionX = ((currentVelocityX + lastVelocityX) / 2)
+				* currentTimeChange;
+	}
+
+	private static void setChangedPosY() {
+		changedPositionY = ((currentVelocityY + lastVelocityY) / 2)
+				* currentTimeChange;
+	}
+
+	private static void setChangedPosZ() {
+		changedPositionZ = ((currentVelocityZ + lastVelocityZ) / 2)
+				* currentTimeChange;
+	}
+
+	private static void setCurrentPosX() {
+		lastPositionX = currentPositionX;
+		currentPositionX = changedPositionX + lastPositionX;
+	}
+
+	private static void setCurrentPosY() {
+		lastPositionY = currentPositionY;
+		currentPositionY = changedPositionY + lastPositionY;
+	}
+
+	private static void setCurrentPosZ() {
+		lastPositionZ = currentPositionZ;
+		currentPositionZ = changedPositionZ + lastPositionZ;
+	}
+
+	private static void setOrientation() {
+		// In degrees clockwise
+		orientation = imu.getYaw();
+	}
+
+	public navigationalState getPosition() {
+		navigationalState navState = new navigationalState();
+
+		// Call position & velocity functions to set internal vars
+		setTimerChange();
+
+		setChangedVelocityX();
+		setChangedVelocityY();
+		setChangedVelocityZ();
+
+		setCurrentVelocityX();
+		setCurrentVelocityY();
+		setCurrentVelocityZ();
+
+		setChangedPosX();
+		setChangedPosY();
+		setChangedPosZ();
+
+		setCurrentPosX();
+		setCurrentPosY();
+		setCurrentPosZ();
+
+		setOrientation();
+
+		// Setup output values
+		navState.velX = currentVelocityX;
+		navState.velY = currentVelocityY;
+		navState.velZ = currentVelocityZ;
+
+		navState.x = currentPositionX;
+		navState.y = currentPositionY;
+		navState.z = currentPositionZ;
+
+		navState.orientation = orientation;
+		return navState;
 	}
 }

@@ -51,15 +51,16 @@ public class Robot extends IterativeRobot {
 		left = new LeftDT();
 		right = new RightDT();
 		oi = new OI();
+
 		System.out.println("starting");
-    }
+	}
 
-    public void autonomousInit() 
-    {
-    	new ElevateToHeight(2).start();//tbd
-    	System.out.println("auton started");
-    }
-
+	public void autonomousInit() {
+		nav6.initIMU();
+		nav6.timer.start();
+		new ElevateToHeight(2).start();// tbd
+		System.out.println("auton started");
+	}
 
 	/**
 	 * This function is called periodically during autonomous
