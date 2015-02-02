@@ -45,10 +45,9 @@ public class Robot extends IterativeRobot {
 	 */
 
 	public void robotInit() {
-		oi = new OI();
 		elevator = new VerticalActuator();
-		claw = new PneumaticSubsystem (RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN);
-		brake = new PneumaticSubsystem (RobotMap.BRAKE_ENGAGED, RobotMap.BRAKE_DISENGAGED);
+/**		claw = new PneumaticSubsystem (RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN);
+		brake = new PneumaticSubsystem (RobotMap.BRAKE_ENGAGED, RobotMap.BRAKE_DISENGAGED);**/
 		left = new LeftDT();
 		right = new RightDT();
 		oi = new OI();

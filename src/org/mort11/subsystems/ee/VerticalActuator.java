@@ -19,13 +19,15 @@ public class VerticalActuator extends Subsystem {
 	Talon motor2 = new Talon(RobotMap.ELEVATOR_TAL2);
 	DigitalInput elevatorLim; 
 	Encoder elevatorEnc;
+	double speed;
 	public VerticalActuator()
 	{
 		motor1 = new Talon(RobotMap.ELEVATOR_TAL1);
-		elevatorLim = new DigitalInput(5);
+		elevatorLim = new DigitalInput(6);
 		elevatorEnc = new Encoder(RobotMap.ELEVATOR_ENC_A, RobotMap.ELEVATOR_ENC_B,false, EncodingType.k4X);
 		elevatorEnc.reset();
 		elevatorEnc.setDistancePerPulse(5.0379/256);
+		speed = 0;
 	}
 	/**
 	 * get height of elevator
@@ -51,8 +53,14 @@ public class VerticalActuator extends Subsystem {
 			speed = -1;
 		}
 		//System.out.println(speed+" :speed");
+		this.speed = speed;
 		motor1.set(speed);
 		motor2.set(speed);
+	}
+	
+	public double getSpeed()
+	{
+		return speed;
 	}
 
 	public void initDefaultCommand() {
