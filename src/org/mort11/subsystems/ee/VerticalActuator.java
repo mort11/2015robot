@@ -2,6 +2,7 @@ package org.mort11.subsystems.ee;
 
 import org.mort11.RobotMap;
 import org.mort11.commands.ee.ElevateByJoystick;
+import org.mort11.util.EEConstants;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
@@ -23,10 +24,11 @@ public class VerticalActuator extends Subsystem {
 	public VerticalActuator()
 	{
 		motor1 = new Talon(RobotMap.ELEVATOR_TAL1);
-		elevatorLim = new DigitalInput(6);
-		elevatorEnc = new Encoder(RobotMap.ELEVATOR_ENC_A, RobotMap.ELEVATOR_ENC_B,false, EncodingType.k4X);
+		elevatorLim = new DigitalInput(RobotMap.ELEVATOR_TOP_LIM);
+		elevatorEnc = new Encoder(RobotMap.ELEVATOR_ENC_A, 
+				RobotMap.ELEVATOR_ENC_B,false, EncodingType.k4X);
 		elevatorEnc.reset();
-		elevatorEnc.setDistancePerPulse(5.0379/256);
+		elevatorEnc.setDistancePerPulse(EEConstants.DIST_PER_PULSE);
 		speed = 0;
 	}
 	/**
