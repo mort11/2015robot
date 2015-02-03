@@ -1,15 +1,3 @@
-/*       __  __  ____  _____ _______   __ __
-        |  \/  |/ __ \|  __ \__   __| /_ /_ |
-        | \  / | |  | | |__) | | |     | || |
-        | |\/| | |  | |  _  /  | |     | || |
-        | |  | | |__| | | \ \  | |     | || |
-        |_|  |_|\____/|_|  \_\ |_|     |_||_|
- 
-           FRC Team 11, Flanders NJ 07836
- 
-        Copyright (c) 2015 Mount Olive Robotics Team
- */
-
 package org.mort11;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
