@@ -1,4 +1,4 @@
-package org.mort11;
+package org.mort11.util;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
 
