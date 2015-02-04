@@ -47,15 +47,12 @@ public class Robot extends IterativeRobot {
 
 	public void robotInit() {
 		elevator = new VerticalActuator();
-		/**
-		 * claw = new PneumaticSubsystem (RobotMap.CLAW_CLOSED,
-		 * RobotMap.CLAW_OPEN); brake = new PneumaticSubsystem
-		 * (RobotMap.BRAKE_ENGAGED, RobotMap.BRAKE_DISENGAGED);
-		 **/
+		claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN); 
+		brake = new PneumaticSubsystem(RobotMap.BRAKE_ENGAGED, 
+				RobotMap.BRAKE_DISENGAGED);
 		left = new LeftDT();
 		right = new RightDT();
 		oi = new OI();
-
 		System.out.println("starting");
 	}
 
@@ -72,6 +69,8 @@ public class Robot extends IterativeRobot {
 
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		//the scheduler does cool things and also jeff is talking about breaks
+		
 	}
 
 	public void teleopInit() {

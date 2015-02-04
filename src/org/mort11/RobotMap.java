@@ -19,12 +19,11 @@ public class RobotMap {
 	public static final int ELEVATOR_ENC_A = 0;
 	public static final int ELEVATOR_ENC_B = 1;
 	public static final int ELEVATOR_TOP_LIM = 6;
-	/**
-	 * public static final int CLAW_CLOSED = 6; public static final int
-	 * CLAW_OPEN = 5;
-	 * 
-	 * public static final int BRAKE_ENGAGED = 7; public static final int
-	 * BRAKE_DISENGAGED = 8;
-	 **/
+	
+	public static final int CLAW_CLOSED = 6; 
+	public static final int CLAW_OPEN = 5;
+	public static final int BRAKE_ENGAGED = 7;
+	public static final int BRAKE_DISENGAGED = 8;
+	 
 
 }

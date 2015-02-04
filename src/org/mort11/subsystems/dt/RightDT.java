@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import org.mort11.RobotMap;
 import org.mort11.commands.dt.DriveLinear;
+import org.mort11.commands.dt.DriveLinearRight;
 /**
  *
  */
@@ -27,6 +28,6 @@ public class RightDT extends DTSide
 	@Override
 	protected DriveLinear getLinearDrive() {
 		// TODO Auto-generated method stub
-		return null;
+		return new DriveLinearRight();
 	}
 }

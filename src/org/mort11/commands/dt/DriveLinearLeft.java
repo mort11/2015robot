@@ -22,7 +22,7 @@ public class DriveLinearLeft extends DriveLinear
     }
 
     protected double getSpeed(){
-        return oi.getEEJoy();
+        return oi.getLeftJoy();
     }
     
     
