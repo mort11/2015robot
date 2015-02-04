@@ -1,15 +1,3 @@
-/*       __  __  ____  _____ _______   __ __
-        |  \/  |/ __ \|  __ \__   __| /_ /_ |
-        | \  / | |  | | |__) | | |     | || |
-        | |\/| | |  | |  _  /  | |     | || |
-        | |  | | |__| | | \ \  | |     | || |
-        |_|  |_|\____/|_|  \_\ |_|     |_||_|
- 
-           FRC Team 11, Flanders NJ 07836
- 
-        Copyright (c) 2015 Mount Olive Robotics Team
- */
-
 package org.mort11;
 
 /**
@@ -31,10 +19,12 @@ public class RobotMap {
 	public static final int ELEVATOR_ENC_A = 0;
 	public static final int ELEVATOR_ENC_B = 1;
 	public static final int ELEVATOR_TOP_LIM = 6;
-	/**public static final int CLAW_CLOSED = 6;
-	public static final int CLAW_OPEN = 5;
-	
-	public static final int BRAKE_ENGAGED = 7;
-	public static final int BRAKE_DISENGAGED = 8;**/
+	/**
+	 * public static final int CLAW_CLOSED = 6; public static final int
+	 * CLAW_OPEN = 5;
+	 * 
+	 * public static final int BRAKE_ENGAGED = 7; public static final int
+	 * BRAKE_DISENGAGED = 8;
+	 **/
 
 }
