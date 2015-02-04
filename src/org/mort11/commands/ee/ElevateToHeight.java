@@ -53,7 +53,7 @@ public class ElevateToHeight extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	System.out.println("finished");
+    	Robot.brake.setPart(true);
     	
     }
 

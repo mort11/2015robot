@@ -1,5 +1,7 @@
 package org.mort11.commands.ee;
 
+import org.mort11.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 
@@ -8,8 +10,10 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class ElevatorBrake extends Command {
-
-    public ElevatorBrake() {
+boolean isBrakeOn;
+    public ElevatorBrake(boolean isBrakeOn) {
+    	this.isBrakeOn = isBrakeOn;
+    	requires(Robot.brake);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -20,6 +24,7 @@ public class ElevatorBrake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
