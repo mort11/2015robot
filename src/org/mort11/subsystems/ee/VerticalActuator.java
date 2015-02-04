@@ -54,6 +54,9 @@ public class VerticalActuator extends Subsystem {
 		} else if (speed < -1) {
 			speed = -1;
 		}
+		if(elevatorEnc.getRate() < 0) {
+			speed = 0.2;
+		}
 		//System.out.println(speed+" :speed");
 		this.speed = speed;
 		motor1.set(speed);
