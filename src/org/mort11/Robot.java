@@ -58,7 +58,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		nav6.initIMU();
 		nav6.timer.start();
-		new ElevateToHeight(2).start();// tbd
+		new ElevateToHeight(2, true).start();// tbd
 		System.out.println("auton started");
 	}
 

@@ -37,12 +37,12 @@ public class OI {
 
 	public OI() {
 		// Move to one tote level
-		presetOneTote.whenPressed(new ElevateToHeight(0));
-		presetTwoTote.whenPressed(new ElevateToHeight(1));
-		presetThreeTote.whenPressed(new ElevateToHeight(2));
-		presetFourTote.whenPressed(new ElevateToHeight(3));
-		presetFiveTote.whenPressed(new ElevateToHeight(4));
-		presetSixTote.whenPressed(new ElevateToHeight(5));
+		presetOneTote.whenPressed(new ElevateToHeight(0, false));
+		presetTwoTote.whenPressed(new ElevateToHeight(1, false));
+		presetThreeTote.whenPressed(new ElevateToHeight(2, false));
+		presetFourTote.whenPressed(new ElevateToHeight(3, false));
+		presetFiveTote.whenPressed(new ElevateToHeight(4, false));
+		presetSixTote.whenPressed(new ElevateToHeight(5, false));
 		/** clawClose.whenPressed(new CloseClaw(true)); **/
 	}
 
