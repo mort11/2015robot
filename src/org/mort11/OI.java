@@ -1,17 +1,5 @@
-/*       __  __  ____  _____ _______   __ __
-        |  \/  |/ __ \|  __ \__   __| /_ /_ |
-        | \  / | |  | | |__) | | |     | || |
-        | |\/| | |  | |  _  /  | |     | || |
-        | |  | | |__| | | \ \  | |     | || |
-        |_|  |_|\____/|_|  \_\ |_|     |_||_|
-
-           FRC Team 11, Flanders NJ 07836
-
-        Copyright (c) 2015 Mount Olive Robotics Team
- */
 package org.mort11;
 
-import org.mort11.commands.ee.CloseClaw;
 import org.mort11.commands.ee.ElevateToHeight;
 import org.mort11.util.TeleopConstants;
 
@@ -23,10 +11,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI 
-{
-	//Joystick left = new Joystick(TeleopConstants.LEFT_JOYSTICK);
-	//Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);
+public class OI {
+	// Joystick left = new Joystick(TeleopConstants.LEFT_JOYSTICK);
+	// Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);
 	Joystick left = new Joystick(TeleopConstants.LEFT_JOYSTICK);
 	Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);
 	Joystick ee = new Joystick(TeleopConstants.EE_JOYSTICK);
@@ -50,13 +37,13 @@ public class OI
 
 	public OI() {
 		// Move to one tote level
-		presetOneTote.whenPressed(new ElevateToHeight(0));
-		presetTwoTote.whenPressed(new ElevateToHeight(1));
-		presetThreeTote.whenPressed(new ElevateToHeight(2));
-		presetFourTote.whenPressed(new ElevateToHeight(3));
-		presetFiveTote.whenPressed(new ElevateToHeight(4));
-		presetSixTote.whenPressed(new ElevateToHeight(5));
-		/**clawClose.whenPressed(new CloseClaw(true));**/
+		presetOneTote.whenPressed(new ElevateToHeight(0, false));
+		presetTwoTote.whenPressed(new ElevateToHeight(1, false));
+		presetThreeTote.whenPressed(new ElevateToHeight(2, false));
+		presetFourTote.whenPressed(new ElevateToHeight(3, false));
+		presetFiveTote.whenPressed(new ElevateToHeight(4, false));
+		presetSixTote.whenPressed(new ElevateToHeight(5, false));
+		/** clawClose.whenPressed(new CloseClaw(true)); **/
 	}
 
 	public boolean getPlatformOffset() {

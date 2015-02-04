@@ -17,6 +17,7 @@ import org.mort11.subsystems.dt.LeftDT;
 import org.mort11.subsystems.dt.RightDT;
 import org.mort11.subsystems.ee.PneumaticSubsystem;
 import org.mort11.subsystems.ee.VerticalActuator;
+import org.mort11.util.nav6;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -45,11 +46,12 @@ public class Robot extends IterativeRobot {
 	 */
 
 	public void robotInit() {
-		oi = new OI();
 		elevator = new VerticalActuator();
-		claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN);
-		brake = new PneumaticSubsystem(RobotMap.BRAKE_ENGAGED,
-				RobotMap.BRAKE_DISENGAGED);
+		/**
+		 * claw = new PneumaticSubsystem (RobotMap.CLAW_CLOSED,
+		 * RobotMap.CLAW_OPEN); brake = new PneumaticSubsystem
+		 * (RobotMap.BRAKE_ENGAGED, RobotMap.BRAKE_DISENGAGED);
+		 **/
 		left = new LeftDT();
 		right = new RightDT();
 		oi = new OI();
@@ -60,7 +62,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		nav6.initIMU();
 		nav6.timer.start();
-		new ElevateToHeight(2).start();// tbd
+		new ElevateToHeight(2, true).start();// tbd
 		System.out.println("auton started");
 	}
 
