@@ -1,6 +1,7 @@
 package org.mort11.commands.ee;
 
 import edu.wpi.first.wpilibj.command.Command;
+import org.mort11.subsystems.ee.PneumaticSubsystem;
 import org.mort11.Robot;
 /**
  *
@@ -27,7 +28,7 @@ public class CloseClaw extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
