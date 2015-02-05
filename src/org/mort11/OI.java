@@ -1,6 +1,7 @@
 package org.mort11;
 
 import org.mort11.commands.ee.ElevateToHeight;
+import org.mort11.commands.ee.CloseClaw;
 import org.mort11.util.TeleopConstants;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -43,7 +44,7 @@ public class OI {
 		presetFourTote.whenPressed(new ElevateToHeight(3, false));
 		presetFiveTote.whenPressed(new ElevateToHeight(4, false));
 		presetSixTote.whenPressed(new ElevateToHeight(5, false));
-		/** clawClose.whenPressed(new CloseClaw(true)); **/
+		clawClose.toggleWhenPressed(new CloseClaw(true));
 	}
 
 	public boolean getPlatformOffset() {
