@@ -21,7 +21,7 @@ public class PneumaticSubsystem extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    public void setPart(boolean engage)
+    public void setSolenoid(boolean engage)
     {
     	if(engage){
     		sol.set(DoubleSolenoid.Value.kForward); //tbd
