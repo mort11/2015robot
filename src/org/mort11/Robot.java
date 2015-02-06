@@ -13,11 +13,11 @@
 package org.mort11;
 
 import org.mort11.commands.ee.ElevateToHeight;
+import org.mort11.navigation.nav6;
 import org.mort11.subsystems.dt.LeftDT;
 import org.mort11.subsystems.dt.RightDT;
 import org.mort11.subsystems.ee.PneumaticSubsystem;
 import org.mort11.subsystems.ee.VerticalActuator;
-import org.mort11.util.nav6;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;

@@ -1,4 +1,4 @@
-package org.mort11.util;
+package org.mort11.navigation;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
 
@@ -42,10 +42,14 @@ public class nav6 {
 
 	// Orientation
 	private static double orientation;
-
 	private static long elapsedTime;
 
-	public static double[] array = new double[500];
+	// Debugging
+	private static double[] array = new double[3000];
+	private static double[] timestamp = new double[3000];
+	private static int ticksSinceLast = 0;
+
+	// private static double currentVal = 0;
 
 	public class navigationalState {
 
@@ -192,8 +196,9 @@ public class nav6 {
 		System.out.println("running");
 		for (int i = 0; i < array.length; i++) {
 			array[i] = imu.getWorldLinearAccelX();
+			timestamp[i] = System.currentTimeMillis();
 			try {
-				Thread.sleep(2);
+				Thread.sleep(1);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -206,10 +211,17 @@ public class nav6 {
 	public static void printData() {
 
 		for (int i = 0; i < array.length; i++) {
-			System.out.println(i + ": " + (array[i]));
+			if (timestamp[i] == timestamp[i - 1]) {
+				ticksSinceLast++;
+			} else {
+
+				System.out.println("Time change from last: " + ticksSinceLast);
+			}
+			// System.out.println(i + ": " + (array[i]));
 		}
 
 		System.out.println("Running time was " + (elapsedTime / 1000)
 				+ " seconds");
+
 	}
 }
