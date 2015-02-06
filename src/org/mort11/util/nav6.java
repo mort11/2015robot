@@ -43,6 +43,10 @@ public class nav6 {
 	// Orientation
 	private static double orientation;
 
+	private static long elapsedTime;
+
+	public static double[] array = new double[500];
+
 	public class navigationalState {
 
 		// Current velocity in feet per second
@@ -180,5 +184,32 @@ public class nav6 {
 
 		navState.orientation = orientation;
 		return navState;
+	}
+
+	public static void populateData() {
+		long startTime = System.currentTimeMillis();
+
+		System.out.println("running");
+		for (int i = 0; i < array.length; i++) {
+			array[i] = imu.getWorldLinearAccelX();
+			try {
+				Thread.sleep(2);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		System.out.println("done");
+		long endTime = System.currentTimeMillis();
+		elapsedTime = endTime - startTime;
+	}
+
+	public static void printData() {
+
+		for (int i = 0; i < array.length; i++) {
+			System.out.println(i + ": " + (array[i]));
+		}
+
+		System.out.println("Running time was " + (elapsedTime / 1000)
+				+ " seconds");
 	}
 }

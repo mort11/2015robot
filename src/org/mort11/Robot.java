@@ -47,8 +47,8 @@ public class Robot extends IterativeRobot {
 
 	public void robotInit() {
 		elevator = new VerticalActuator();
-		claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN); 
-		brake = new PneumaticSubsystem(RobotMap.BRAKE_ENGAGED, 
+		claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN);
+		brake = new PneumaticSubsystem(RobotMap.BRAKE_ENGAGED,
 				RobotMap.BRAKE_DISENGAGED);
 		left = new LeftDT();
 		right = new RightDT();
@@ -57,8 +57,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
-		nav6.initIMU();
-		nav6.timer.start();
+
 		new ElevateToHeight(2, true).start();// tbd
 		System.out.println("auton started");
 	}
@@ -69,8 +68,8 @@ public class Robot extends IterativeRobot {
 
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		//the scheduler does cool things and also jeff is talking about breaks
-		
+		// the scheduler does cool things and also jeff is talking about breaks
+
 	}
 
 	public void teleopInit() {
@@ -78,6 +77,9 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
+		nav6.initIMU();
+		nav6.populateData();
+		nav6.printData();
 	}
 
 	/**
