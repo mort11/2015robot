@@ -5,7 +5,7 @@ import com.kauailabs.nav6.frc.IMUAdvanced;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Timer;
 
-public class nav6 {
+public class Nav6Old {
 
 	// IMU
 	private static SerialPort serial_port;
@@ -23,6 +23,7 @@ public class nav6 {
 	private static double currentVelocityX = 0;
 	private static double currentVelocityY = 0;
 	private static double currentVelocityZ = 0;
+	
 	private static double lastVelocityX = 0;
 	private static double lastVelocityY = 0;
 	private static double lastVelocityZ = 0;
