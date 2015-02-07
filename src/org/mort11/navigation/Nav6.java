@@ -1,11 +1,11 @@
-package org.mort11.util;
+package org.mort11.navigation;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
 
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Timer;
 
-public class nav6 {
+public class Nav6 {
 
 	// IMU
 	private static SerialPort serial_port;
@@ -23,6 +23,7 @@ public class nav6 {
 	private static double currentVelocityX = 0;
 	private static double currentVelocityY = 0;
 	private static double currentVelocityZ = 0;
+
 	private static double lastVelocityX = 0;
 	private static double lastVelocityY = 0;
 	private static double lastVelocityZ = 0;
@@ -42,6 +43,14 @@ public class nav6 {
 
 	// Orientation
 	private static double orientation;
+	private static long elapsedTime;
+
+	// Debugging
+	private static double[] array = new double[3000];
+	private static double[] timestamp = new double[3000];
+	private static int ticksSinceLast = 0;
+
+	// private static double currentVal = 0;
 
 	public class navigationalState {
 
@@ -181,4 +190,29 @@ public class nav6 {
 		navState.orientation = orientation;
 		return navState;
 	}
+
+	/*
+	 * public static void populateData() { long startTime =
+	 * System.currentTimeMillis();
+	 * 
+	 * System.out.println("running"); for (int i = 0; i < array.length; i++) {
+	 * array[i] = imu.getWorldLinearAccelX(); timestamp[i] =
+	 * System.currentTimeMillis(); try { Thread.sleep(1); } catch
+	 * (InterruptedException e) { e.printStackTrace(); } }
+	 * System.out.println("done"); long endTime = System.currentTimeMillis();
+	 * elapsedTime = endTime - startTime; }
+	 * 
+	 * public static void printData() {
+	 * 
+	 * for (int i = 0; i < array.length; i++) { if (timestamp[i] == timestamp[i
+	 * - 1]) { ticksSinceLast++; } else {
+	 * 
+	 * System.out.println("Time change from last: " + ticksSinceLast); } //
+	 * System.out.println(i + ": " + (array[i])); }
+	 * 
+	 * System.out.println("Running time was " + (elapsedTime / 1000) +
+	 * " seconds");
+	 * 
+	 * }
+	 */
 }

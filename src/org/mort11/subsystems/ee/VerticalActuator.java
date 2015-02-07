@@ -1,7 +1,7 @@
 package org.mort11.subsystems.ee;
 
 import org.mort11.RobotMap;
-import org.mort11.commands.ee.ElevateByJoystick;
+import org.mort11.commands.ee.ManualElevate;
 import org.mort11.util.EEConstants;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -69,7 +69,7 @@ public class VerticalActuator extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new ElevateByJoystick());
+		setDefaultCommand(new ManualElevate());
 	}
 
 	public boolean getLimSwitch() {

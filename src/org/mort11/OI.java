@@ -1,7 +1,7 @@
 package org.mort11;
 
-import org.mort11.commands.ee.ElevateToHeight;
 import org.mort11.commands.ee.CloseClaw;
+import org.mort11.commands.ee.ElevateToHeight;
 import org.mort11.util.TeleopConstants;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -63,8 +63,8 @@ public class OI {
 		return doThreshold(right.getY());
 	}
 
-	public double getEEJoy() {
-		return doThreshold(ee.getY());
+	public double getEEJoyThrottle() {
+		return doThreshold(-ee.getThrottle());
 	}
 
 	public static double doThreshold(double input) {
