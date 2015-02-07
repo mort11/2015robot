@@ -6,7 +6,6 @@ import org.mort11.Robot;
 import org.mort11.util.EEConstants;
 import org.mort11.util.Profiler;
 
-import org.mort11.commands.ee.ElevatorBrake;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -17,11 +16,7 @@ public class ElevateToHeight extends Command {
 	Timer time = new Timer();
 	Profiler profiler;
 	boolean useP;
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> deac4b513b6653e4c03b7d7d81756f69e34f6aa6
 	/**
 	 * 
 	 * @param toteHeight
@@ -38,7 +33,7 @@ public class ElevateToHeight extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.brake.setSolenoid(false);
+		eleBrakeOff.initialize();
 		Robot.elevator.resetEnc();
 		time.start();
 		System.out.println("resetting");
@@ -56,39 +51,6 @@ public class ElevateToHeight extends Command {
 		}
 	}
 
-<<<<<<< HEAD
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	eleBrakeOff.initialize();
-    	Robot.elevator.resetEnc();
-    	time.start();
-    	System.out.println("resetting");
-    }
-    
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	if(useP) {
-    		double error = toteheight - Robot.elevator.getHeight();
-    		Robot.elevator.setSpeed(error * EEConstants.ELEVATOR_P);
-    	} else {
-    		//increment virtual sp by deltaV * t
-    		double speed = profiler.getDesiredVelocity(time.get());
-    		Robot.elevator.setSpeed(speed);
-    	}
-    }
-    
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	//epsilon compare on robot height/limitswitch tripped
-        return (Math.abs(Robot.elevator.getHeight() - toteheight) < 0.5 ||
-        		elevator.getLimSwitch());
-    }
-
-    // Called once after isFinished returns true
-    protected void end() {
-    	eleBrake.initialize();
-    }
-=======
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		// epsilon compare on robot height/limitswitch tripped
@@ -101,7 +63,6 @@ public class ElevateToHeight extends Command {
 		Robot.brake.setSolenoid(true);
 
 	}
->>>>>>> deac4b513b6653e4c03b7d7d81756f69e34f6aa6
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
