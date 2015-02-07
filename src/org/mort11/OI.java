@@ -64,7 +64,7 @@ public class OI {
 	}
 
 	public double getEEJoyThrottle() {
-		return doThreshold(ee.getThrottle());
+		return doThreshold(-ee.getThrottle());
 	}
 
 	public static double doThreshold(double input) {

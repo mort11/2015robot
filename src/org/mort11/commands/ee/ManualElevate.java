@@ -2,6 +2,9 @@ package org.mort11.commands.ee;
 
 import static org.mort11.Robot.elevator;
 import static org.mort11.Robot.oi;
+
+import org.mort11.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -31,6 +34,7 @@ public class ManualElevate extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
+		Robot.brake.setSolenoid(true);
 	}
 
 	// Called when another command which requires one or more of the same
