@@ -38,6 +38,14 @@ public class OI {
 	Button clawClose = new JoystickButton(ee, TeleopConstants.CLAW_CLOSE);
 	Button manualControl = new JoystickButton(ee,
 			TeleopConstants.THROTTLE_FAILSAFE);
+	Button presetOneThrust = new JoystickButton(ee,
+			TeleopConstants.PRESET_ONE_THRUSTMASTER);
+	Button presetTwoThrust = new JoystickButton(ee,
+			TeleopConstants.PRESET_TWO_THRUSTMASTER);
+	Button presetThreeThrust = new JoystickButton(ee,
+			TeleopConstants.PRESET_THREE_THRUSTMASTER);
+	Button presetFourThrust = new JoystickButton(ee,
+			TeleopConstants.PRESET_FOUR_THRUSTMASTER);
 
 	public OI() {
 		// Move to one tote level
@@ -50,6 +58,10 @@ public class OI {
 		clawClose.toggleWhenPressed(new CloseClaw(true));
 		manualControl.whileHeld(new ElevateToHeight((getEEJoyThrottle() / 2)
 				* EEConstants.MAX_TOTES_NUM, false));
+		presetOneThrust.whenPressed(new ElevateToHeight(0, false));
+		presetTwoThrust.whenPressed(new ElevateToHeight(1, false));
+		presetThreeThrust.whenPressed(new ElevateToHeight(2, false));
+		presetFourThrust.whenPressed(new ElevateToHeight(3, false));
 	}
 
 	public boolean getPlatformOffset() {
@@ -69,7 +81,11 @@ public class OI {
 	}
 
 	public static double getEEJoyThrottle() {
-		return doThreshold(-ee.getThrottle() + 1);
+		return (-ee.getThrottle() + 1);
+	}
+
+	public static double getEEJoy() {
+		return deadzoneEE(ee.getY());
 	}
 
 	public static double doThreshold(double input) {
@@ -79,5 +95,14 @@ public class OI {
 		return input / Math.abs(input)
 				* (Math.abs(input) - TeleopConstants.DEADBAND)
 				/ (1 - TeleopConstants.DEADBAND);
+	}
+
+	public static double deadzoneEE(double input) {
+		if (Math.abs(input) <= TeleopConstants.DEADZONE_EE) {
+			return 0;
+		}
+		return input / Math.abs(input)
+				* (Math.abs(input) - TeleopConstants.DEADZONE_EE)
+				/ (1 - TeleopConstants.DEADZONE_EE);
 	}
 }

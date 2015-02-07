@@ -2,6 +2,7 @@ package org.mort11.commands.ee;
 
 import static org.mort11.Robot.elevator;
 
+import org.mort11.OI;
 import org.mort11.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -23,10 +24,7 @@ public class ManualElevate extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		// TODO - some form of PID Control?
-		// while (TeleopConstants.THROTTLE_FAILSAFE = true) {
-		// ElevateToHeight manuElev = new ElevateToHeight(
-		// (OI.getEEJoyThrottle() * 2), false);
-		// }
+		Robot.elevator.setSpeed(-OI.getEEJoy());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
