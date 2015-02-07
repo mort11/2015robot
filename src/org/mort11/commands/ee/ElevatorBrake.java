@@ -20,6 +20,7 @@ boolean isBrakeOn;
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.brake.setSolenoid(isBrakeOn);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -33,6 +34,7 @@ boolean isBrakeOn;
 
     // Called once after isFinished returns true
     protected void end() {
+    	
     }
 
     // Called when another command which requires one or more of the same

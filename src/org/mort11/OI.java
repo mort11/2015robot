@@ -1,7 +1,7 @@
 package org.mort11;
 
-import org.mort11.commands.ee.ElevateToHeight;
 import org.mort11.commands.ee.CloseClaw;
+import org.mort11.commands.ee.ElevateToHeight;
 import org.mort11.util.TeleopConstants;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -17,7 +17,7 @@ public class OI {
 	// Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);
 	Joystick left = new Joystick(TeleopConstants.LEFT_JOYSTICK);
 	Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);
-	Joystick ee = new Joystick(TeleopConstants.EE_JOYSTICK);
+	static Joystick ee = new Joystick(TeleopConstants.EE_JOYSTICK);
 
 	// Button Mapping
 	Button scoringOffset = new JoystickButton(ee,
@@ -35,6 +35,8 @@ public class OI {
 	Button presetSixTote = new JoystickButton(ee,
 			TeleopConstants.SIX_TOTE_PRESET);
 	Button clawClose = new JoystickButton(ee, TeleopConstants.CLAW_CLOSE);
+	Button manualControl = new JoystickButton(ee,
+			TeleopConstants.THROTTLE_FAILSAFE);
 
 	public OI() {
 		// Move to one tote level
@@ -45,6 +47,8 @@ public class OI {
 		presetFiveTote.whenPressed(new ElevateToHeight(4, false));
 		presetSixTote.whenPressed(new ElevateToHeight(5, false));
 		clawClose.toggleWhenPressed(new CloseClaw(true));
+		manualControl.whileHeld(new ElevateToHeight(getEEJoyThrottle() * 2,
+				false));
 	}
 
 	public boolean getPlatformOffset() {
@@ -63,8 +67,8 @@ public class OI {
 		return doThreshold(right.getY());
 	}
 
-	public double getEEJoy() {
-		return doThreshold(ee.getY());
+	public static double getEEJoyThrottle() {
+		return doThreshold(-ee.getThrottle() + 1);
 	}
 
 	public static double doThreshold(double input) {

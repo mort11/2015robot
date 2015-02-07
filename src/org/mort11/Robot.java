@@ -13,7 +13,7 @@
 package org.mort11;
 
 import org.mort11.commands.ee.ElevateToHeight;
-import org.mort11.navigation.Nav6;
+import org.mort11.navigation.Nav6Backup;
 import org.mort11.subsystems.dt.LeftDT;
 import org.mort11.subsystems.dt.RightDT;
 import org.mort11.subsystems.ee.PneumaticSubsystem;
@@ -81,7 +81,7 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		Nav6.getXAxisOffset();
+		Nav6Backup.getXAxisOffset();
 	}
 
 	/**
