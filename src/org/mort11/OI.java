@@ -2,6 +2,7 @@ package org.mort11;
 
 import org.mort11.commands.ee.CloseClaw;
 import org.mort11.commands.ee.ElevateToHeight;
+import org.mort11.util.EEConstants;
 import org.mort11.util.TeleopConstants;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -47,8 +48,8 @@ public class OI {
 		presetFiveTote.whenPressed(new ElevateToHeight(4, false));
 		presetSixTote.whenPressed(new ElevateToHeight(5, false));
 		clawClose.toggleWhenPressed(new CloseClaw(true));
-		manualControl.whileHeld(new ElevateToHeight(getEEJoyThrottle() * 2,
-				false));
+		manualControl.whileHeld(new ElevateToHeight((getEEJoyThrottle() / 2)
+				* EEConstants.MAX_TOTES_NUM, false));
 	}
 
 	public boolean getPlatformOffset() {
