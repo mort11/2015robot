@@ -16,10 +16,6 @@ public class TeleopConstants {
 	public static final int EE_JOYSTICK = 3;
 	public static final int CLAW_CLOSE = 1;
 	public static final int THROTTLE_FAILSAFE = 3;
-	public static final int PRESET_ONE_THRUSTMASTER = 5;
-	public static final int PRESET_TWO_THRUSTMASTER = 6;
-	public static final int PRESET_THREE_THRUSTMASTER = 7;
-	public static final int PRESET_FOUR_THRUSTMASTER = 8;
 	public static final int SCORING_PLAT_HEIGHT = 2;
 	public static final double COOP_PLAT_HEIGHT = 6.25;
 	// each tote has a dimension of 26.9 inches long, 16.9 inches wide, and 12.1

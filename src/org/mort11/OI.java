@@ -40,30 +40,24 @@ public class OI {
 	Button clawClose = new JoystickButton(ee, TeleopConstants.CLAW_CLOSE);
 	Button manualControl = new JoystickButton(ee,
 			TeleopConstants.THROTTLE_FAILSAFE);
-	Button presetOneThrust = new JoystickButton(ee,
-			TeleopConstants.PRESET_ONE_THRUSTMASTER);
-	Button presetTwoThrust = new JoystickButton(ee,
-			TeleopConstants.PRESET_TWO_THRUSTMASTER);
-	Button presetThreeThrust = new JoystickButton(ee,
-			TeleopConstants.PRESET_THREE_THRUSTMASTER);
-	Button presetFourThrust = new JoystickButton(ee,
-			TeleopConstants.PRESET_FOUR_THRUSTMASTER);
 
 	public OI() {
 		// Move to one tote level
-		presetOneTote.whenPressed(new ElevateToHeight(0, false));
-		presetTwoTote.whenPressed(new ElevateToHeight(1, false));
-		presetThreeTote.whenPressed(new ElevateToHeight(2, false));
-		presetFourTote.whenPressed(new ElevateToHeight(3, false));
-		presetFiveTote.whenPressed(new ElevateToHeight(4, false));
-		presetSixTote.whenPressed(new ElevateToHeight(5, false));
+		presetOneTote.whenPressed(new ElevateToHeight(0 + getPlatformOffset()
+				+ getStepOffset(), false));
+		presetTwoTote.whenPressed(new ElevateToHeight(1 + getPlatformOffset()
+				+ getStepOffset(), false));
+		presetThreeTote.whenPressed(new ElevateToHeight(2 + getPlatformOffset()
+				+ getStepOffset(), false));
+		presetFourTote.whenPressed(new ElevateToHeight(3 + getPlatformOffset()
+				+ getStepOffset(), false));
+		presetFiveTote.whenPressed(new ElevateToHeight(4 + getPlatformOffset()
+				+ getStepOffset(), false));
+		presetSixTote.whenPressed(new ElevateToHeight(5 + getPlatformOffset()
+				+ getStepOffset(), false));
 		clawClose.toggleWhenPressed(new CloseClaw(true));
 		manualControl.whileHeld(new ElevateToHeight((getEEJoyThrottle() / 2)
 				* EEConstants.MAX_TOTES_NUM, false));
-		presetOneThrust.whenPressed(new ElevateToHeight(0, false));
-		presetTwoThrust.whenPressed(new ElevateToHeight(1, false));
-		presetThreeThrust.whenPressed(new ElevateToHeight(2, false));
-		presetFourThrust.whenPressed(new ElevateToHeight(3, false));
 	}
 
 	public double getPlatformOffset() {
