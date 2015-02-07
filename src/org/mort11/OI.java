@@ -23,6 +23,8 @@ public class OI {
 	// Button Mapping
 	Button scoringOffset = new JoystickButton(ee,
 			TeleopConstants.SCORING_OFFSET);
+	Button coopPlatOffset = new JoystickButton(ee,
+			TeleopConstants.COOP_PLAT_OFFSET);
 	Button presetOneTote = new JoystickButton(ee,
 			TeleopConstants.ONE_TOTE_PRESET);
 	Button presetTwoTote = new JoystickButton(ee,
@@ -65,15 +67,19 @@ public class OI {
 	}
 
 	public double getPlatformOffset() {
-		if (scoringOffset.get() == true) {
+		if (coopPlatOffset.get() == true) {
 			return TeleopConstants.COOP_PLAT_HEIGHT;
 		} else {
 			return 0;
 		}
 	}
 
-	public boolean getStepOffset() {
-		return ee.getTrigger();
+	public int getStepOffset() {
+		if (scoringOffset.get() == true) {
+			return TeleopConstants.SCORING_OFFSET;
+		} else {
+			return 0;
+		}
 	}
 
 	public double getLeftJoy() {

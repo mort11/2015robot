@@ -4,6 +4,7 @@ public class TeleopConstants {
 	public static final double DEADBAND = 0.035;
 	public static final double DEADZONE_EE = 0.3;
 	public static final int SCORING_OFFSET = 2;
+	public static final int COOP_PLAT_OFFSET = 3;
 	public static final int ONE_TOTE_PRESET = 11;
 	public static final int TWO_TOTE_PRESET = 12;
 	public static final int THREE_TOTE_PRESET = 9;
