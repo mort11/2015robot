@@ -18,15 +18,17 @@ public class ElevateToHeight extends Command {
 
 	/**
 	 * 
-	 * @param desiredHeight number of totes the elevator should rise
-	 * @param useP escalating using a P loop or a derpy trapezoid
+	 * @param desiredHeight
+	 *            number of totes the elevator should rise
+	 * @param useP
+	 *            escalating using a P loop or a derpy trapezoid
 	 */
-    public ElevateToHeight(int desiredHeight,boolean useP) {
-        requires(Robot.elevator);
-        this.desiredHeight = desiredHeight * EEConstants.TOTES_TO_INCHES;
-        this.useP = useP;
-        profiler = new Profiler(1, EEConstants.TIME_PER_LEVEL * desiredHeight);
-    }
+	public ElevateToHeight(double desiredHeight, boolean useP) {
+		requires(Robot.elevator);
+		this.desiredHeight = desiredHeight * EEConstants.TOTES_TO_INCHES;
+		this.useP = useP;
+		profiler = new Profiler(1, EEConstants.TIME_PER_LEVEL * desiredHeight);
+	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
@@ -46,15 +48,16 @@ public class ElevateToHeight extends Command {
 			double speed = profiler.getDesiredVelocity(time.get());
 			Robot.elevator.setSpeed(speed);
 		}
-	
-	}	
+
+	}
+
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		// epsilon compare on robot height/limitswitch tripped
 		return (Math.abs(Robot.elevator.getHeight() - toteheight) < 0.5 || elevator
 				.getLimSwitch());
 	}
-    
+
 	// Called once after isFinished returns true
 	protected void end() {
 		new ElevatorBrake(true).start();
