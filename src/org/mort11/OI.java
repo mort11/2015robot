@@ -64,11 +64,15 @@ public class OI {
 		presetFourThrust.whenPressed(new ElevateToHeight(3, false));
 	}
 
-	public boolean getPlatformOffset() {
-		return scoringOffset.get();
+	public double getPlatformOffset() {
+		if (scoringOffset.get() == true) {
+			return TeleopConstants.COOP_PLAT_HEIGHT;
+		} else {
+			return 0;
+		}
 	}
 
-	public boolean getSteppeOffset() {
+	public boolean getStepOffset() {
 		return ee.getTrigger();
 	}
 
