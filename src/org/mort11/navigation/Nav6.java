@@ -4,6 +4,7 @@ import com.kauailabs.nav6.frc.IMUAdvanced;
 
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;;
 
 public class Nav6 {
 

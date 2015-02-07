@@ -7,6 +7,6 @@ public class EEConstants {
 	public static final int EE_CPR = 256;
 	public static final double HEIGHT_PER_TURN = 5.0379;
 	public static final double DIST_PER_PULSE = HEIGHT_PER_TURN / EE_CPR;
-	public static final int THROTTLE_INVERTER = -1;
+	public static final int MAX_TOTES_NUM = 4;
 
 }
