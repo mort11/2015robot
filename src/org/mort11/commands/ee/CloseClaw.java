@@ -13,7 +13,7 @@ public class CloseClaw extends Command {
     	this.isClosed =  isClosed;
     	requires(Robot.claw);
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        // );
     }
 
     // Called just before this Command runs the first time
@@ -22,12 +22,12 @@ public class CloseClaw extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.claw.setPart(isClosed);
+    	Robot.claw.setSolenoid(isClosed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true

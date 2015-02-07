@@ -26,7 +26,7 @@ public class nav6 extends Subsystem {
 	private static double lastPosition;
 
 	public void initDefaultCommand() {
-		org.mort11.util.nav6 nav6 = new org.mort11.util.nav6();
+		org.mort11.navigation.Nav6Old nav6 = new org.mort11.navigation.Nav6Old();
 	}
 
 	public static void initIMU() {

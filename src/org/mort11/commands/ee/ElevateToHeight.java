@@ -27,6 +27,7 @@ public class ElevateToHeight extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.brake.setSolenoid(false);
     	Robot.elevator.resetEnc();
     	time.start();
     	System.out.println("resetting");
@@ -53,7 +54,7 @@ public class ElevateToHeight extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.brake.setPart(true);
+    	Robot.brake.setSolenoid(true);
     	
     }
 
