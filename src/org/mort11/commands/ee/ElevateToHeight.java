@@ -10,20 +10,20 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ElevateToHeight extends Command {
-	double toteheight;
+	double desiredHeight;
 	Timer time = new Timer();
 	Profiler profiler;
 	boolean useP;
 	/**
 	 * 
-	 * @param toteHeight number of totes the elevator should rise
+	 * @param desiredHeight number of totes the elevator should rise
 	 * @param useP escalating using a P loop or a derpy trapezoid
 	 */
-    public ElevateToHeight(int toteHeight,boolean useP) {
+    public ElevateToHeight(int desiredHeight,boolean useP) {
         requires(Robot.elevator);
-        this.toteheight = toteHeight * EEConstants.TOTES_TO_INCHES;
+        this.desiredHeight = desiredHeight * EEConstants.TOTES_TO_INCHES;
         this.useP = useP;
-        profiler = new Profiler(1, EEConstants.TIME_PER_LEVEL * toteHeight);
+        profiler = new Profiler(1, EEConstants.TIME_PER_LEVEL * desiredHeight);
     }
 
     // Called just before this Command runs the first time
@@ -37,7 +37,7 @@ public class ElevateToHeight extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(useP) {
-    		double error = toteheight - Robot.elevator.getHeight();
+    		double error = desiredHeight - Robot.elevator.getHeight();
     		Robot.elevator.setSpeed(error * EEConstants.ELEVATOR_P);
     	} else {
     		//increment virtual sp by deltaV * t
@@ -49,7 +49,7 @@ public class ElevateToHeight extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	//epsilon compare on robot height/limitswitch tripped
-        return (Math.abs(Robot.elevator.getHeight() - toteheight) < 0.5 ||
+        return (Math.abs(Robot.elevator.getHeight() - desiredHeight) < 0.5 ||
         		elevator.getLimSwitch());
     }
 
