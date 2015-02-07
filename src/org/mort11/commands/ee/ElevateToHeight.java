@@ -4,15 +4,19 @@ import static org.mort11.Robot.*;
 import org.mort11.Robot;
 import org.mort11.util.*;
 
+import org.mort11.commands.ee.ElevatorBrake;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ElevateToHeight extends Command {
+	ElevatorBrake eleBrake = new ElevatorBrake(true);
+	ElevatorBrake eleBrakeOff = new ElevatorBrake(false);
 	double toteheight;
 	Timer time = new Timer();
 	Profiler profiler;
 	boolean useP;
+	
 	/**
 	 * 
 	 * @param toteHeight number of totes the elevator should rise
@@ -27,12 +31,12 @@ public class ElevateToHeight extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.brake.setSolenoid(false);
+    	eleBrakeOff.initialize();
     	Robot.elevator.resetEnc();
     	time.start();
     	System.out.println("resetting");
     }
-
+    
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(useP) {
@@ -54,8 +58,7 @@ public class ElevateToHeight extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.brake.setSolenoid(true);
-    	
+    	eleBrake.initialize();
     }
 
     // Called when another command which requires one or more of the same
