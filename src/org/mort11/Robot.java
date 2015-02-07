@@ -61,7 +61,7 @@ public class Robot extends IterativeRobot {
 		nav6.timer.start();
 		new ElevateToHeight(2, true).start();// tbd
 		System.out.println("auton started");
-	}
+	} 
 
 	/**
 	 * This function is called periodically during autonomous
