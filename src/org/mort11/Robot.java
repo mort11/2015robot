@@ -19,6 +19,8 @@ import org.mort11.subsystems.dt.RightDT;
 import org.mort11.subsystems.ee.PneumaticSubsystem;
 import org.mort11.subsystems.ee.VerticalActuator;
 
+import com.elevendustries.firecracker.Firecracker;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -39,6 +41,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static PneumaticSubsystem claw;
 	public static PneumaticSubsystem brake;
+	public static Firecracker firecracker;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -52,6 +55,7 @@ public class Robot extends IterativeRobot {
 				RobotMap.BRAKE_DISENGAGED);
 		left = new LeftDT();
 		right = new RightDT();
+		firecracker = new Firecracker();
 		oi = new OI();
 		System.out.println("starting");
 	}

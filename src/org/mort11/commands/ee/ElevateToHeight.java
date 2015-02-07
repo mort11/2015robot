@@ -2,6 +2,7 @@ package org.mort11.commands.ee;
 import static org.mort11.Robot.*;
 
 import org.mort11.Robot;
+import org.mort11.subsystems.ee.VerticalActuator;
 import org.mort11.util.*;
 
 import edu.wpi.first.wpilibj.Timer;
