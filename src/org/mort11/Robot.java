@@ -60,6 +60,12 @@ public class Robot extends IterativeRobot {
 		right = new RightDT();
 		firecracker = new Firecracker();
 		oi = new OI();
+		autonArmUp = new PneumaticSubsystem(RobotMap.CENTER_PISTON_ENGAGED,
+				RobotMap.CENTER_PISTON_NOT_ENGAGED);
+		autonLeft = new PneumaticSubsystem(RobotMap.LEFT_PISTON_ENGAGED,
+				RobotMap.LEFT_PISTON_NOT_ENGAGED);
+		autonRight = new PneumaticSubsystem(RobotMap.RIGHT_PISTON_ENGAGED,
+				RobotMap.RIGHT_PISTON_NOT_ENGAGED);
 		System.out.println("starting");
 	}
 
