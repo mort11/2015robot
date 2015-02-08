@@ -86,7 +86,6 @@ public class Navigation {
 			// nav6 or rio aren't reading properly
 		}
 	
-		navigationalState navState = new navigationalState();
-		navState.
+		
 	}
 }
