@@ -22,15 +22,21 @@ public class AutonArms extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		Robot.autonArmUp.setSolenoid(false);// tbd, don't know which way will be
+											// engaged and which disengaged
+		Robot.autonLeft.setSolenoid(false);// tbd, don't know which way will be
+											// engaged and which disengaged
+		Robot.autonRight.setSolenoid(false);// tbd, don't know which way will be
+											// engaged and which disengaged
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.autonArmUp.isEngaged();
+		Robot.autonArmUp.setSolenoid(true);
 		time.start();
 		if (time.get() >= .5) {
-			Robot.autonLeft.isEngaged();
-			Robot.autonRight.isEngaged();
+			Robot.autonLeft.setSolenoid(true);
+			Robot.autonRight.setSolenoid(true);
 		}
 	}
 
