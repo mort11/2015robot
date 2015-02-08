@@ -72,16 +72,6 @@ public class Nav6 {
 	// Init timer
 	public static Timer timer = new Timer();
 
-	// Init IMU unit
-	public static void initIMU() {
-		try {
-			serial_port = new SerialPort(57600, SerialPort.Port.kUSB);
-			byte update_rate_hz = 50;
-			imu = new IMUAdvanced(serial_port, update_rate_hz);
-		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
-		}
-	}
 
 	private static void setTimerChange() {
 		double currentTime = timer.get(); // Get "wall" clock value
@@ -192,28 +182,7 @@ public class Nav6 {
 		return navState;
 	}
 
-	/*
-	 * public static void populateData() { long startTime =
-	 * System.currentTimeMillis();
-	 * 
-	 * System.out.println("running"); for (int i = 0; i < array.length; i++) {
-	 * array[i] = imu.getWorldLinearAccelX(); timestamp[i] =
-	 * System.currentTimeMillis(); try { Thread.sleep(1); } catch
-	 * (InterruptedException e) { e.printStackTrace(); } }
-	 * System.out.println("done"); long endTime = System.currentTimeMillis();
-	 * elapsedTime = endTime - startTime; }
-	 * 
-	 * public static void printData() {
-	 * 
-	 * for (int i = 0; i < array.length; i++) { if (timestamp[i] == timestamp[i
-	 * - 1]) { ticksSinceLast++; } else {
-	 * 
-	 * System.out.println("Time change from last: " + ticksSinceLast); } //
-	 * System.out.println(i + ": " + (array[i])); }
-	 * 
-	 * System.out.println("Running time was " + (elapsedTime / 1000) +
-	 * " seconds");
-	 * 
-	 * }
-	 */
+	public static void getDistance(){
+		
+	}
 }

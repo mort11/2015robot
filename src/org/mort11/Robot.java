@@ -13,7 +13,6 @@
 package org.mort11;
 
 import org.mort11.commands.ee.ElevateToHeight;
-import org.mort11.navigation.Nav6Backup;
 import org.mort11.subsystems.dt.LeftDT;
 import org.mort11.subsystems.dt.RightDT;
 import org.mort11.subsystems.ee.PneumaticSubsystem;
@@ -41,6 +40,9 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static PneumaticSubsystem claw;
 	public static PneumaticSubsystem brake;
+	public static PneumaticSubsystem autonArmUp;
+	public static PneumaticSubsystem autonLeft;
+	public static PneumaticSubsystem autonRight;
 	public static Firecracker firecracker;
 
 	/**
@@ -57,6 +59,12 @@ public class Robot extends IterativeRobot {
 		right = new RightDT();
 		firecracker = new Firecracker();
 		oi = new OI();
+		autonArmUp = new PneumaticSubsystem(RobotMap.CENTER_PISTON_ENGAGED,
+				RobotMap.CENTER_PISTON_NOT_ENGAGED);
+		autonLeft = new PneumaticSubsystem(RobotMap.LEFT_PISTON_ENGAGED,
+				RobotMap.LEFT_PISTON_NOT_ENGAGED);
+		autonRight = new PneumaticSubsystem(RobotMap.RIGHT_PISTON_ENGAGED,
+				RobotMap.RIGHT_PISTON_NOT_ENGAGED);
 		System.out.println("starting");
 	}
 
@@ -64,7 +72,7 @@ public class Robot extends IterativeRobot {
 
 		new ElevateToHeight(2, true).start();// tbd
 		System.out.println("auton started");
-	} 
+	}
 
 	/**
 	 * This function is called periodically during autonomous
@@ -81,7 +89,7 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		Nav6Backup.getXAxisOffset();
+		
 	}
 
 	/**

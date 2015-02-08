@@ -19,11 +19,25 @@ public class RobotMap {
 	public static final int ELEVATOR_ENC_A = 0;
 	public static final int ELEVATOR_ENC_B = 1;
 	public static final int ELEVATOR_TOP_LIM = 6;
-	
-	public static final int CLAW_CLOSED = 6; 
+
+	public static final int CLAW_CLOSED = 6;
 	public static final int CLAW_OPEN = 5;
 	public static final int BRAKE_ENGAGED = 7;
 	public static final int BRAKE_DISENGAGED = 8;
-	 
+	public static final int CENTER_PISTON_ENGAGED = 4; // tbd, picked a random
+														// number for now
+	public static final int CENTER_PISTON_NOT_ENGAGED = 5; // tbd, picked a
+															// random number for
+															// now
+	public static final int LEFT_PISTON_ENGAGED = 6; // tbd, picked a random
+	// number for now
+	public static final int LEFT_PISTON_NOT_ENGAGED = 7; // tbd, picked a
+	// random number for
+	// now
+	public static final int RIGHT_PISTON_ENGAGED = 8; // tbd, picked a random
+	// number for now
+	public static final int RIGHT_PISTON_NOT_ENGAGED = 9; // tbd, picked a
+	// random number for
+	// now
 
 }
