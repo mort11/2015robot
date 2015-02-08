@@ -61,7 +61,7 @@ public class Vector2D {
 	}
 	
 	public Vector2D rotateCW (double addAngle){
-		Angle angle = new Angle (this.angle + addAngle);
+		Angle angle = new Angle (this.angle - addAngle);
 		Vector2D rotatedVector = new Vector2D (angle, magnitude);
 		return rotatedVector;
 	}
