@@ -89,7 +89,7 @@ public class OI {
 	}
 
 	public static double getEEJoy() {
-		return deadzoneEE(ee.getY());
+		return deadzoneEE(-ee.getY());
 	}
 
 	public static double doThreshold(double input) {
