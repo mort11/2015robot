@@ -2,7 +2,7 @@ package org.mort11.util;
 //What's our vector, Victor?
 public class Vector2D {
 	// internal representation 
-	private double angle;
+	private double angle;  // using degrees internally
 	private double magnitude;
 	
 	// Create vector from x and y
@@ -18,7 +18,7 @@ public class Vector2D {
 		new Vector2D (x, y);
 	}
 	
-	//constructor with angle in degrees
+	//constructor with angle and magnitude
 	public Vector2D (Angle angle, double magnitude) {	
 		this.angle = angle.inDegrees();
 		this.magnitude = magnitude;
@@ -60,6 +60,7 @@ public class Vector2D {
 		return subtractedVector;
 	}
 	
+	// provide a new vector rotated clockwise from this one
 	public Vector2D rotateCW (double addAngle){
 		Angle angle = new Angle (this.angle - addAngle);
 		Vector2D rotatedVector = new Vector2D (angle, magnitude);
