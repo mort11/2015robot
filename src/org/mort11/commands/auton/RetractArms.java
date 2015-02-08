@@ -6,13 +6,14 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
+ * Called after robot has moved backwards, at the end of autonomous
  *
  */
-public class AutonArms extends Command {
+public class RetractArms extends Command {
 
 	Timer time = new Timer();
 
-	public AutonArms() {
+	public RetractArms() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.autonLeft);
@@ -22,21 +23,15 @@ public class AutonArms extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.autonArmUp.setSolenoid(false);// tbd, don't know which way will be
-											// engaged and which disengaged
-		Robot.autonLeft.setSolenoid(false);// tbd, don't know which way will be
-											// engaged and which disengaged
-		Robot.autonRight.setSolenoid(false);// tbd, don't know which way will be
-											// engaged and which disengaged
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.autonArmUp.setSolenoid(true);
+		Robot.autonArmUp.setSolenoid(false);
 		time.start();
 		if (time.get() >= .5) {
-			Robot.autonLeft.setSolenoid(true);
-			Robot.autonRight.setSolenoid(true);
+			Robot.autonLeft.setSolenoid(false);
+			Robot.autonRight.setSolenoid(false);
 		}
 	}
 
