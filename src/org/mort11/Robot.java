@@ -41,6 +41,9 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static PneumaticSubsystem claw;
 	public static PneumaticSubsystem brake;
+	public static PneumaticSubsystem autonArmUp;
+	public static PneumaticSubsystem autonLeft;
+	public static PneumaticSubsystem autonRight;
 	public static Firecracker firecracker;
 
 	/**
@@ -64,7 +67,7 @@ public class Robot extends IterativeRobot {
 
 		new ElevateToHeight(2, true).start();// tbd
 		System.out.println("auton started");
-	} 
+	}
 
 	/**
 	 * This function is called periodically during autonomous
