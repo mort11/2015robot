@@ -4,13 +4,15 @@ import com.kauailabs.nav6.frc.IMUAdvanced;
 
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;;
 
 public class Nav6 {
 
 	// IMU
-	private static SerialPort serial_port;
-	private static IMUAdvanced imu;
+	private static SerialPort serial_port = new SerialPort(57600,
+			SerialPort.Port.kUSB);
+	private final static byte update_rate_hz = 50;
+	private static IMUAdvanced imu = new IMUAdvanced(serial_port,
+			update_rate_hz);
 
 	// Timer
 	private static double lastTimerVal = 0;
@@ -71,7 +73,6 @@ public class Nav6 {
 
 	// Init timer
 	public static Timer timer = new Timer();
-
 
 	private static void setTimerChange() {
 		double currentTime = timer.get(); // Get "wall" clock value
@@ -182,7 +183,4 @@ public class Nav6 {
 		return navState;
 	}
 
-	public static void getDistance(){
-		
-	}
 }

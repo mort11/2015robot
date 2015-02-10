@@ -10,7 +10,7 @@ public class PneumaticSubsystem extends Subsystem {
 	DoubleSolenoid sol;
 
 	public PneumaticSubsystem(int engagedPort, int notEngagedPort) {
-		sol = new DoubleSolenoid(engagedPort, notEngagedPort);
+		// sol = new DoubleSolenoid(engagedPort, notEngagedPort);
 	}
 
 	boolean engaged = true; // tbd (assumed to be closed)
@@ -22,9 +22,9 @@ public class PneumaticSubsystem extends Subsystem {
 
 	public void setSolenoid(boolean engage) {
 		if (engage) {
-			sol.set(DoubleSolenoid.Value.kForward); // tbd
+			// sol.set(DoubleSolenoid.Value.kForward); // tbd
 		} else {
-			sol.set(DoubleSolenoid.Value.kReverse); // tbd
+			// sol.set(DoubleSolenoid.Value.kReverse); // tbd
 		}
 		engaged = engage;
 	}
