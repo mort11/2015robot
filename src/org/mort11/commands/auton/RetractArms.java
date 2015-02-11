@@ -1,6 +1,7 @@
 package org.mort11.commands.auton;
 
 import org.mort11.Robot;
+import org.mort11.subsystems.ee.PneumaticSubsystem;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -11,14 +12,17 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class RetractArms extends Command {
 
+	private PneumaticSubsystem armUp = Robot.autonArmUp;
+	private PneumaticSubsystem leftArm = Robot.autonLeft;
+	private PneumaticSubsystem rightArm = Robot.autonRight;
 	Timer time = new Timer();
 
 	public RetractArms() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		requires(Robot.autonLeft);
-		requires(Robot.autonRight);
-		requires(Robot.autonArmUp);
+		requires(armUp);
+		requires(leftArm);
+		requires(rightArm);
 	}
 
 	// Called just before this Command runs the first time
@@ -27,11 +31,11 @@ public class RetractArms extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.autonArmUp.setSolenoid(false);
+		armUp.setSolenoid(false);
 		time.start();
 		if (time.get() >= .5) {
-			Robot.autonLeft.setSolenoid(false);
-			Robot.autonRight.setSolenoid(false);
+			leftArm.setSolenoid(false);
+			rightArm.setSolenoid(false);
 		}
 	}
 

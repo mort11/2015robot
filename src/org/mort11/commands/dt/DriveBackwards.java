@@ -14,10 +14,12 @@ public class DriveBackwards extends Command {
 	private double driveDistance;
 	private double leftSpeed;
 	private double rightSpeed;
+	private LeftDT left = Robot.left;
+	private RightDT right = Robot.right;
 
 	public DriveBackwards() {
-		requires(Robot.left);
-		requires(Robot.right);
+		requires(left);
+		requires(right);
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 	}
@@ -37,8 +39,8 @@ public class DriveBackwards extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.right.set(this.rightSpeed);
-		Robot.left.set(this.leftSpeed);
+		right.set(this.rightSpeed);
+		left.set(this.leftSpeed);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
