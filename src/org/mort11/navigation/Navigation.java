@@ -13,9 +13,6 @@ public class Navigation {
 	private static double rio_yAccel;
 	private static double rio_zAccel;
 
-	// Encoder values
-	private static Encoder enc = new Encoder(0, 1, false, EncodingType.k4X);
-
 	private static double distance;
 
 	// RoboRIO Data handling
@@ -38,7 +35,7 @@ public class Navigation {
 	// Encoder Data handling
 
 	public static void getDistance() {
-		distance = enc.getDistance();
+		distance = /*enc.getDistance();*/ 0;
 		System.out.println(distance);
 		try {
 			Thread.sleep(10);
