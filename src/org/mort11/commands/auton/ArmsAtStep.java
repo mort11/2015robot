@@ -1,6 +1,7 @@
 package org.mort11.commands.auton;
 
 import org.mort11.Robot;
+import org.mort11.subsystems.ee.PneumaticSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,13 +10,16 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class ArmsAtStep extends Command {
+	private PneumaticSubsystem armUp = Robot.autonArmUp;
+	private PneumaticSubsystem leftArm = Robot.autonLeft;
+	private PneumaticSubsystem rightArm = Robot.autonRight;
 
 	public ArmsAtStep() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
-		requires(Robot.autonArmUp);
-		requires(Robot.autonLeft);
-		requires(Robot.autonRight);
+		requires(armUp);
+		requires(leftArm);
+		requires(rightArm);
 	}
 
 	// Called just before this Command runs the first time
@@ -24,8 +28,8 @@ public class ArmsAtStep extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.autonArmUp.setSolenoid(true);// tbd does true mean the solenoid is
-											// being put out?
+		armUp.setSolenoid(true);// tbd does true mean the solenoid is
+								// being put out?
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
