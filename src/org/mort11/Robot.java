@@ -13,7 +13,6 @@
 package org.mort11;
 
 import org.mort11.commands.ee.CloseClaw;
-import org.mort11.navigation.Navigation;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.dt.LeftDT;
 import org.mort11.subsystems.dt.RightDT;
@@ -47,13 +46,14 @@ public class Robot extends IterativeRobot {
 	public static PneumaticSubsystem autonLeft;
 	public static PneumaticSubsystem autonRight;
 	public static Firecracker firecracker;
-	
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	Talon tal1;
 	Talon tal2;
+
 	public void robotInit() {
 		
 		/**elevator = new VerticalActuator(); **/
@@ -62,30 +62,33 @@ public class Robot extends IterativeRobot {
 				RobotMap.BRAKE_DISENGAGED);		
 		right = new RightDT();
 		left = new LeftDT();
-		/**tal1 = new Talon(0);
-		tal2 = new Talon(2);**/
-		//firecracker = new Firecracker();
+		/**
+		 * tal1 = new Talon(0); tal2 = new Talon(2);
+		 **/
+		// firecracker = new Firecracker();
 		oi = new OI();
-		/**autonArmUp = new PneumaticSubsystem(RobotMap.CENTER_PISTON_ENGAGED,
-				RobotMap.CENTER_PISTON_NOT_ENGAGED);
-		autonLeft = new PneumaticSubsystem(RobotMap.LEFT_PISTON_ENGAGED,
-				RobotMap.LEFT_PISTON_NOT_ENGAGED);
-		autonRight = new PneumaticSubsystem(RobotMap.RIGHT_PISTON_ENGAGED,
-				RobotMap.RIGHT_PISTON_NOT_ENGAGED);
-		System.out.println("starting");**/
+		/**
+		 * autonArmUp = new PneumaticSubsystem(RobotMap.CENTER_PISTON_ENGAGED,
+		 * RobotMap.CENTER_PISTON_NOT_ENGAGED); autonLeft = new
+		 * PneumaticSubsystem(RobotMap.LEFT_PISTON_ENGAGED,
+		 * RobotMap.LEFT_PISTON_NOT_ENGAGED); autonRight = new
+		 * PneumaticSubsystem(RobotMap.RIGHT_PISTON_ENGAGED,
+		 * RobotMap.RIGHT_PISTON_NOT_ENGAGED); System.out.println("starting");
+		 **/
 	}
 
 	public void autonomousInit() {
 
-		//new ElevateToHeight(2, true).start();// tbd		
+		// new ElevateToHeight(2, true).start();// tbd
 		System.out.println("auton started");
-		/**tal1.set(0.5);
-		tal2.set(0.5);**/	
+		/**
+		 * tal1.set(0.5); tal2.set(0.5);
+		 **/
 		System.out.println("second called");
 		new CloseClaw().start();
 	}
 
-	/**	
+	/**
 	 * This function is called periodically during autonomous
 	 */
 
@@ -100,8 +103,8 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		//System.out.println(left.getCurrentCommand());
-		//System.out.println(right.getCurrentCommand());
+		// System.out.println(left.getCurrentCommand());
+		// System.out.println(right.getCurrentCommand());
 	}
 
 	/**
