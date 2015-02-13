@@ -7,180 +7,83 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class Nav6 {
 
+	// Global variables
+	// private final double gravitationalAccel = 32.17404855643;
+
 	// IMU
-	private static SerialPort serial_port = new SerialPort(57600,
-			SerialPort.Port.kUSB);
-	private final static byte update_rate_hz = 50;
-	private static IMUAdvanced imu = new IMUAdvanced(serial_port,
-			update_rate_hz);
+	private SerialPort serial_port = new SerialPort(57600, SerialPort.Port.kUSB);
+	private final byte update_rate_hz = 50;
+	private IMUAdvanced imu = new IMUAdvanced(serial_port, update_rate_hz);
 
 	// Timer
-	private static double lastTimerVal = 0;
-	private static double currentTimeChange = 0;
+	private double currentTime = 0;
+	private double lastTimerVal = 0;
+	private double currentTimeChange = 0;
 
 	// Velocity
-	private static double changedVelocityX;
-	private static double changedVelocityY;
-	private static double changedVelocityZ;
-
-	private static double currentVelocityX = 0;
-	private static double currentVelocityY = 0;
-	private static double currentVelocityZ = 0;
-
-	private static double lastVelocityX = 0;
-	private static double lastVelocityY = 0;
-	private static double lastVelocityZ = 0;
-
-	// Position
-	private static double changedPositionX;
-	private static double changedPositionY;
-	private static double changedPositionZ;
-
-	private static double currentPositionX;
-	private static double currentPositionY;
-	private static double currentPositionZ;
-
-	private static double lastPositionX;
-	private static double lastPositionY;
-	private static double lastPositionZ;
+	private double changedVelocityX;
+	private double changedVelocityY;
 
 	// Orientation
-	private static double orientation;
-	private static long elapsedTime;
+	private double orientation;
 
-	// Debugging
-	private static double[] array = new double[3000];
-	private static double[] timestamp = new double[3000];
-	private static int ticksSinceLast = 0;
+	// private double currentVal = 0;
 
-	// private static double currentVal = 0;
-
-	public class navigationalState {
-
-		// Current velocity in feet per second
-		public double velX;
-		public double velY;
-		public double velZ;
-
-		// Position in feet from init
-		public double x;
-		public double y;
-		public double z;
+	public class navigationalUpdate {
+		public double timerChange;
+		public double velXChange;
+		public double velYChange;
 
 		// In degrees from init
-		public double orientation; // Todo
+		public double orientation;
 	}
 
 	// Init timer
-	public static Timer timer = new Timer();
+	public Timer timer = new Timer();
 
-	private static void setTimerChange() {
-		double currentTime = timer.get(); // Get "wall" clock value
+	public double setTimerChange() {
+		currentTime = timer.get(); // Get "wall" clock value
 		double timerChange = currentTime - lastTimerVal;
 		lastTimerVal = currentTime;
 		currentTimeChange = timerChange;
+		return currentTimeChange;
 	}
 
-	private static void setChangedVelocityX() {
-		float xAccel = imu.getWorldLinearAccelX();
+	public double setChangedVelocityX() {
+		double xAccel = imu.getWorldLinearAccelX();
 		changedVelocityX = currentTimeChange * xAccel;
+		return changedVelocityX;
 	}
 
-	private static void setChangedVelocityY() {
-		float yAccel = imu.getWorldLinearAccelY();
+	public double setChangedVelocityY() {
+		double yAccel = imu.getWorldLinearAccelY();
 		changedVelocityY = currentTimeChange * yAccel;
+		return changedVelocityY;
 	}
 
-	private static void setChangedVelocityZ() {
-		float zAccel = imu.getWorldLinearAccelZ();
-		changedVelocityZ = currentTimeChange * zAccel;
-	}
-
-	private static void setCurrentVelocityX() {
-		lastVelocityX = currentVelocityX;
-		currentVelocityX = lastVelocityX + changedVelocityX;
-	}
-
-	private static void setCurrentVelocityY() {
-		lastVelocityY = currentVelocityY;
-		currentVelocityY = lastVelocityY + changedVelocityY;
-	}
-
-	private static void setCurrentVelocityZ() {
-		lastVelocityZ = currentVelocityZ;
-		currentVelocityZ = lastVelocityZ + changedVelocityZ;
-	}
-
-	private static void setChangedPosX() {
-		changedPositionX = ((currentVelocityX + lastVelocityX) / 2)
-				* currentTimeChange;
-	}
-
-	private static void setChangedPosY() {
-		changedPositionY = ((currentVelocityY + lastVelocityY) / 2)
-				* currentTimeChange;
-	}
-
-	private static void setChangedPosZ() {
-		changedPositionZ = ((currentVelocityZ + lastVelocityZ) / 2)
-				* currentTimeChange;
-	}
-
-	private static void setCurrentPosX() {
-		lastPositionX = currentPositionX;
-		currentPositionX = changedPositionX + lastPositionX;
-	}
-
-	private static void setCurrentPosY() {
-		lastPositionY = currentPositionY;
-		currentPositionY = changedPositionY + lastPositionY;
-	}
-
-	private static void setCurrentPosZ() {
-		lastPositionZ = currentPositionZ;
-		currentPositionZ = changedPositionZ + lastPositionZ;
-	}
-
-	private static void setOrientation() {
+	public double setOrientation() {
 		// In degrees clockwise
 		orientation = imu.getYaw();
+		return orientation;
 	}
 
-	public navigationalState getPosition() {
-		navigationalState navState = new navigationalState();
+	public navigationalUpdate getPosition() {
+		// SHOULD ONLY BE CALLED ONCE EVERY TIMESTEP
+		navigationalUpdate navState = new navigationalUpdate();
 
 		// Call position & velocity functions to set internal vars
 		setTimerChange();
 
 		setChangedVelocityX();
 		setChangedVelocityY();
-		setChangedVelocityZ();
-
-		setCurrentVelocityX();
-		setCurrentVelocityY();
-		setCurrentVelocityZ();
-
-		setChangedPosX();
-		setChangedPosY();
-		setChangedPosZ();
-
-		setCurrentPosX();
-		setCurrentPosY();
-		setCurrentPosZ();
 
 		setOrientation();
 
 		// Setup output values
-		navState.velX = currentVelocityX;
-		navState.velY = currentVelocityY;
-		navState.velZ = currentVelocityZ;
-
-		navState.x = currentPositionX;
-		navState.y = currentPositionY;
-		navState.z = currentPositionZ;
-
+		navState.timerChange = currentTimeChange;
+		navState.velXChange = changedVelocityX;
+		navState.velYChange = changedVelocityY;
 		navState.orientation = orientation;
 		return navState;
 	}
-
 }
