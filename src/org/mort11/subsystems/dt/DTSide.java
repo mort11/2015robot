@@ -34,7 +34,6 @@ public abstract class DTSide extends Subsystem {
 	public void set(double lspeed) {
 		curVal = lspeed;
 		motors.set(lspeed * (motorReverse ? -1 : 1));
-		System.out.println(enc.get() + " :" + motors.getChannel());
 	}
 
 	public double getCurVal() {

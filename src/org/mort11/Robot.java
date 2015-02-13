@@ -12,6 +12,7 @@
 
 package org.mort11;
 
+import org.mort11.commands.ee.CloseClaw;
 import org.mort11.navigation.Navigation;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.dt.LeftDT;
@@ -55,10 +56,10 @@ public class Robot extends IterativeRobot {
 	Talon tal2;
 	public void robotInit() {
 		
-		/**elevator = new VerticalActuator();
+		/**elevator = new VerticalActuator(); **/
 		claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN);
 		brake = new PneumaticSubsystem(RobotMap.BRAKE_ENGAGED,
-				RobotMap.BRAKE_DISENGAGED);**/		
+				RobotMap.BRAKE_DISENGAGED);		
 		right = new RightDT();
 		left = new LeftDT();
 		/**tal1 = new Talon(0);
@@ -81,6 +82,7 @@ public class Robot extends IterativeRobot {
 		/**tal1.set(0.5);
 		tal2.set(0.5);**/	
 		System.out.println("second called");
+		new CloseClaw().start();
 	}
 
 	/**	

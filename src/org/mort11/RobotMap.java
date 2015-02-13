@@ -23,14 +23,14 @@ public class RobotMap {
 	//pneumatics
 	public static final int CLAW_CLOSED = 0;
 	public static final int CLAW_OPEN = 1;
-	public static final int BRAKE_ENGAGED = 2;
-	public static final int BRAKE_DISENGAGED = 3;
+	public static final int BRAKE_ENGAGED = 4;
+	public static final int BRAKE_DISENGAGED = 5;
 	//auton grabber
-	public static final int CENTER_PISTON_ENGAGED = 4; 
-	public static final int CENTER_PISTON_NOT_ENGAGED = 5;
-	public static final int LEFT_PISTON_ENGAGED = 6; 
+	public static final int CENTER_PISTON_ENGAGED = 6; 
+	public static final int CENTER_PISTON_NOT_ENGAGED = 7;
+	/**public static final int LEFT_PISTON_ENGAGED = 6; 
 	public static final int LEFT_PISTON_NOT_ENGAGED = 7;
 	public static final int RIGHT_PISTON_ENGAGED = 8; 
-	public static final int RIGHT_PISTON_NOT_ENGAGED = 9;
+	public static final int RIGHT_PISTON_NOT_ENGAGED = 9;**/
 
 }

@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class CloseClaw extends Command {
 
-	boolean isClosed;
+	boolean isClosed; //idk
 	private PneumaticSubsystem claw = Robot.claw;
 
 	public CloseClaw(boolean isClosed) {
@@ -19,19 +19,23 @@ public class CloseClaw extends Command {
 		// Use requires() here to declare subsystem dependencies
 		// );
 	}
+	public CloseClaw()
+	{
+		requires(claw);
+	}
 
 	// Called just before this Command runs the first time
-	protected void initialize() {
-		Robot.claw.setSolenoid(isClosed);
+	protected void initialize() {		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		claw.setSolenoid(!claw.isEngaged());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	// Called once after isFinished returns true
