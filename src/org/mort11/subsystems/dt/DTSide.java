@@ -2,6 +2,7 @@ package org.mort11.subsystems.dt;
 
 import org.mort11.commands.dt.DriveLinear;
 
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -11,15 +12,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public abstract class DTSide extends Subsystem {
 
-	private static Encoder enc;
-	private static Talon motors;
-	private static double curVal = 0;
-	private static boolean motorReverse;
+	private Encoder enc;
+	private Talon motors;
+	private double curVal = 0;
+	private boolean motorReverse;
 
 	public DTSide(int motorPort, int encAPort, int encBPort,
 			boolean motorReverse, boolean encReverse) {
 		motors = new Talon(motorPort);
-		enc = new Encoder(encAPort, encBPort, encReverse);
+		enc = new Encoder(encAPort, encBPort, encReverse,EncodingType.k4X);
 		this.motorReverse = motorReverse;
 
 	}
@@ -30,9 +31,10 @@ public abstract class DTSide extends Subsystem {
 		setDefaultCommand(getLinearDrive());
 	}
 
-	public static void set(double lspeed) {
+	public void set(double lspeed) {
 		curVal = lspeed;
 		motors.set(lspeed * (motorReverse ? -1 : 1));
+		System.out.println(enc.get() + " :" + motors.getChannel());
 	}
 
 	public double getCurVal() {
@@ -43,11 +45,12 @@ public abstract class DTSide extends Subsystem {
 		return enc.getRate();
 	}
 
-	public static double getDist() {
+	public double getDist() {
 		return enc.getDistance();
 	}
 
-	public static void resetEnc() {
+	public void resetEnc() {
+		System.out.println("resetting");
 		enc.reset();
 	}
 

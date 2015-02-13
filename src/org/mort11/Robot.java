@@ -12,8 +12,8 @@
 
 package org.mort11;
 
-import org.mort11.commands.ee.ElevateToHeight;
 import org.mort11.navigation.Navigation;
+import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.dt.LeftDT;
 import org.mort11.subsystems.dt.RightDT;
 import org.mort11.subsystems.ee.PneumaticSubsystem;
@@ -22,6 +22,7 @@ import org.mort11.subsystems.ee.VerticalActuator;
 import com.elevendustries.firecracker.Firecracker;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -36,7 +37,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class Robot extends IterativeRobot {
 
 	public static VerticalActuator elevator;
-	public static LeftDT left;
+	public static DTSide left;
 	public static RightDT right;
 	public static OI oi;
 	public static PneumaticSubsystem claw;
@@ -45,37 +46,44 @@ public class Robot extends IterativeRobot {
 	public static PneumaticSubsystem autonLeft;
 	public static PneumaticSubsystem autonRight;
 	public static Firecracker firecracker;
-
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
-
+	Talon tal1;
+	Talon tal2;
 	public void robotInit() {
-		elevator = new VerticalActuator();
+		
+		/**elevator = new VerticalActuator();
 		claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN);
 		brake = new PneumaticSubsystem(RobotMap.BRAKE_ENGAGED,
-				RobotMap.BRAKE_DISENGAGED);
-		left = new LeftDT();
+				RobotMap.BRAKE_DISENGAGED);**/		
 		right = new RightDT();
-		firecracker = new Firecracker();
+		left = new LeftDT();
+		/**tal1 = new Talon(0);
+		tal2 = new Talon(2);**/
+		//firecracker = new Firecracker();
 		oi = new OI();
-		autonArmUp = new PneumaticSubsystem(RobotMap.CENTER_PISTON_ENGAGED,
+		/**autonArmUp = new PneumaticSubsystem(RobotMap.CENTER_PISTON_ENGAGED,
 				RobotMap.CENTER_PISTON_NOT_ENGAGED);
 		autonLeft = new PneumaticSubsystem(RobotMap.LEFT_PISTON_ENGAGED,
 				RobotMap.LEFT_PISTON_NOT_ENGAGED);
 		autonRight = new PneumaticSubsystem(RobotMap.RIGHT_PISTON_ENGAGED,
 				RobotMap.RIGHT_PISTON_NOT_ENGAGED);
-		System.out.println("starting");
+		System.out.println("starting");**/
 	}
 
 	public void autonomousInit() {
 
-		new ElevateToHeight(2, true).start();// tbd
+		//new ElevateToHeight(2, true).start();// tbd		
 		System.out.println("auton started");
+		/**tal1.set(0.5);
+		tal2.set(0.5);**/	
+		System.out.println("second called");
 	}
 
-	/**
+	/**	
 	 * This function is called periodically during autonomous
 	 */
 
@@ -90,7 +98,8 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-
+		//System.out.println(left.getCurrentCommand());
+		//System.out.println(right.getCurrentCommand());
 	}
 
 	/**
@@ -99,8 +108,6 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		// Nav6.getDistance();
-		Navigation.getDistance();
-
 	}
 
 	/**

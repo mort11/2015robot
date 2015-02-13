@@ -42,7 +42,7 @@ public class OI {
 			TeleopConstants.THROTTLE_FAILSAFE);
 
 	public OI() {
-		// Move to one tote level
+/**		// Move to one tote level
 		presetOneTote.whenPressed(new ElevateToHeight(0 + getPlatformOffset()
 				+ getStepOffset(), false));
 		presetTwoTote.whenPressed(new ElevateToHeight(1 + getPlatformOffset()
@@ -57,7 +57,7 @@ public class OI {
 				+ getStepOffset(), false));
 		clawClose.toggleWhenPressed(new CloseClaw(true));
 		manualControl.whileHeld(new ElevateToHeight((getEEJoyThrottle() / 2)
-				* EEConstants.MAX_TOTES_NUM, false));
+				* EEConstants.MAX_TOTES_NUM, false)); **/
 	}
 
 	public double getPlatformOffset() {
