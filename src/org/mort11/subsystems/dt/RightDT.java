@@ -12,7 +12,7 @@ public class RightDT extends DTSide
 {
 	public RightDT()
 	{
-		super(RobotMap.DT_RIGHT_PORT, RobotMap.DT_ENC_RIGHT_A,RobotMap.DT_ENC_RIGHT_B,false, true);
+		super(RobotMap.DT_RIGHT_PORT, RobotMap.DT_ENC_RIGHT_A,RobotMap.DT_ENC_RIGHT_B,false, false);
 	}
     
     // Put methods for controlling this subsystem
@@ -23,6 +23,7 @@ public class RightDT extends DTSide
     	//setDefaultCommand();	
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new DriveLinearRight());
     }
 
 	@Override

@@ -22,6 +22,7 @@ public class LeftDT extends DTSide
     	//setDefaultCommand();
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new DriveLinearLeft());
     }
 
 	@Override

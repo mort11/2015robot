@@ -1,6 +1,7 @@
 package org.mort11.commands.dt;
 
 import org.mort11.Robot;
+import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.dt.LeftDT;
 import org.mort11.subsystems.dt.RightDT;
 
@@ -14,8 +15,8 @@ public class DriveBackwards extends Command {
 	private double driveDistance;
 	private double leftSpeed;
 	private double rightSpeed;
-	private LeftDT left = Robot.left;
-	private RightDT right = Robot.right;
+	private DTSide left = Robot.left;
+	private DTSide right = Robot.right;
 
 	public DriveBackwards() {
 		requires(left);
@@ -33,8 +34,8 @@ public class DriveBackwards extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		RightDT.resetEnc();
-		LeftDT.resetEnc();
+		right.resetEnc();
+		left.resetEnc();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -45,8 +46,8 @@ public class DriveBackwards extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (RightDT.getDist() < driveDistance
-				&& LeftDT.getDist() < driveDistance)
+		if (right.getDist() < driveDistance
+				&& left.getDist() < driveDistance)
 			return false;
 		else
 			return true;

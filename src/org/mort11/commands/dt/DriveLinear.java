@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public abstract class DriveLinear extends Command {
 
-	protected final DTSide side;
+	protected DTSide side;
 
 	protected DriveLinear(DTSide dt)
 	{

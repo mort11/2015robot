@@ -62,6 +62,9 @@ public class ElevateToHeight extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
+		if(elevator.getLimSwitch()){
+			elevator.resetEnc();
+		}
 		new ElevatorBrake(true).start();
 	}
 

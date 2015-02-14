@@ -18,7 +18,7 @@ public class OI {
 	// Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);
 	Joystick left = new Joystick(TeleopConstants.LEFT_JOYSTICK);
 	Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);
-	static Joystick ee = new Joystick(TeleopConstants.EE_JOYSTICK);
+	Joystick ee = new Joystick(TeleopConstants.EE_JOYSTICK);
 
 	// Button Mapping
 	Button scoringOffset = new JoystickButton(ee,
@@ -42,7 +42,7 @@ public class OI {
 			TeleopConstants.THROTTLE_FAILSAFE);
 
 	public OI() {
-		// Move to one tote level
+/**		// Move to one tote level
 		presetOneTote.whenPressed(new ElevateToHeight(0 + getPlatformOffset()
 				+ getStepOffset(), false));
 		presetTwoTote.whenPressed(new ElevateToHeight(1 + getPlatformOffset()
@@ -55,9 +55,10 @@ public class OI {
 				+ getStepOffset(), false));
 		presetSixTote.whenPressed(new ElevateToHeight(5 + getPlatformOffset()
 				+ getStepOffset(), false));
-		clawClose.toggleWhenPressed(new CloseClaw(true));
 		manualControl.whileHeld(new ElevateToHeight((getEEJoyThrottle() / 2)
-				* EEConstants.MAX_TOTES_NUM, false));
+				* EEConstants.MAX_TOTES_NUM, false)); **/
+		clawClose.whenPressed(new CloseClaw());
+		
 	}
 
 	public double getPlatformOffset() {
@@ -84,11 +85,11 @@ public class OI {
 		return doThreshold(right.getY());
 	}
 
-	public static double getEEJoyThrottle() {
+	public double getEEJoyThrottle() {
 		return (-ee.getThrottle() + 1);
 	}
 
-	public static double getEEJoy() {
+	public double getEEJoy() {
 		return deadzoneEE(-ee.getY());
 	}
 
