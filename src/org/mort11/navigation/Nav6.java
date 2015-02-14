@@ -8,12 +8,14 @@ import edu.wpi.first.wpilibj.Timer;
 public class Nav6 {
 
 	// Global variables
-	// private final double gravitationalAccel = 32.17404855643;
+	private final static double gravitationalAccel = 32.17404855643;
 
 	// IMU
-	private SerialPort serial_port = new SerialPort(57600, SerialPort.Port.kUSB);
-	private final byte update_rate_hz = 50;
-	private IMUAdvanced imu = new IMUAdvanced(serial_port, update_rate_hz);
+	private static SerialPort serial_port = new SerialPort(57600,
+			SerialPort.Port.kUSB);
+	private static final byte update_rate_hz = 50;
+	private static IMUAdvanced imu = new IMUAdvanced(serial_port,
+			update_rate_hz);
 
 	// Timer
 	private double currentTime = 0;
@@ -21,8 +23,8 @@ public class Nav6 {
 	private double currentTimeChange = 0;
 
 	// Velocity
-	private double changedVelocityX;
-	private double changedVelocityY;
+	private double deltaVelocityX;
+	private double deltaVelocityY;
 
 	// Orientation
 	private double orientation;
@@ -49,16 +51,20 @@ public class Nav6 {
 		return currentTimeChange;
 	}
 
-	public double setChangedVelocityX() {
-		double xAccel = imu.getWorldLinearAccelX();
-		changedVelocityX = currentTimeChange * xAccel;
-		return changedVelocityX;
+	public static void zero() {
+		imu.zeroYaw();
 	}
 
-	public double setChangedVelocityY() {
-		double yAccel = imu.getWorldLinearAccelY();
-		changedVelocityY = currentTimeChange * yAccel;
-		return changedVelocityY;
+	public double setDeltaVelocityX() {
+		double xAccel = imu.getWorldLinearAccelX() * gravitationalAccel;
+		deltaVelocityX = currentTimeChange * xAccel;
+		return deltaVelocityX;
+	}
+
+	public double setDeltaVelocityY() {
+		double yAccel = imu.getWorldLinearAccelY() * gravitationalAccel;
+		deltaVelocityY = currentTimeChange * yAccel;
+		return deltaVelocityY;
 	}
 
 	public double setOrientation() {
@@ -74,15 +80,15 @@ public class Nav6 {
 		// Call position & velocity functions to set internal vars
 		setTimerChange();
 
-		setChangedVelocityX();
-		setChangedVelocityY();
+		setDeltaVelocityX();
+		setDeltaVelocityY();
 
 		setOrientation();
 
 		// Setup output values
 		navState.timerChange = currentTimeChange;
-		navState.velXChange = changedVelocityX;
-		navState.velYChange = changedVelocityY;
+		navState.velXChange = deltaVelocityX;
+		navState.velYChange = deltaVelocityY;
 		navState.orientation = orientation;
 		return navState;
 	}
