@@ -21,7 +21,7 @@ public class ElevatorBrake extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		brake.setSolenoid(isBrakeOn);
+		brake.setSolenoid(!brake.isEngaged());
 	}
 
 	// Called repeatedly when this Command is scheduled to run

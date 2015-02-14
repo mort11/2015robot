@@ -12,6 +12,7 @@
 
 package org.mort11;
 
+import org.mort11.commands.dt.DriveBackwards;
 import org.mort11.commands.ee.CloseClaw;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.dt.LeftDT;
@@ -20,6 +21,8 @@ import org.mort11.subsystems.ee.PneumaticSubsystem;
 import org.mort11.subsystems.ee.VerticalActuator;
 
 import com.elevendustries.firecracker.Firecracker;
+import com.elevendustries.firecracker.RGBChannel;
+import com.elevendustries.firecracker.UpdateChannels;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Talon;
@@ -81,11 +84,9 @@ public class Robot extends IterativeRobot {
 
 		// new ElevateToHeight(2, true).start();// tbd
 		System.out.println("auton started");
-		/**
-		 * tal1.set(0.5); tal2.set(0.5);
-		 **/
+		//tal1.set(0.5); tal2.set(0.5);
 		System.out.println("second called");
-		new CloseClaw().start();
+		new DriveBackwards().start();
 	}
 
 	/**
@@ -120,5 +121,11 @@ public class Robot extends IterativeRobot {
 	 */
 	public void testPeriodic() {
 		LiveWindow.run();
+	}
+	
+	public void writeColor(byte r, byte g, byte b) {
+		RGBChannel thing = new RGBChannel(1, 2, 3, firecracker);
+		thing.setRGB(255, 255, 0);
+		new UpdateChannels(firecracker);
 	}
 }

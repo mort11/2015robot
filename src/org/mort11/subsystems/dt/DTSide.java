@@ -21,6 +21,7 @@ public abstract class DTSide extends Subsystem {
 			boolean motorReverse, boolean encReverse) {
 		motors = new Talon(motorPort);
 		enc = new Encoder(encAPort, encBPort, encReverse,EncodingType.k4X);
+		enc.setDistancePerPulse((4 * 3.14) / 256);
 		this.motorReverse = motorReverse;
 
 	}
@@ -32,8 +33,10 @@ public abstract class DTSide extends Subsystem {
 	}
 
 	public void set(double lspeed) {
+		System.out.println("going");
 		curVal = lspeed;
 		motors.set(lspeed * (motorReverse ? -1 : 1));
+		System.out.println("setting " + motors.getChannel() + " to " + lspeed);
 	}
 
 	public double getCurVal() {
