@@ -33,10 +33,10 @@ public abstract class DTSide extends Subsystem {
 	}
 
 	public void set(double lspeed) {
-		System.out.println("going");
+		//System.out.println("going");
 		curVal = lspeed;
 		motors.set(lspeed * (motorReverse ? -1 : 1));
-		System.out.println("setting " + motors.getChannel() + " to " + lspeed);
+		//System.out.println("setting " + motors.getChannel() + " to " + lspeed);
 	}
 
 	public double getCurVal() {
@@ -52,7 +52,7 @@ public abstract class DTSide extends Subsystem {
 	}
 
 	public void resetEnc() {
-		System.out.println("resetting");
+		//System.out.println("resetting");
 		enc.reset();
 	}
 
