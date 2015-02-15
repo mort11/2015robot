@@ -88,7 +88,8 @@ public class LineSegment {
 	    temp1.setAngle(angle1 - angle1);
 	    temp2.setAngle(angle2 - angle1);
 	    
-	    if (temp2.) //unfinished
+	    /**if (temp2.) //unfinished**/ //have you heard about these cool things
+	    								//called comments?
 	}
 
 }
