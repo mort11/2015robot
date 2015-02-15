@@ -8,47 +8,55 @@ public class EncoderHandler {
 	public static class encoderState {
 		public double distanceLeft;
 		public double distanceRight;
-		public double speed;
+		public double speedLeft;
+		public double speedRight;
 	}
 
 	// Encoders
 	// Left DT Encoder
 	Encoder encLeft = new Encoder(0, 1, false, EncodingType.k4X);
 	// Right DT Encoder
-	Encoder encRight = new Encoder(0, 1, false, EncodingType.k4X);
+	Encoder encRight = new Encoder(2, 3, false, EncodingType.k4X);
 
 	private double distanceDTLeft;
 	private double distanceDTRight;
-	private double speed;
+	private double dtSpeedLeft;
+	private double dtSpeedRight;
 
 	// Encoder steps per revolution is 256
 	// Wheel size = 4in
 	// pi * wheelsize
 
-	private final int wheelSize = 4;
+	private final double wheelSize = 4; // Diameter
 	private final int encoderSteps = 256;
 	private final double dtEncoderScaleFactor = (Math.PI * wheelSize)
 			/ encoderSteps;
 
 	// Encoder Data handling
 
-	private void initEncoder() {
+	public void initEncoder() {
 		encLeft.setDistancePerPulse(dtEncoderScaleFactor);
 		encRight.setDistancePerPulse(dtEncoderScaleFactor);
 	}
 
-	private double getDistanceDTLeft() {
-		distanceDTLeft = encLeft.getDistance() / (Math.PI * wheelSize);
+	public double getDistanceDTLeft() {
+		distanceDTLeft = encLeft.getDistance(); // / (Math.PI * wheelSize);
 		return distanceDTLeft;
 	}
 
-	private double getDistanceDTRight() {
-		distanceDTRight = encRight.getDistance() / (Math.PI * wheelSize);
+	public double getDistanceDTRight() {
+		distanceDTRight = encRight.getDistance(); // / (Math.PI * wheelSize);
 		return distanceDTRight;
 	}
 
-	private double getSpeed() {
-		return speed;
+	public double getSpeedLeft() {
+		dtSpeedLeft = encLeft.getRate();
+		return dtSpeedLeft;
+	}
+
+	public double getSpeedRight() {
+		dtSpeedRight = encRight.getRate();
+		return dtSpeedRight;
 	}
 
 	public encoderState getDistance() {
@@ -59,11 +67,14 @@ public class EncoderHandler {
 		initEncoder();
 		getDistanceDTLeft();
 		getDistanceDTRight();
+		getSpeedLeft();
+		getSpeedRight();
 
 		// Setup output values
 		encState.distanceLeft = distanceDTRight;
 		encState.distanceRight = distanceDTRight;
-		encState.speed = speed;
+		encState.speedLeft = dtSpeedLeft;
+		encState.speedRight = dtSpeedRight;
 
 		return encState;
 	}
