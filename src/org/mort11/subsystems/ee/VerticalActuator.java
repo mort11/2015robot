@@ -39,7 +39,6 @@ public class VerticalActuator extends Subsystem {
 
 	public void setSpeed(double speed) {
 		elevator.set(speed);
-		System.out.println(this.getCurrentCommand());
 	}
 
 	public void initDefaultCommand() {
@@ -56,7 +55,6 @@ public class VerticalActuator extends Subsystem {
 
 	public void resetEnc() {
 		elevatorEnc.reset();
-		System.out.println(this.getCurrentCommand());
 	}
 }
 

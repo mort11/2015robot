@@ -14,7 +14,7 @@ public class TeleopConstants {
 	public static final int LEFT_JOYSTICK = 1;
 	public static final int RIGHT_JOYSTICK = 2;
 	public static final int EE_JOYSTICK = 3;
-	public static final int CLAW_CLOSE = 2;
+	public static final int CLAW_CLOSE = 6;
 	public static final int THROTTLE_FAILSAFE = 3;
 	public static final int SCORING_PLAT_HEIGHT = 2;
 	public static final double COOP_PLAT_HEIGHT = 6.25;

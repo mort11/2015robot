@@ -1,7 +1,10 @@
 package org.mort11;
 
+import org.mort11.commands.ee.CloseClaw;
 import org.mort11.commands.ee.ElevateToHeight;
 import org.mort11.commands.ee.ElevatorBrake;
+import org.mort11.commands.ee.Zero;
+import org.mort11.util.EEConstants;
 import org.mort11.util.TeleopConstants;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -19,17 +22,20 @@ public class OI {
 
 	// Button Mapping
 	Button scoringOffset = new JoystickButton(ee,
-			TeleopConstants.SCORING_OFFSET_BUTTON);
+		TeleopConstants.SCORING_OFFSET_BUTTON);
 	Button coopPlatOffset = new JoystickButton(ee,
-			TeleopConstants.COOP_PLAT_OFFSET_BUTTON);
+		TeleopConstants.COOP_PLAT_OFFSET_BUTTON);
 	Button presetOneTote = new JoystickButton(ee,
-			TeleopConstants.ONE_TOTE_PRESET_BUTTON);
+		TeleopConstants.ONE_TOTE_PRESET_BUTTON);
 	Button presetTwoTote = new JoystickButton(ee,
-			TeleopConstants.TWO_TOTE_PRESET_BUTTON);
+		TeleopConstants.TWO_TOTE_PRESET_BUTTON);
 	Button presetThreeTote = new JoystickButton(ee,
-			TeleopConstants.THREE_TOTE_PRESET_BUTTON);
+		TeleopConstants.THREE_TOTE_PRESET_BUTTON);
 	Button presetFourTote = new JoystickButton(ee,
-			TeleopConstants.FOUR_TOTE_PRESET_BUTTON);
+		TeleopConstants.FOUR_TOTE_PRESET_BUTTON);
+	Button presetFiveTote = new JoystickButton(ee,
+			TeleopConstants.FIVE_TOTE_PRESET_BUTTON);
+		
 	Button clawClose = new JoystickButton(ee, TeleopConstants.CLAW_CLOSE);
 	Button manualControl = new JoystickButton(ee,
 			TeleopConstants.THROTTLE_FAILSAFE);
@@ -37,18 +43,23 @@ public class OI {
 
 	public OI() {
 		// Move to one tote level
-		presetOneTote.whenPressed(new ElevateToHeight(0 + getPlatformOffset()
+		presetOneTote.whenPressed(new Zero());
+		presetTwoTote.whenPressed(new ElevateToHeight((1 - 
+				EEConstants.ZERO_OFFSET) + getPlatformOffset()
 				+ getStepOffset(), true));
-		presetTwoTote.whenPressed(new ElevateToHeight(1 + getPlatformOffset()
+		presetThreeTote.whenPressed(new ElevateToHeight(2 -  
+				EEConstants.ZERO_OFFSET + getPlatformOffset()
 				+ getStepOffset(), true));
-		presetThreeTote.whenPressed(new ElevateToHeight(2 + getPlatformOffset()
+		presetFourTote.whenPressed(new ElevateToHeight(3 - 
+				EEConstants.ZERO_OFFSET + getPlatformOffset()
 				+ getStepOffset(), true));
-		presetFourTote.whenPressed(new ElevateToHeight(3 + getPlatformOffset()
-				+ getStepOffset(), true));
+		presetFiveTote.whenPressed(new ElevateToHeight(4 - 
+				EEConstants.ZERO_OFFSET + getPlatformOffset()
+				+ getStepOffset(),true));
 		brakeButton.whenPressed(new ElevatorBrake());
 		/**manualControl.whileHeld(new ElevateToHeight((getEEJoyThrottle() / 2)
 				* EEConstants.MAX_TOTES_NUM, true));**/
-		//clawClose.whenPressed(new CloseClaw());
+		clawClose.whenPressed(new CloseClaw());
 		
 	}
 	//increments all presets by the height of the platform

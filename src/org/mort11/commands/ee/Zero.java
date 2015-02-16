@@ -13,10 +13,12 @@ public class Zero extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.elevator);
+    	requires(Robot.brake);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.brake.setSolenoid(false);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -33,6 +35,7 @@ public class Zero extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.elevator.setSpeed(0);
+    	Robot.elevator.resetEnc();
     	System.out.println("zeroed");
     }
 

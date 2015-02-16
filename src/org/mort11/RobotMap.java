@@ -21,8 +21,8 @@ public class RobotMap {
 	public static final int ELEVATOR_BOTTOM_LIM = 6;
 	public static final int ELEVATOR_TOP_LIM = 7;
 	// pneumatics
-	public static final int CLAW_CLOSED = 4;
-	public static final int CLAW_OPEN = 5;
+	public static final int CLAW_CLOSED = 2;
+	public static final int CLAW_OPEN = 3;
 	public static final int BRAKE_ENGAGED = 7;
 	public static final int BRAKE_DISENGAGED = 6;
 	// auton grabber

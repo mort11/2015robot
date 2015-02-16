@@ -13,6 +13,7 @@ public class CloseClaw extends Command {
 	boolean isClosed; //idk
 	private PneumaticSubsystem claw = Robot.claw;
 
+	
 	public CloseClaw(boolean isClosed) {
 		this.isClosed = isClosed;
 		requires(claw);

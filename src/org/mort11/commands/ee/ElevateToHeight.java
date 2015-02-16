@@ -41,13 +41,14 @@ public class ElevateToHeight extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		System.out.println("looping");
 		System.out.println(moveElevator.getHeight() + " height");
 		System.out.println(desiredHeight + " goal");
-		if(desiredHeight > moveElevator.getHeight())
+		if(desiredHeight > moveElevator.getHeight()) {
 			moveElevator.setSpeed(EEConstants.ESCALATION_SPEED);
-		else
-			moveElevator.setSpeed(-EEConstants.ESCALATION_SPEED);
+		}
+		else {
+			moveElevator.setSpeed(-EEConstants.LOWERING_SPEED);
+		}
 	
 
 	}
@@ -55,8 +56,8 @@ public class ElevateToHeight extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		// epsilon compare on robot height/limitswitch tripped
-		return (Math.abs(Robot.elevator.getHeight() - desiredHeight) < 0.01 ||
-				Robot.elevator.getTopLim());
+		return (Math.abs(Robot.elevator.getHeight() - desiredHeight) < 0.5 ||
+				checkDirection());
 	}
 
 	// Called once after isFinished returns true
@@ -65,16 +66,26 @@ public class ElevateToHeight extends Command {
 		if(elevator.getBottomLim()){
 			elevator.resetEnc();
 			//push out of sketchy zone
-			elevator.setSpeed(EEConstants.PUSHOUT_SPEED);
-			while(time.get() < 0.5);
-			System.out.println("resetting");
+			//elevator.setSpeed(EEConstants.PUSHOUT_SPEED);
+			//while(time.get() < 0.5);
+			//System.out.println("pushing");
 		} else if (elevator.getTopLim()) {
 			//push out of sketchy zone
-			elevator.setSpeed(-EEConstants.PUSHOUT_SPEED);
-			while(time.get() < 0.5);
+			//elevator.setSpeed(-EEConstants.PUSHOUT_SPEED);
+			//while(time.get() < 0.5);
 		}
 		Robot.elevator.setSpeed(0);
 		brake.setSolenoid(true);
+	}
+	
+	//makes sure we aren't heading in the same way as the switch
+	private boolean checkDirection()
+	{
+		return (elevator.getBottomLim() && 
+					desiredHeight < Robot.elevator.getHeight()) || 
+				(elevator.getTopLim() &&
+						desiredHeight > Robot.elevator.getHeight());
+		
 	}
 
 	// Called when another command which requires one or more of the same
