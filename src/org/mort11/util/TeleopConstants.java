@@ -16,8 +16,10 @@ public class TeleopConstants {
 	public static final int EE_JOYSTICK = 3;
 	public static final int CLAW_CLOSE = 2;
 	public static final int THROTTLE_FAILSAFE = 3;
+	public static final int MANUAL_CONTROL_INIT = 5; //manu joy control only works when pressed (tbd)
 	public static final int SCORING_PLAT_HEIGHT = 2;
 	public static final double COOP_PLAT_HEIGHT = 6.25;
+	public static final double MANUAL_SPEED_LIMIT = 2; //divide joy val by this to limit elevator speed
 	// each tote has a dimension of 26.9 inches long, 16.9 inches wide, and 12.1
 	// inches tall
 }

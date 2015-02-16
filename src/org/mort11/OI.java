@@ -2,6 +2,7 @@ package org.mort11;
 
 import org.mort11.commands.ee.ElevateToHeight;
 import org.mort11.commands.ee.ElevatorBrake;
+import org.mort11.commands.ee.ManualElevate;
 import org.mort11.util.TeleopConstants;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -31,8 +32,9 @@ public class OI {
 	Button presetFourTote = new JoystickButton(ee,
 			TeleopConstants.FOUR_TOTE_PRESET_BUTTON);
 	Button clawClose = new JoystickButton(ee, TeleopConstants.CLAW_CLOSE);
-	Button manualControl = new JoystickButton(ee,
+	Button throttleFailsafe = new JoystickButton(ee,
 			TeleopConstants.THROTTLE_FAILSAFE);
+	Button manualJoyFailsafe = new JoystickButton(ee, TeleopConstants.MANUAL_CONTROL_INIT);
 	Button brakeButton = new JoystickButton(ee,7);
 
 	public OI() {
@@ -46,9 +48,10 @@ public class OI {
 		presetFourTote.whenPressed(new ElevateToHeight(3 + getPlatformOffset()
 				+ getStepOffset(), true));
 		brakeButton.whenPressed(new ElevatorBrake());
-		/**manualControl.whileHeld(new ElevateToHeight((getEEJoyThrottle() / 2)
+		/**throttleFailsafe.whileHeld(new ElevateToHeight((getEEJoyThrottle() / 2)
 				* EEConstants.MAX_TOTES_NUM, true));**/
 		//clawClose.whenPressed(new CloseClaw());
+		manualJoyFailsafe.whileHeld(new ManualElevate(getEEJoy() / TeleopConstants.MANUAL_SPEED_LIMIT));
 		
 	}
 	//increments all presets by the height of the platform
