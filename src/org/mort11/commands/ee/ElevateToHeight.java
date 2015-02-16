@@ -3,6 +3,7 @@ package org.mort11.commands.ee;
 import static org.mort11.Robot.elevator;
 
 import org.mort11.Robot;
+import org.mort11.subsystems.ee.PneumaticSubsystem;
 import org.mort11.subsystems.ee.VerticalActuator;
 import org.mort11.util.EEConstants;
 import org.mort11.util.Profiler;
@@ -12,11 +13,11 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ElevateToHeight extends Command {
 	double desiredHeight;
-	double toteheight;
 	Timer time = new Timer();
 	Profiler profiler;
 	boolean useP;
 	private VerticalActuator moveElevator = Robot.elevator;
+	private PneumaticSubsystem brake = Robot.brake;
 
 	/**
 	 * 
@@ -27,6 +28,7 @@ public class ElevateToHeight extends Command {
 	 */
 	public ElevateToHeight(double desiredHeight, boolean useP) {
 		requires(moveElevator);
+		requires(brake);
 		this.desiredHeight = desiredHeight * EEConstants.TOTES_TO_INCHES;
 		this.useP = useP;
 		profiler = new Profiler(1, EEConstants.TIME_PER_LEVEL * desiredHeight);
@@ -34,38 +36,45 @@ public class ElevateToHeight extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		new ElevatorBrake(false).start();
-		moveElevator.resetEnc();
-		time.start();
-		System.out.println("resetting");
+		brake.setSolenoid(false);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (useP) {
-			double error = toteheight - moveElevator.getHeight();
-			moveElevator.setSpeed(error * EEConstants.ELEVATOR_P);
-		} else {
-			// increment virtual sp by deltaV * t
-			double speed = profiler.getDesiredVelocity(time.get());
-			moveElevator.setSpeed(speed);
-		}
+		System.out.println("looping");
+		System.out.println(moveElevator.getHeight() + " height");
+		System.out.println(desiredHeight + " goal");
+		if(desiredHeight > moveElevator.getHeight())
+			moveElevator.setSpeed(EEConstants.ESCALATION_SPEED);
+		else
+			moveElevator.setSpeed(-EEConstants.ESCALATION_SPEED);
+	
 
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		// epsilon compare on robot height/limitswitch tripped
-		return (Math.abs(Robot.elevator.getHeight() - toteheight) < 0.5 || elevator
-				.getLimSwitch());
+		return (Math.abs(Robot.elevator.getHeight() - desiredHeight) < 0.01 ||
+				Robot.elevator.getTopLim());
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		if(elevator.getLimSwitch()){
+		time.start();
+		if(elevator.getBottomLim()){
 			elevator.resetEnc();
+			//push out of sketchy zone
+			elevator.setSpeed(EEConstants.PUSHOUT_SPEED);
+			while(time.get() < 0.5);
+			System.out.println("resetting");
+		} else if (elevator.getTopLim()) {
+			//push out of sketchy zone
+			elevator.setSpeed(-EEConstants.PUSHOUT_SPEED);
+			while(time.get() < 0.5);
 		}
-		new ElevatorBrake(true).start();
+		Robot.elevator.setSpeed(0);
+		brake.setSolenoid(true);
 	}
 
 	// Called when another command which requires one or more of the same

@@ -14,6 +14,8 @@ package org.mort11;
 
 import org.mort11.commands.dt.DriveBackwards;
 import org.mort11.commands.ee.CloseClaw;
+import org.mort11.commands.ee.ElevatorBrake;
+import org.mort11.commands.ee.Zero;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.dt.LeftDT;
 import org.mort11.subsystems.dt.RightDT;
@@ -54,20 +56,14 @@ public class Robot extends IterativeRobot {
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
-	Talon tal1;
-	Talon tal2;
-
 	public void robotInit() {
 		
-		/**elevator = new VerticalActuator(); **/
-		claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN);
+		elevator = new VerticalActuator(); 
+		//claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN);
 		brake = new PneumaticSubsystem(RobotMap.BRAKE_ENGAGED,
 				RobotMap.BRAKE_DISENGAGED);		
 		right = new RightDT();
 		left = new LeftDT();
-		/**
-		 * tal1 = new Talon(0); tal2 = new Talon(2);
-		 **/
 		// firecracker = new Firecracker();
 		oi = new OI();
 		/**
@@ -85,17 +81,14 @@ public class Robot extends IterativeRobot {
 		// new ElevateToHeight(2, true).start();// tbd
 		System.out.println("auton started");
 		//tal1.set(0.5); tal2.set(0.5);
-		System.out.println("second called");
 		new DriveBackwards().start();
 	}
 
 	/**
 	 * This function is called periodically during autonomous
 	 */
-
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		// the scheduler does cool things and also jeff is talking about breaks
 
 	}
 
@@ -106,6 +99,8 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		// System.out.println(left.getCurrentCommand());
 		// System.out.println(right.getCurrentCommand());
+		new ElevatorBrake(false).start();
+		new Zero().start();
 	}
 
 	/**

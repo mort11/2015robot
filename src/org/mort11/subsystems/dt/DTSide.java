@@ -1,6 +1,7 @@
 package org.mort11.subsystems.dt;
 
 import org.mort11.commands.dt.DriveLinear;
+import org.mort11.util.DTConstants;
 
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
@@ -21,7 +22,7 @@ public abstract class DTSide extends Subsystem {
 			boolean motorReverse, boolean encReverse) {
 		motors = new Talon(motorPort);
 		enc = new Encoder(encAPort, encBPort, encReverse,EncodingType.k4X);
-		enc.setDistancePerPulse((4 * 3.14) / 256);
+		enc.setDistancePerPulse(DTConstants.INCHES_PER_PULSE);
 		this.motorReverse = motorReverse;
 
 	}

@@ -8,6 +8,8 @@ public class Profiler {
 		this.maxVel = maxVelocity;
 		this.timeToTarget = timeToTarget;
 	}
+	
+	//each leg of the trap is given (1/3)t
 	public double getDesiredVelocity(double currTime)
 	{
 		//ramp up period(1/3 of TTT)

@@ -15,19 +15,19 @@ public class RobotMap {
 	public static final int DT_ENC_RIGHT_A = 2; // DIO
 	public static final int DT_ENC_RIGHT_B = 3; // DIO
 	// ee talons and encs
-	public static final int ELEVATOR_TAL1 = 2; // PWM
-	public static final int ELEVATOR_TAL2 = 3; // PWM
+	public static final int ELEVATOR_TAL1 = 4	; // PWM
 	public static final int ELEVATOR_ENC_A = 4; // DIO
 	public static final int ELEVATOR_ENC_B = 5; // DIO
-	public static final int ELEVATOR_TOP_LIM = 6;
+	public static final int ELEVATOR_BOTTOM_LIM = 6;
+	public static final int ELEVATOR_TOP_LIM = 7;
 	// pneumatics
-	public static final int CLAW_CLOSED = 0;
-	public static final int CLAW_OPEN = 1;
-	public static final int BRAKE_ENGAGED = 4;
-	public static final int BRAKE_DISENGAGED = 5;
+	public static final int CLAW_CLOSED = 4;
+	public static final int CLAW_OPEN = 5;
+	public static final int BRAKE_ENGAGED = 7;
+	public static final int BRAKE_DISENGAGED = 6;
 	// auton grabber
-	public static final int CENTER_PISTON_ENGAGED = 6;
-	public static final int CENTER_PISTON_NOT_ENGAGED = 7;
+	public static final int CENTER_PISTON_ENGAGED = 0;
+	public static final int CENTER_PISTON_NOT_ENGAGED = 1;
 	/**
 	 * public static final int LEFT_PISTON_ENGAGED = 6; public static final int
 	 * LEFT_PISTON_NOT_ENGAGED = 7; public static final int RIGHT_PISTON_ENGAGED

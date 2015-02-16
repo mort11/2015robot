@@ -39,21 +39,6 @@ public class DriveBackwards extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		/**double errorRight = driveDistance - right.getDist();
-		double errorLeft = driveDistance - left.getDist(); 
-		if(left.getDist()/driveDistance < 0.3) { //steal ramp up from profiler
-			left.set(-profiler.getDesiredVelocity(timer.get()));
-			System.out.println("trap");
-		} else {
-			left.set(-errorLeft/30);
-			System.out.println("P");
-		}
-		if(right.getDist()/driveDistance < 0.3) {
-			right.set(-profiler.getDesiredVelocity(timer.get()));
-		} else {
-			right.set(-errorRight/30);
-		}
-		System.out.println(driveDistance - right.getDist() + " error");**/
 		double currtime = timer.get();
 		double vel =  profiler.getDesiredVelocity(currtime);
 		setpoint += (currtime - lastTime) * vel;

@@ -1,8 +1,7 @@
 package org.mort11;
 
-import org.mort11.commands.ee.CloseClaw;
 import org.mort11.commands.ee.ElevateToHeight;
-import org.mort11.util.EEConstants;
+import org.mort11.commands.ee.ElevatorBrake;
 import org.mort11.util.TeleopConstants;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -14,53 +13,45 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	// Joystick left = new Joystick(TeleopConstants.LEFT_JOYSTICK);
-	// Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);
 	Joystick left = new Joystick(TeleopConstants.LEFT_JOYSTICK);
 	Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);
 	Joystick ee = new Joystick(TeleopConstants.EE_JOYSTICK);
 
 	// Button Mapping
 	Button scoringOffset = new JoystickButton(ee,
-			TeleopConstants.SCORING_OFFSET);
+			TeleopConstants.SCORING_OFFSET_BUTTON);
 	Button coopPlatOffset = new JoystickButton(ee,
-			TeleopConstants.COOP_PLAT_OFFSET);
+			TeleopConstants.COOP_PLAT_OFFSET_BUTTON);
 	Button presetOneTote = new JoystickButton(ee,
-			TeleopConstants.ONE_TOTE_PRESET);
+			TeleopConstants.ONE_TOTE_PRESET_BUTTON);
 	Button presetTwoTote = new JoystickButton(ee,
-			TeleopConstants.TWO_TOTE_PRESET);
+			TeleopConstants.TWO_TOTE_PRESET_BUTTON);
 	Button presetThreeTote = new JoystickButton(ee,
-			TeleopConstants.THREE_TOTE_PRESET);
+			TeleopConstants.THREE_TOTE_PRESET_BUTTON);
 	Button presetFourTote = new JoystickButton(ee,
-			TeleopConstants.FOUR_TOTE_PRESET);
-	Button presetFiveTote = new JoystickButton(ee,
-			TeleopConstants.FIVE_TOTE_PRESET);
-	Button presetSixTote = new JoystickButton(ee,
-			TeleopConstants.SIX_TOTE_PRESET);
+			TeleopConstants.FOUR_TOTE_PRESET_BUTTON);
 	Button clawClose = new JoystickButton(ee, TeleopConstants.CLAW_CLOSE);
 	Button manualControl = new JoystickButton(ee,
 			TeleopConstants.THROTTLE_FAILSAFE);
+	Button brakeButton = new JoystickButton(ee,7);
 
 	public OI() {
-/**		// Move to one tote level
+		// Move to one tote level
 		presetOneTote.whenPressed(new ElevateToHeight(0 + getPlatformOffset()
-				+ getStepOffset(), false));
+				+ getStepOffset(), true));
 		presetTwoTote.whenPressed(new ElevateToHeight(1 + getPlatformOffset()
-				+ getStepOffset(), false));
+				+ getStepOffset(), true));
 		presetThreeTote.whenPressed(new ElevateToHeight(2 + getPlatformOffset()
-				+ getStepOffset(), false));
+				+ getStepOffset(), true));
 		presetFourTote.whenPressed(new ElevateToHeight(3 + getPlatformOffset()
-				+ getStepOffset(), false));
-		presetFiveTote.whenPressed(new ElevateToHeight(4 + getPlatformOffset()
-				+ getStepOffset(), false));
-		presetSixTote.whenPressed(new ElevateToHeight(5 + getPlatformOffset()
-				+ getStepOffset(), false));
-		manualControl.whileHeld(new ElevateToHeight((getEEJoyThrottle() / 2)
-				* EEConstants.MAX_TOTES_NUM, false)); **/
-		clawClose.whenPressed(new CloseClaw());
+				+ getStepOffset(), true));
+		brakeButton.whenPressed(new ElevatorBrake());
+		/**manualControl.whileHeld(new ElevateToHeight((getEEJoyThrottle() / 2)
+				* EEConstants.MAX_TOTES_NUM, true));**/
+		//clawClose.whenPressed(new CloseClaw());
 		
 	}
-
+	//increments all presets by the height of the platform
 	public double getPlatformOffset() {
 		if (coopPlatOffset.get() == true) {
 			return TeleopConstants.COOP_PLAT_HEIGHT;
@@ -68,21 +59,21 @@ public class OI {
 			return 0;
 		}
 	}
-
+	//increments all presets by the height of the steppe
 	public int getStepOffset() {
 		if (scoringOffset.get() == true) {
-			return TeleopConstants.SCORING_OFFSET;
+			return TeleopConstants.SCORING_OFFSET_BUTTON;
 		} else {
 			return 0;
 		}
 	}
 
 	public double getLeftJoy() {
-		return doThreshold(left.getY());
+		return doThreshold(-left.getY());
 	}
 
 	public double getRightJoy() {
-		return doThreshold(right.getY());
+		return doThreshold(-right.getY());
 	}
 
 	public double getEEJoyThrottle() {
@@ -90,7 +81,7 @@ public class OI {
 	}
 
 	public double getEEJoy() {
-		return deadzoneEE(-ee.getY());
+		return doThreshold(-ee.getY());
 	}
 
 	public static double doThreshold(double input) {
@@ -102,12 +93,4 @@ public class OI {
 				/ (1 - TeleopConstants.DEADBAND);
 	}
 
-	public static double deadzoneEE(double input) {
-		if (Math.abs(input) <= TeleopConstants.DEADZONE_EE) {
-			return 0;
-		}
-		return input / Math.abs(input)
-				* (Math.abs(input) - TeleopConstants.DEADZONE_EE)
-				/ (1 - TeleopConstants.DEADZONE_EE);
-	}
 }

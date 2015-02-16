@@ -15,69 +15,48 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class VerticalActuator extends Subsystem {
-	double height;
-	Talon motor1;
-	Talon motor2 = new Talon(RobotMap.ELEVATOR_TAL2);
-	DigitalInput elevatorLim; 
-	Encoder elevatorEnc;
-	double speed;
+	private double height;
+	private Talon elevator;
+	private DigitalInput elevatorLimBotton;
+	private DigitalInput elevatorLimTop;
+	private Encoder elevatorEnc;
+	private double speed;
 	public VerticalActuator()
 	{
-		motor1 = new Talon(RobotMap.ELEVATOR_TAL1);
-		elevatorLim = new DigitalInput(RobotMap.ELEVATOR_TOP_LIM);
+		elevator = new Talon(RobotMap.ELEVATOR_TAL1);
+		elevatorLimBotton = new DigitalInput(RobotMap.ELEVATOR_BOTTOM_LIM);
+		elevatorLimTop = new DigitalInput(RobotMap.ELEVATOR_TOP_LIM);
 		elevatorEnc = new Encoder(RobotMap.ELEVATOR_ENC_A, 
-				RobotMap.ELEVATOR_ENC_B,false, EncodingType.k4X);
+				RobotMap.ELEVATOR_ENC_B,true, EncodingType.k4X);
 		elevatorEnc.reset();
-		elevatorEnc.setDistancePerPulse(EEConstants.DIST_PER_PULSE);
+		elevatorEnc.setDistancePerPulse(EEConstants.INCHES_PER_PULSE);
 		speed = 0;
 	}
-	/**
-	 * get height of elevator
-	 * 
-	 * @return displacement of elevator from origin inches
-	 */
-	public double getDisplacementInInches() {
-		return 0;
-	}
-
-	public void zero() {
-
-	}
-
+	
 	public double getHeight() {
 		return elevatorEnc.getDistance();
 	}
 
 	public void setSpeed(double speed) {
-		if(speed > 1) {
-			speed = 1;
-		} else if (speed < -1) {
-			speed = -1;
-		}
-		if(elevatorEnc.getRate() < 0) {
-			speed = 0.2;
-		}
-		//System.out.println(speed+" :speed");
-		this.speed = speed;
-		motor1.set(speed);
-		motor2.set(speed);
-	}
-	
-	public double getSpeed()
-	{
-		return speed;
+		elevator.set(speed);
+		System.out.println(this.getCurrentCommand());
 	}
 
 	public void initDefaultCommand() {
-		setDefaultCommand(new ManualElevate());
+		//setDefaultCommand(new ManualElevate());
 	}
 
-	public boolean getLimSwitch() {
-		return elevatorLim.get();
+	public boolean getBottomLim() {
+		return !elevatorLimBotton.get();
+	}
+	
+	public boolean getTopLim() {
+		return !elevatorLimTop.get();
 	}
 
 	public void resetEnc() {
 		elevatorEnc.reset();
+		System.out.println(this.getCurrentCommand());
 	}
 }
 
