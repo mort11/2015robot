@@ -31,10 +31,9 @@ public class HistoricalDataAnalyzer extends NavigationDataHandler {
 		private double currentData = nav6.setOrientation();
 
 		public void populateDataPool() {
-			if (currentData != orientationDataPool[poolIndex - 1]) {
-				orientationDataPool[poolIndex] = currentData;
-				poolIndex++;
-			}
+
+			orientationDataPool[poolIndex] = currentData;
+			poolIndex++;
 
 		}
 
@@ -62,10 +61,10 @@ public class HistoricalDataAnalyzer extends NavigationDataHandler {
 		private double currentData = encoder.getSpeedLeft();
 
 		public void populateDataPool() {
-			if (currentData != speedLeftDataPool[poolIndex - 1]) {
-				speedLeftDataPool[poolIndex] = currentData;
-				poolIndex++;
-			}
+
+			speedLeftDataPool[poolIndex] = currentData;
+			poolIndex++;
+
 		}
 
 		private double compareWithCurrentBatch() {
@@ -92,10 +91,10 @@ public class HistoricalDataAnalyzer extends NavigationDataHandler {
 		private double currentData = encoder.getSpeedRight();
 
 		public void populateDataPool() {
-			if (currentData != speedRightDataPool[poolIndex - 1]) {
-				speedRightDataPool[poolIndex] = currentData;
-				poolIndex++;
-			}
+
+			speedRightDataPool[poolIndex] = currentData;
+			poolIndex++;
+
 		}
 
 		private double compareWithCurrentBatch() {
@@ -122,10 +121,10 @@ public class HistoricalDataAnalyzer extends NavigationDataHandler {
 		private double currentData = encoder.getDistanceDTLeft();
 
 		public void populateDataPool() {
-			if (currentData != distanceDTLeftDataPool[poolIndex - 1]) {
-				distanceDTLeftDataPool[poolIndex] = currentData;
-				poolIndex++;
-			}
+
+			distanceDTLeftDataPool[poolIndex] = currentData;
+			poolIndex++;
+
 		}
 
 		private double compareWithCurrentBatch() {
@@ -152,10 +151,8 @@ public class HistoricalDataAnalyzer extends NavigationDataHandler {
 		private double currentData = encoder.getDistanceDTRight();
 
 		public void populateDataPool() {
-			if (currentData != distanceDTRightDataPool[poolIndex - 1]) {
-				distanceDTRightDataPool[poolIndex] = currentData;
-				poolIndex++;
-			}
+			distanceDTRightDataPool[poolIndex] = currentData;
+			poolIndex++;
 		}
 
 		private double compareWithCurrentBatch() {
@@ -182,10 +179,8 @@ public class HistoricalDataAnalyzer extends NavigationDataHandler {
 		private Vector2D currentData = generatePosition();
 
 		public void populateDataPool() {
-			if (currentData != positionDataPool[poolIndex - 1]) {
-				positionDataPool[poolIndex] = currentData;
-				poolIndex++;
-			}
+			positionDataPool[poolIndex] = currentData;
+			poolIndex++;
 		}
 
 		private Vector2D compareWithCurrentBatch() {
@@ -202,7 +197,7 @@ public class HistoricalDataAnalyzer extends NavigationDataHandler {
 					combineFourAndThree, combineTwoAndOne);
 			Vector2D combineSet3 = Vector2D.addVectors(combineFourThreeTwoOne,
 					current);
-			Vector2D dataMean = Vector2D.specialDivideVectors(combineSet3, 5);
+			Vector2D dataMean = Vector2D.scalarDivide(combineSet3, 5);
 
 			return dataMean;
 		}

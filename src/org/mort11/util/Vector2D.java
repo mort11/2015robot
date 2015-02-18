@@ -73,7 +73,7 @@ public class Vector2D {
 		return dividedVector;
 	}
 
-	public static Vector2D specialDivideVectors(Vector2D v1, int divisor) {
+	public static Vector2D scalarDivide(Vector2D v1, int divisor) {
 		Vector2D specialDividedVector = new Vector2D((v1.getX() / divisor),
 				(v1.getY() / divisor));
 		return specialDividedVector;
