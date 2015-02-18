@@ -28,7 +28,7 @@ public class HistoricalDataAnalyzer extends NavigationDataHandler {
 	public class orientationAnalyzer {
 		private double[] orientationDataPool = new double[poolCycles];
 		private int poolIndex = 0;
-		private double currentData = nav6.setOrientation();
+		private double currentData = NavigationDataHandler.orientation;
 
 		public void populateDataPool() {
 
@@ -58,7 +58,7 @@ public class HistoricalDataAnalyzer extends NavigationDataHandler {
 	public class speedLeftAnalyzer {
 		private double[] speedLeftDataPool = new double[poolCycles];
 		private int poolIndex = 0;
-		private double currentData = encoder.getSpeedLeft();
+		private double currentData = NavigationDataHandler.speedLeft;
 
 		public void populateDataPool() {
 
@@ -88,7 +88,7 @@ public class HistoricalDataAnalyzer extends NavigationDataHandler {
 	public class speedRightAnalyzer {
 		public double[] speedRightDataPool = new double[poolCycles];
 		public int poolIndex = 0;
-		private double currentData = encoder.getSpeedRight();
+		private double currentData = NavigationDataHandler.speedRight;
 
 		public void populateDataPool() {
 
@@ -118,7 +118,7 @@ public class HistoricalDataAnalyzer extends NavigationDataHandler {
 	public class distanceDTLeftAnalyzer {
 		public double[] distanceDTLeftDataPool = new double[poolCycles];
 		public int poolIndex = 0;
-		private double currentData = encoder.getDistanceDTLeft();
+		private double currentData = NavigationDataHandler.distanceDTLeft;
 
 		public void populateDataPool() {
 
@@ -148,7 +148,7 @@ public class HistoricalDataAnalyzer extends NavigationDataHandler {
 	public class distanceDTRightAnalyzer {
 		public double[] distanceDTRightDataPool = new double[poolCycles];
 		public int poolIndex = 0;
-		private double currentData = encoder.getDistanceDTRight();
+		private double currentData = NavigationDataHandler.distanceDTRight;
 
 		public void populateDataPool() {
 			distanceDTRightDataPool[poolIndex] = currentData;
@@ -176,7 +176,7 @@ public class HistoricalDataAnalyzer extends NavigationDataHandler {
 	public class positionAnalyzer {
 		public Vector2D[] positionDataPool = new Vector2D[poolCycles];
 		public int poolIndex = 0;
-		private Vector2D currentData = generatePosition();
+		private Vector2D currentData = NavigationDataHandler.position;
 
 		public void populateDataPool() {
 			positionDataPool[poolIndex] = currentData;
