@@ -62,7 +62,7 @@ public class Nav6 {
 	}
 
 	public double setDeltaVelocityY() {
-		double yAccel = imu.getWorldLinearAccelY() * gravitationalAccel;
+		double yAccel = -imu.getWorldLinearAccelY() * gravitationalAccel;
 		deltaVelocityY = currentTimeChange * yAccel;
 		return deltaVelocityY;
 	}
