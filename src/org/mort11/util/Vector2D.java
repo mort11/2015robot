@@ -55,28 +55,26 @@ public class Vector2D {
 		return addedVector;
 	}
 
-	public Vector2D subtractVectors(Vector2D v1, Vector2D v2) {
+	public static Vector2D subtractVectors(Vector2D v1, Vector2D v2) {
 		Vector2D subtractedVector = new Vector2D((v1.getX() - v2.getX()),
 				(v1.getY() - v2.getY()));
 		return subtractedVector;
 	}
 
-	public static Vector2D multiplyVectors(Vector2D v1, Vector2D v2) {
-		Vector2D multipliedVector = new Vector2D((v1.getX() * v2.getX()),
-				(v1.getY() * v2.getY()));
-		return multipliedVector;
-	}
+	/*
+	 * public static Vector2D multiplyVectors(Vector2D v1, Vector2D v2) {
+	 * Vector2D multipliedVector = new Vector2D((v1.getX() * v2.getX()),
+	 * (v1.getY() * v2.getY())); return multipliedVector; }
+	 * 
+	 * public static Vector2D divideVectors(Vector2D v1, Vector2D v2) { Vector2D
+	 * dividedVector = new Vector2D((v1.getX() / v2.getX()), (v1.getY() /
+	 * v2.getY())); return dividedVector; }
+	 */
 
-	public static Vector2D divideVectors(Vector2D v1, Vector2D v2) {
-		Vector2D dividedVector = new Vector2D((v1.getX() / v2.getX()),
-				(v1.getY() / v2.getY()));
-		return dividedVector;
-	}
-
-	public static Vector2D scalarDivide(Vector2D v1, int divisor) {
-		Vector2D specialDividedVector = new Vector2D((v1.getX() / divisor),
-				(v1.getY() / divisor));
-		return specialDividedVector;
+	public Vector2D scalarDivide(double scalar) {
+		Angle angle = new Angle(this.angle);
+		Vector2D scalarDivide = new Vector2D(angle, this.magnitude / scalar);
+		return scalarDivide;
 	}
 
 	// provide a new vector rotated clockwise from this one
