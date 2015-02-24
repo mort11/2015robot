@@ -21,6 +21,8 @@ import org.mort11.commands.ee.Zero;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.dt.LeftDT;
 import org.mort11.subsystems.dt.RightDT;
+import org.mort11.subsystems.ee.ActiveIntakeLeft;
+import org.mort11.subsystems.ee.ActiveIntakeRight;
 import org.mort11.subsystems.ee.PneumaticSubsystem;
 import org.mort11.subsystems.ee.VerticalActuator;
 import org.mort11.util.Diagnostics;
@@ -54,6 +56,8 @@ public class Robot extends IterativeRobot {
 	public static PneumaticSubsystem autonRight;
 	public static Firecracker firecracker;
 	public static PrintStream logfile;
+	public static ActiveIntakeLeft leftIntake;
+	public static ActiveIntakeRight rightIntake;
 	Diagnostics diagnostics = new Diagnostics();
 
 	/**
@@ -65,6 +69,7 @@ public class Robot extends IterativeRobot {
 		System.setOut(logfile);
 
 		elevator = new VerticalActuator();
+		rightIntake = new ActiveIntakeRight(RobotMap.ACTIVE_INTAKE_TAL_RIGHT);
 		// claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED,
 		// RobotMap.CLAW_OPEN);
 		brake = new PneumaticSubsystem(RobotMap.BRAKE_ENGAGED,
