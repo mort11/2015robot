@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class ActiveIntake extends Subsystem {
+public abstract class ActiveIntake extends Subsystem {
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -18,6 +18,10 @@ public class ActiveIntake extends Subsystem {
 		// setDefaultCommand(new MySpecialCommand());
 	}
 
+	public ActiveIntake() {
+
+	}
+
 	public ActiveIntake(int talPort) {
 		motors = new Talon(talPort);
 	}
@@ -25,4 +29,5 @@ public class ActiveIntake extends Subsystem {
 	public void set(double speed) {
 		motors.set(speed);
 	}
+
 }

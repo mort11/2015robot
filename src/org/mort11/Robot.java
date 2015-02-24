@@ -69,13 +69,14 @@ public class Robot extends IterativeRobot {
 		System.setOut(logfile);
 
 		elevator = new VerticalActuator();
-		rightIntake = new ActiveIntakeRight(RobotMap.ACTIVE_INTAKE_TAL_RIGHT);
 		// claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED,
 		// RobotMap.CLAW_OPEN);
 		brake = new PneumaticSubsystem(RobotMap.BRAKE_ENGAGED,
 				RobotMap.BRAKE_DISENGAGED);
 		right = new RightDT();
 		left = new LeftDT();
+		leftIntake = new ActiveIntakeLeft();
+		rightIntake = new ActiveIntakeRight();
 		// firecracker = new Firecracker();
 		oi = new OI();
 		/**
