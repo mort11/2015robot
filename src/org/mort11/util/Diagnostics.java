@@ -12,6 +12,9 @@ import edu.wpi.first.wpilibj.DriverStation;
 
 public class Diagnostics {
 
+	// Enabled or not?
+	private boolean enabled = true;
+
 	private Calendar calendar = Calendar.getInstance();
 	private int currentHour = calendar.get(Calendar.HOUR);
 	private int currentMin = calendar.get(Calendar.MINUTE);
@@ -24,55 +27,60 @@ public class Diagnostics {
 
 	private void writeMatchLogs() throws FileNotFoundException,
 			UnsupportedEncodingException {
+		if (enabled) {
+			DriverStation ds = DriverStation.getInstance();
 
-		DriverStation ds = DriverStation.getInstance();
+			int matchNumber = 0;
+			int avgBattVoltage = 0;
+			boolean brownedOut = ds.isBrownedOut();
 
-		int matchNumber = 0;
-		int avgBattVoltage = 0;
-		boolean brownedOut = ds.isBrownedOut();
+			PrintWriter writer = new PrintWriter("MATCHlog-" + currentHour
+					+ "-" + currentMin + ".txt", "UTF-8");
 
-		PrintWriter writer = new PrintWriter("MATCHlog-" + currentHour + "-"
-				+ currentMin + ".txt", "UTF-8");
+			writer.println("================");
+			writer.println("MORT - Match Log");
+			writer.println("================");
+			writer.println();
+			writer.println("Match Number: " + matchNumber);
+			writer.println();
+			writer.println("Average Battery Voltage: " + avgBattVoltage);
+			writer.println();
+			writer.println("Browned out?: " + brownedOut);
+			writer.println();
+			writer.println("Boo... There's not much else logged here :(");
 
-		writer.println("================");
-		writer.println("MORT - Match Log");
-		writer.println("================");
-		writer.println();
-		writer.println("Match Number: " + matchNumber);
-		writer.println();
-		writer.println("Average Battery Voltage: " + avgBattVoltage);
-		writer.println();
-		writer.println("Browned out?: " + brownedOut);
-		writer.println();
-		writer.println("Boo... There's not much else logged here :(");
-
-		writer.close();
+			writer.close();
+		}
 	}
 
 	private void writeConsoleLogsHeader() throws FileNotFoundException,
 			UnsupportedEncodingException {
+		if (enabled) {
+			PrintWriter writer = new PrintWriter("CONSOLElog-" + currentHour
+					+ ".txt", "UTF-8");
 
-		PrintWriter writer = new PrintWriter("CONSOLElog-" + currentHour
-				+ ".txt", "UTF-8");
+			// Write File header
+			writer.println("================");
+			writer.println("MORT - Console Log");
+			writer.println("================");
+			writer.println();
+			writer.println("Begin Logfile:");
 
-		// Write File header
-		writer.println("================");
-		writer.println("MORT - Console Log");
-		writer.println("================");
-		writer.println();
-		writer.println("Begin Logfile:");
-
-		writer.close();
+			writer.close();
+		}
 	}
 
 	private void writeConsoleLogs(String log) throws IOException {
-		writeConsoleLogsHeader();
+		if (enabled) {
 
-		PrintWriter writer = new PrintWriter(new FileWriter("CONSOLElog-"
-				+ currentHour + ".txt", true));
+			writeConsoleLogsHeader();
 
-		writer.println();
-		writer.println(log);
-		writer.close();
+			PrintWriter writer = new PrintWriter(new FileWriter("CONSOLElog-"
+					+ currentHour + ".txt", true));
+
+			writer.println();
+			writer.println(log);
+			writer.close();
+		}
 	}
 }
