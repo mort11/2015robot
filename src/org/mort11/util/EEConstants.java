@@ -11,7 +11,8 @@ public class EEConstants {
 	public static final double LOWERING_SPEED = 0.3;
 	public static final double PUSHOUT_SPEED = 0.25;
 	public static final double ZERO_OFFSET = 12 / TOTES_TO_INCHES;
+
+//	public static final double PUSHOUT_SPEED = 0.05;
 	public static final double INTAKE_IN_SPEED = 0.5;
 	public static final double INTAKE_OUT_SPEED = 0.5;
-
 }
