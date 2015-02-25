@@ -27,9 +27,9 @@ public class ElevateToHeight extends Command {
 	 *            escalating using a P loop or a derpy trapezoid
 	 */
 	public ElevateToHeight(double desiredHeight, boolean useP) {
+		this.desiredHeight = desiredHeight;
 		requires(moveElevator);
 		requires(brake);
-		this.desiredHeight = desiredHeight * EEConstants.TOTES_TO_INCHES;
 		this.useP = useP;
 		profiler = new Profiler(1, EEConstants.TIME_PER_LEVEL * desiredHeight);
 	}
@@ -43,6 +43,7 @@ public class ElevateToHeight extends Command {
 	protected void execute() {
 		System.out.println(moveElevator.getHeight() + " height");
 		System.out.println(desiredHeight + " goal");
+		System.out.println(moveElevator.getTopLim());
 		if(desiredHeight > moveElevator.getHeight()) {
 			moveElevator.setSpeed(EEConstants.ESCALATION_SPEED);
 		}

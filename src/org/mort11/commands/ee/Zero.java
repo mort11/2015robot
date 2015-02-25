@@ -37,6 +37,7 @@ public class Zero extends Command {
     	Robot.elevator.setSpeed(0);
     	Robot.elevator.resetEnc();
     	System.out.println("zeroed");
+    	Robot.brake.setSolenoid(true);
     }
 
     // Called when another command which requires one or more of the same

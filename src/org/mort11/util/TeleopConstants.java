@@ -10,7 +10,8 @@ public class TeleopConstants {
 	public static final int THREE_TOTE_PRESET_BUTTON = 9;
 	public static final int FOUR_TOTE_PRESET_BUTTON = 10;
 	public static final int FIVE_TOTE_PRESET_BUTTON= 7;
-	public static final int TOGGLE_BREAK_BUTTON = 7;
+	public static final int SIX_TOTE_PRESET_BUTTON = 8;
+	public static final int TOGGLE_BREAK_BUTTON = 5;
 	public static final int LEFT_JOYSTICK = 1;
 	public static final int RIGHT_JOYSTICK = 2;
 	public static final int EE_JOYSTICK = 3;

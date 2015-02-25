@@ -1,4 +1,4 @@
-package org.mort11.commands.dt;
+package org.mort11.commands.auton;
 
 import org.mort11.Robot;
 import org.mort11.subsystems.dt.DTSide;
