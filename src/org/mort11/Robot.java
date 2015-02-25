@@ -14,20 +14,26 @@ package org.mort11;
 
 import org.mort11.commands.auton.DriveBackwards;
 import org.mort11.commands.ee.CloseClaw;
+import java.io.IOException;
+import java.io.PrintStream;
+
+import org.mort11.commands.auton.DriveBackwards;
 import org.mort11.commands.ee.ElevatorBrake;
 import org.mort11.commands.ee.Zero;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.dt.LeftDT;
 import org.mort11.subsystems.dt.RightDT;
+import org.mort11.subsystems.ee.ActiveIntakeLeft;
+import org.mort11.subsystems.ee.ActiveIntakeRight;
 import org.mort11.subsystems.ee.PneumaticSubsystem;
 import org.mort11.subsystems.ee.VerticalActuator;
+import org.mort11.util.Diagnostics;
 
 import com.elevendustries.firecracker.Firecracker;
 import com.elevendustries.firecracker.RGBChannel;
 import com.elevendustries.firecracker.UpdateChannels;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -51,6 +57,10 @@ public class Robot extends IterativeRobot {
 	public static PneumaticSubsystem autonLeft;
 	public static PneumaticSubsystem autonRight;
 	public static Firecracker firecracker;
+	public static PrintStream logfile;
+	public static ActiveIntakeLeft leftIntake;
+	public static ActiveIntakeRight rightIntake;
+	Diagnostics diagnostics = new Diagnostics();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -60,10 +70,18 @@ public class Robot extends IterativeRobot {
 		
 		elevator = new VerticalActuator(); 
 		claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN);
+		// Change console output to write to file
+		//System.setOut(logfile);
+
+		elevator = new VerticalActuator();
+		// claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED,
+		// RobotMap.CLAW_OPEN);
 		brake = new PneumaticSubsystem(RobotMap.BRAKE_ENGAGED,
-				RobotMap.BRAKE_DISENGAGED);		
+				RobotMap.BRAKE_DISENGAGED);
 		right = new RightDT();
 		left = new LeftDT();
+		leftIntake = new ActiveIntakeLeft();
+		rightIntake = new ActiveIntakeRight();
 		// firecracker = new Firecracker();
 		oi = new OI();
 		/**
@@ -74,25 +92,50 @@ public class Robot extends IterativeRobot {
 		 * PneumaticSubsystem(RobotMap.RIGHT_PISTON_ENGAGED,
 		 * RobotMap.RIGHT_PISTON_NOT_ENGAGED); System.out.println("starting");
 		 **/
+
+		// Gotta write the logs
+		try {
+			diagnostics.writeLogs(logfile);
+		} catch (IOException e) {
+		}
 	}
 
 	public void autonomousInit() {
+		// Change console output to write to file
+		System.setOut(logfile);
 
 		// new ElevateToHeight(2, true).start();// tbd
 		System.out.println("auton started");
-		//tal1.set(0.5); tal2.set(0.5);
+		// tal1.set(0.5); tal2.set(0.5);
 		new DriveBackwards().start();
+
+		// Gotta write the logs
+		try {
+			diagnostics.writeLogs(logfile);
+		} catch (IOException e) {
+		}
 	}
 
 	/**
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
+		// Change console output to write to file
+		System.setOut(logfile);
+
 		Scheduler.getInstance().run();
 
+		// Gotta write the logs
+		try {
+			diagnostics.writeLogs(logfile);
+		} catch (IOException e) {
+		}
 	}
 
 	public void teleopInit() {
+		// Change console output to write to file
+		System.setOut(logfile);
+
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -101,26 +144,59 @@ public class Robot extends IterativeRobot {
 		// System.out.println(right.getCurrentCommand());
 		new ElevatorBrake(false).start();
 		new Zero().start();
+
+		// Gotta write the logs
+		try {
+			diagnostics.writeLogs(logfile);
+		} catch (IOException e) {
+		}
 	}
 
 	/**
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
+		// Change console output to write to file
+		System.setOut(logfile);
+
 		Scheduler.getInstance().run();
-		// Nav6.getDistance();
+
+		// Gotta write the logs
+		try {
+			diagnostics.writeLogs(logfile);
+		} catch (IOException e) {
+		}
 	}
 
 	/**
 	 * This function is called periodically during test mode
 	 */
 	public void testPeriodic() {
+		// Change console output to write to file
+		System.setOut(logfile);
+
 		LiveWindow.run();
+
+		// Gotta write the logs
+		try {
+			diagnostics.writeLogs(logfile);
+		} catch (IOException e) {
+		}
 	}
-	
+
 	public void writeColor(byte r, byte g, byte b) {
+		// Change console output to write to file
+		System.setOut(logfile);
+
 		RGBChannel thing = new RGBChannel(1, 2, 3, firecracker);
 		thing.setRGB(255, 255, 0);
 		new UpdateChannels(firecracker);
+
+		// Gotta write the logs
+		try {
+			diagnostics.writeLogs(logfile);
+		} catch (IOException e) {
+		}
 	}
+
 }

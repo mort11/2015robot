@@ -1,5 +1,7 @@
 package org.mort11.navigation;
 
+import org.mort11.RobotMap;
+
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
 
@@ -14,9 +16,11 @@ public class EncoderHandler {
 
 	// Encoders
 	// Left DT Encoder
-	Encoder encLeft = new Encoder(0, 1, false, EncodingType.k4X);
+	Encoder encLeft = new Encoder(RobotMap.DT_ENC_LEFT_A,
+			RobotMap.DT_ENC_LEFT_B, false, EncodingType.k4X);
 	// Right DT Encoder
-	Encoder encRight = new Encoder(2, 3, false, EncodingType.k4X);
+	Encoder encRight = new Encoder(RobotMap.DT_ENC_RIGHT_A,
+			RobotMap.DT_ENC_RIGHT_B, false, EncodingType.k4X);
 
 	private double distanceDTLeft;
 	private double distanceDTRight;

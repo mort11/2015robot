@@ -3,6 +3,8 @@ package org.mort11;
 import org.mort11.commands.ee.CloseClaw;
 import org.mort11.commands.ee.ElevateToHeight;
 import org.mort11.commands.ee.ElevatorBrake;
+import org.mort11.commands.ee.IntakeBoth;
+import org.mort11.commands.ee.ManualElevate;
 import org.mort11.commands.ee.Zero;
 import org.mort11.util.EEConstants;
 import org.mort11.util.TeleopConstants;
@@ -38,9 +40,17 @@ public class OI {
 	Button presetSixTote = new JoystickButton(ee, TeleopConstants.SIX_TOTE_PRESET_BUTTON);
 		
 	Button clawClose = new JoystickButton(ee, TeleopConstants.CLAW_CLOSE);
-	Button manualControl = new JoystickButton(ee,
+	Button throttleFailsafe = new JoystickButton(ee,
 			TeleopConstants.THROTTLE_FAILSAFE);
 	Button brakeButton = new JoystickButton(ee,TeleopConstants.TOGGLE_BREAK_BUTTON);
+	Button manualJoyFailsafe = new JoystickButton(ee,
+			TeleopConstants.MANUAL_CONTROL_INIT);
+	Button eeIntakeIn = new JoystickButton(ee, TeleopConstants.EE_INTAKE_IN);
+	Button eeIntakeOut = new JoystickButton(ee, TeleopConstants.EE_INTAKE_OUT);
+	Button driverIntakeIn = new JoystickButton(right,
+			TeleopConstants.DRIVER_INTAKE);
+	Button driverIntakeOut = new JoystickButton(left,
+			TeleopConstants.DRIVER_INTAKE);
 
 	public OI() {
 		// Move to one tote level
@@ -60,12 +70,27 @@ public class OI {
 				36.4 + getPlatformOffset()
 				+ getStepOffset(), true));
 		brakeButton.whenPressed(new ElevatorBrake());
+
 		/**manualControl.whileHeld(new ElevateToHeight((getEEJoyThrottle() / 2)
 				* EEConstants.MAX_TOTES_NUM, true));**/
 		clawClose.whenPressed(new CloseClaw());
 		
+		eeIntakeIn.whenPressed(new IntakeBoth(EEConstants.INTAKE_IN_SPEED));
+		eeIntakeOut.whenPressed(new IntakeBoth(EEConstants.INTAKE_OUT_SPEED));
+		driverIntakeIn.whenPressed(new IntakeBoth(EEConstants.INTAKE_IN_SPEED));
+		driverIntakeOut.whenPressed(new IntakeBoth(EEConstants.INTAKE_OUT_SPEED));
+
+		/**
+		 * throttleFailsafe.whileHeld(new ElevateToHeight((getEEJoyThrottle() /
+		 * 2) EEConstants.MAX_TOTES_NUM, true));
+		 **/
+		// clawClose.whenPressed(new CloseClaw());
+		manualJoyFailsafe.whileHeld(new ManualElevate(getEEJoy()
+				/ TeleopConstants.MANUAL_SPEED_LIMIT));
+
 	}
-	//increments all presets by the height of the platform
+
+	// increments all presets by the height of the platform
 	public double getPlatformOffset() {
 		if (coopPlatOffset.get() == true) {
 			return TeleopConstants.COOP_PLAT_HEIGHT;
@@ -73,7 +98,8 @@ public class OI {
 			return 0;
 		}
 	}
-	//increments all presets by the height of the steppe
+
+	// increments all presets by the height of the steppe
 	public int getStepOffset() {
 		if (scoringOffset.get() == true) {
 			return TeleopConstants.SCORING_OFFSET_BUTTON;

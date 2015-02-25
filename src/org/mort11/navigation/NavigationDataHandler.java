@@ -8,6 +8,7 @@ import org.mort11.util.Vector2D;
 
 public class NavigationDataHandler {
 
+	// ALL VALUES ARE GIVEN IN FEET
 	public static class dataFuzer {
 
 		// Retrieved from Nav6
