@@ -37,6 +37,7 @@ public class ElevateToHeight extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		brake.setSolenoid(false);
+		setInterruptible(true);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
