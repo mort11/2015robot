@@ -27,7 +27,7 @@ public class ElevateToHeight extends Command {
 	 *            escalating using a P loop or a derpy trapezoid
 	 */
 	public ElevateToHeight(double desiredHeight, boolean useP) {
-		this.desiredHeight = desiredHeight;
+		this.desiredHeight = desiredHeight * EEConstants.TOTES_TO_INCHES;
 		requires(moveElevator);
 		requires(brake);
 		this.useP = useP;

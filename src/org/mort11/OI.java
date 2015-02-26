@@ -55,19 +55,15 @@ public class OI {
 	public OI() {
 		// Move to one tote level
 		presetOneTote.whenPressed(new Zero());
-		presetTwoTote.whenPressed(new ElevateToHeight(6.1 + getPlatformOffset()
+		presetTwoTote.whenPressed(new ElevateToHeight(1 + getPlatformOffset()
 				+ getStepOffset(), true));
-		presetThreeTote.whenPressed(new ElevateToHeight(0 + 
-				EEConstants.TOTES_TO_INCHES + getPlatformOffset()
+		presetThreeTote.whenPressed(new ElevateToHeight(2  + getPlatformOffset()
 				+ getStepOffset(), true));
-		presetFourTote.whenPressed(new ElevateToHeight(0 + 
-				18.2 + getPlatformOffset()
+		presetFourTote.whenPressed(new ElevateToHeight(3 + getPlatformOffset()
 				+ getStepOffset(), true));
-		presetFiveTote.whenPressed(new ElevateToHeight(0 +  
-				24.3 + getPlatformOffset()
+		presetFiveTote.whenPressed(new ElevateToHeight(4 + getPlatformOffset()
 				+ getStepOffset(),true));
-		presetSixTote.whenPressed(new ElevateToHeight(0 +  
-				36.4 + getPlatformOffset()
+		presetSixTote.whenPressed(new ElevateToHeight(5 + getPlatformOffset()
 				+ getStepOffset(), true));
 		brakeButton.whenPressed(new ElevatorBrake());
 

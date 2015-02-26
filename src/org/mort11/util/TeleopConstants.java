@@ -1,7 +1,10 @@
 package org.mort11.util;
 
 public class TeleopConstants {
-	public static final double DEADBAND = 0.035;
+	public static final int LEFT_JOYSTICK = 1;
+	public static final int RIGHT_JOYSTICK = 2;
+	public static final int EE_JOYSTICK = 3;
+	public static final double DEADBAND = 0.05;
 	public static final double DEADZONE_EE = 0.3;
 	public static final int SCORING_OFFSET_BUTTON = 2;
 	public static final int COOP_PLAT_OFFSET_BUTTON = 5;
@@ -11,9 +14,6 @@ public class TeleopConstants {
 	public static final int FOUR_TOTE_PRESET_BUTTON = 10;
 	public static final int FIVE_TOTE_PRESET_BUTTON= 7;
 	public static final int SIX_TOTE_PRESET_BUTTON = 8;
-	public static final int LEFT_JOYSTICK = 1;
-	public static final int RIGHT_JOYSTICK = 2;
-	public static final int EE_JOYSTICK = 3;
 	public static final int CLAW_CLOSE = 6;
 	public static final int THROTTLE_FAILSAFE = 3;
 	public static final int TOGGLE_BREAK_BUTTON = 7;
