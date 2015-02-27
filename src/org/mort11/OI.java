@@ -24,8 +24,9 @@ public class OI {
 
 	// Button Mapping
 	public static int a = 5;
-	Button scoringOffset = new JoystickButton(ee,
-		TeleopConstants.SCORING_OFFSET_BUTTON);
+//	Button scoringOffset = new JoystickButton(ee,
+//		TeleopConstants.SCORING_OFFSET_BUTTON);
+	public Button manuElevOff = new JoystickButton(ee, TeleopConstants.MANU_ELEV_TURN_OFF_BUTTON);
 	Button coopPlatOffset = new JoystickButton(ee,
 		TeleopConstants.COOP_PLAT_OFFSET_BUTTON);
 	Button presetOneTote = new JoystickButton(ee,
@@ -56,16 +57,11 @@ public class OI {
 	public OI() {
 		// Move to one tote level
 		presetOneTote.whenPressed(new Zero());
-		presetTwoTote.whenPressed(new ElevateToHeight(1 + getPlatformOffset()
-				+ getStepOffset(), true));
-		presetThreeTote.whenPressed(new ElevateToHeight(2  + getPlatformOffset()
-				+ getStepOffset(), true));
-		presetFourTote.whenPressed(new ElevateToHeight(3 + getPlatformOffset()
-				+ getStepOffset(), true));
-		presetFiveTote.whenPressed(new ElevateToHeight(4 + getPlatformOffset()
-				+ getStepOffset(),true));
-		presetSixTote.whenPressed(new ElevateToHeight(5 + getPlatformOffset()
-				+ getStepOffset(), true));
+		presetTwoTote.whenPressed(new ElevateToHeight(1, true));
+		presetThreeTote.whenPressed(new ElevateToHeight(2, true));
+		presetFourTote.whenPressed(new ElevateToHeight(3, true));
+		presetFiveTote.whenPressed(new ElevateToHeight(4,true));
+		presetSixTote.whenPressed(new ElevateToHeight(5, true));
 		brakeButton.whenPressed(new ElevatorBrake());
 
 		/**manualControl.whileHeld(new ElevateToHeight((getEEJoyThrottle() / 2)
@@ -98,13 +94,13 @@ public class OI {
 	}
 
 	// increments all presets by the height of the steppe
-	public int getStepOffset() {
-		if (scoringOffset.get() == true) {
-			return TeleopConstants.SCORING_OFFSET_BUTTON;
-		} else {
-			return 0;
-		}
-	}
+//	public int getStepOffset() {
+//		if (scoringOffset.get() == true) {
+//			return TeleopConstants.SCORING_OFFSET_BUTTON;
+//		} else {
+//			return 0;
+//		}
+//	}
 
 	public double getLeftJoy() {
 		return doThreshold(-left.getY());
