@@ -13,7 +13,7 @@
 package org.mort11;
 
 import org.mort11.commands.auton.DriveBackwards;
-import org.mort11.commands.ee.CloseClaw;
+import org.mort11.commands.ee.ToggleIntake;
 import java.io.IOException;
 import java.io.PrintStream;
 

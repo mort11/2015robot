@@ -8,19 +8,19 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CloseClaw extends Command {
+public class ToggleIntake extends Command {
 
 	boolean isClosed; //idk
 	private PneumaticSubsystem claw = Robot.claw;
 
 	
-	public CloseClaw(boolean isClosed) {
+	public ToggleIntake(boolean isClosed) {
 		this.isClosed = isClosed;
 		requires(claw);
 		// Use requires() here to declare subsystem dependencies
 		// );
 	}
-	public CloseClaw()
+	public ToggleIntake()
 	{
 		requires(claw);
 	}

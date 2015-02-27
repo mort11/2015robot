@@ -1,6 +1,6 @@
 package org.mort11;
 
-import org.mort11.commands.ee.CloseClaw;
+import org.mort11.commands.ee.ToggleIntake;
 import org.mort11.commands.ee.ElevateToHeight;
 import org.mort11.commands.ee.ElevatorBrake;
 import org.mort11.commands.ee.IntakeBoth;
@@ -52,7 +52,7 @@ public class OI {
 			TeleopConstants.DRIVER_INTAKE);
 	Button driverIntakeOut = new JoystickButton(left,
 			TeleopConstants.DRIVER_INTAKE);
-	Button clawClose = new JoystickButton(ee, TeleopConstants.CLAW_BUTTON);
+	Button openCloseIntake = new JoystickButton(ee, TeleopConstants.CLAW_BUTTON);
 
 	public OI() {
 		// Move to one tote level
@@ -78,7 +78,7 @@ public class OI {
 		 * throttleFailsafe.whileHeld(new ElevateToHeight((getEEJoyThrottle() /
 		 * 2) EEConstants.MAX_TOTES_NUM, true));
 		 **/
-		clawClose.whenPressed(new CloseClaw());
+		openCloseIntake.whenPressed(new ToggleIntake());
 		manualJoyFailsafe.whenPressed(new ManualElevate());
 
 	}
