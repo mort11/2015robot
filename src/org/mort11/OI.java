@@ -20,9 +20,10 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 	Joystick left = new Joystick(TeleopConstants.LEFT_JOYSTICK);
 	Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);
-	Joystick ee = new Joystick(TeleopConstants.EE_JOYSTICK);
+	public Joystick ee = new Joystick(TeleopConstants.EE_JOYSTICK);
 
 	// Button Mapping
+	public static int a = 5;
 	Button scoringOffset = new JoystickButton(ee,
 		TeleopConstants.SCORING_OFFSET_BUTTON);
 	Button coopPlatOffset = new JoystickButton(ee,
@@ -69,20 +70,21 @@ public class OI {
 
 		/**manualControl.whileHeld(new ElevateToHeight((getEEJoyThrottle() / 2)
 				* EEConstants.MAX_TOTES_NUM, true));**/
+		
 		clawClose.whenPressed(new CloseClaw());
 		
 		eeIntakeIn.whenPressed(new IntakeBoth(EEConstants.INTAKE_IN_SPEED));
 		eeIntakeOut.whenPressed(new IntakeBoth(EEConstants.INTAKE_OUT_SPEED));
 		driverIntakeIn.whenPressed(new IntakeBoth(EEConstants.INTAKE_IN_SPEED));
-		driverIntakeOut.whenPressed(new IntakeBoth(EEConstants.INTAKE_OUT_SPEED));
+		driverIntakeOut.whileHeld(new IntakeBoth(EEConstants.INTAKE_OUT_SPEED));
+		
 
 		/**
 		 * throttleFailsafe.whileHeld(new ElevateToHeight((getEEJoyThrottle() /
 		 * 2) EEConstants.MAX_TOTES_NUM, true));
 		 **/
 		// clawClose.whenPressed(new CloseClaw());
-		manualJoyFailsafe.whileHeld(new ManualElevate(getEEJoy()
-				/ TeleopConstants.MANUAL_SPEED_LIMIT));
+		manualJoyFailsafe.whenPressed(new ManualElevate());
 
 	}
 
@@ -116,8 +118,9 @@ public class OI {
 		return (-ee.getThrottle() + 1);
 	}
 
-	public double getEEJoy() {
-		return doThreshold(-ee.getY());
+	public double getEEJoy() { 
+		System.out.println("oi: " + -ee.getY());
+		return (-ee.getY());
 	}
 
 	public static double doThreshold(double input) {
