@@ -16,6 +16,7 @@ public class TeleopConstants {
 	public static final int FIVE_TOTE_PRESET_BUTTON= 7;
 	public static final int SIX_TOTE_PRESET_BUTTON = 8;
 	public static final int STOP_INTAKE = 6;
+	public static final int CLAW_BUTTON = 5;
 	//public static final int THROTTLE_FAILSAFE = 3;
 	public static final int TOGGLE_BREAK_BUTTON = 7;
 	public static final int EE_INTAKE_IN = 3;

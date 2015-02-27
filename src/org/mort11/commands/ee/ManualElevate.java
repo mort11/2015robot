@@ -32,7 +32,6 @@ public class ManualElevate extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-	System.out.println(oi.a);
 		brake.setSolenoid(false);
 		setInterruptible(true);
 	}

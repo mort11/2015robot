@@ -23,7 +23,6 @@ public class OI {
 	public Joystick ee = new Joystick(TeleopConstants.EE_JOYSTICK);
 
 	// Button Mapping
-	public static int a = 5;
 //	Button scoringOffset = new JoystickButton(ee,
 //		TeleopConstants.SCORING_OFFSET_BUTTON);
 	public Button manuElevOff = new JoystickButton(ee, TeleopConstants.MANU_ELEV_TURN_OFF_BUTTON);
@@ -53,6 +52,7 @@ public class OI {
 			TeleopConstants.DRIVER_INTAKE);
 	Button driverIntakeOut = new JoystickButton(left,
 			TeleopConstants.DRIVER_INTAKE);
+	Button clawClose = new JoystickButton(ee, TeleopConstants.CLAW_BUTTON);
 
 	public OI() {
 		// Move to one tote level
@@ -78,7 +78,7 @@ public class OI {
 		 * throttleFailsafe.whileHeld(new ElevateToHeight((getEEJoyThrottle() /
 		 * 2) EEConstants.MAX_TOTES_NUM, true));
 		 **/
-		// clawClose.whenPressed(new CloseClaw());
+		clawClose.whenPressed(new CloseClaw());
 		manualJoyFailsafe.whenPressed(new ManualElevate());
 
 	}
