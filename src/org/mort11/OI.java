@@ -39,9 +39,9 @@ public class OI {
 			TeleopConstants.FIVE_TOTE_PRESET_BUTTON);
 	Button presetSixTote = new JoystickButton(ee, TeleopConstants.SIX_TOTE_PRESET_BUTTON);
 		
-	Button clawClose = new JoystickButton(ee, TeleopConstants.CLAW_CLOSE);
-	Button throttleFailsafe = new JoystickButton(ee,
-			TeleopConstants.THROTTLE_FAILSAFE);
+	Button stopIntake = new JoystickButton(ee, TeleopConstants.STOP_INTAKE);
+	/**Button throttleFailsafe = new JoystickButton(ee,
+			TeleopConstants.THROTTLE_FAILSAFE);**/
 	Button brakeButton = new JoystickButton(ee,TeleopConstants.TOGGLE_BREAK_BUTTON);
 	Button manualJoyFailsafe = new JoystickButton(ee,
 			TeleopConstants.MANUAL_CONTROL_INIT);
@@ -69,9 +69,9 @@ public class OI {
 
 		/**manualControl.whileHeld(new ElevateToHeight((getEEJoyThrottle() / 2)
 				* EEConstants.MAX_TOTES_NUM, true));**/
-		clawClose.whenPressed(new CloseClaw());
+		stopIntake.whenPressed(new IntakeBoth(0));
 		
-		eeIntakeIn.whenPressed(new IntakeBoth(EEConstants.INTAKE_IN_SPEED));
+		eeIntakeIn.whenPressed(new IntakeBoth(-EEConstants.INTAKE_IN_SPEED));
 		eeIntakeOut.whenPressed(new IntakeBoth(EEConstants.INTAKE_OUT_SPEED));
 		driverIntakeIn.whenPressed(new IntakeBoth(EEConstants.INTAKE_IN_SPEED));
 		driverIntakeOut.whenPressed(new IntakeBoth(EEConstants.INTAKE_OUT_SPEED));

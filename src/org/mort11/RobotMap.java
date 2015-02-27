@@ -16,8 +16,8 @@ public class RobotMap {
 	public static final int DT_ENC_RIGHT_B = 3; // DIO
 	// ee talons and encs
 	public static final int ELEVATOR_TAL1 = 4; // PWM
-	public static final int ACTIVE_INTAKE_TAL_LEFT = 6; // TBD
-	public static final int ACTIVE_INTAKE_TAL_RIGHT = 7; // TBD
+	public static final int ACTIVE_INTAKE_TAL_LEFT = 8; // TBD
+	public static final int ACTIVE_INTAKE_TAL_RIGHT = 9; // TBD
 	public static final int ELEVATOR_ENC_A = 4; // DIO
 	public static final int ELEVATOR_ENC_B = 5; // DIO
 	public static final int ELEVATOR_BOTTOM_LIM = 6;
