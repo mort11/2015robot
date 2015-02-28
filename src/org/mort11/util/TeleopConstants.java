@@ -7,6 +7,7 @@ public class TeleopConstants {
 	public static final double DEADBAND = 0.05;
 	public static final double DEADZONE_EE = 0.3;
 	public static final int SCORING_OFFSET_BUTTON = 2;
+	public static final int MANU_ELEV_TURN_OFF_BUTTON = 2;
 	public static final int COOP_PLAT_OFFSET_BUTTON = 5;
 	public static final int ONE_TOTE_PRESET_BUTTON = 11;
 	public static final int TWO_TOTE_PRESET_BUTTON = 12;
@@ -15,6 +16,7 @@ public class TeleopConstants {
 	public static final int FIVE_TOTE_PRESET_BUTTON= 7;
 	public static final int SIX_TOTE_PRESET_BUTTON = 8;
 	public static final int STOP_INTAKE = 6;
+	public static final int CLAW_BUTTON = 5;
 	//public static final int THROTTLE_FAILSAFE = 3;
 	public static final int TOGGLE_BREAK_BUTTON = 5;
 	public static final int EE_INTAKE_IN = 3;

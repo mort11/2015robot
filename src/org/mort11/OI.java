@@ -22,10 +22,10 @@ public class OI {
 	Joystick right = new Joystick(TeleopConstants.RIGHT_JOYSTICK);
 	public Joystick ee = new Joystick(TeleopConstants.EE_JOYSTICK);
 
-	// Button Mapping
-	public static int a = 5;
+	public Button manuElevOff = 
+			new JoystickButton(ee, TeleopConstants.MANU_ELEV_TURN_OFF_BUTTON);
 	/**Button scoringOffset = new JoystickButton(ee,
-		TeleopConstants.SCORING_OFFSET_BUTTON);
+		TeleopConstants.SCORING_OFFSET_BUTTON);	
 	Button coopPlatOffset = new JoystickButton(ee,
 		TeleopConstants.COOP_PLAT_OFFSET_BUTTON);**/
 	Button presetOneTote = new JoystickButton(ee,
@@ -82,7 +82,6 @@ public class OI {
 		 * throttleFailsafe.whileHeld(new ElevateToHeight((getEEJoyThrottle() /
 		 * 2) EEConstants.MAX_TOTES_NUM, true));
 		 **/
-		// clawClose.whenPressed(new CloseClaw());
 		manualJoyFailsafe.whenPressed(new ManualElevate());
 
 	}
@@ -104,6 +103,15 @@ public class OI {
 			return 0;
 		}
 	}
+
+	// increments all presets by the height of the steppe
+//	public int getStepOffset() {
+//		if (scoringOffset.get() == true) {
+//			return TeleopConstants.SCORING_OFFSET_BUTTON;
+//		} else {
+//			return 0;
+//		}
+//	}
 
 	public double getLeftJoy() {
 		return doThreshold(-left.getY());

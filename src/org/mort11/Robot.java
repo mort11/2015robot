@@ -12,6 +12,7 @@
 
 package org.mort11;
 
+import java.io.IOException;
 import java.io.PrintStream;
 
 import org.mort11.commands.auton.DriveDist;
@@ -69,8 +70,8 @@ public class Robot extends IterativeRobot {
 		//System.setOut(logfile);
 
 		elevator = new VerticalActuator();
-		// claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED,
-		// RobotMap.CLAW_OPEN);
+		 //claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED,
+		 //RobotMap.CLAW_OPEN);
 		brake = new PneumaticSubsystem(RobotMap.BRAKE_ENGAGED,
 				RobotMap.BRAKE_DISENGAGED);
 		right = new RightDT();
