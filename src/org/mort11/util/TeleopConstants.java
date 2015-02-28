@@ -16,7 +16,7 @@ public class TeleopConstants {
 	public static final int SIX_TOTE_PRESET_BUTTON = 8;
 	public static final int STOP_INTAKE = 6;
 	//public static final int THROTTLE_FAILSAFE = 3;
-	public static final int TOGGLE_BREAK_BUTTON = 7;
+	public static final int TOGGLE_BREAK_BUTTON = 5;
 	public static final int EE_INTAKE_IN = 3;
 	public static final int EE_INTAKE_OUT = 4;
 	public static final int MANUAL_CONTROL_INIT = 1; // manu joy control only

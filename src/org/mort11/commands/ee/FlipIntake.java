@@ -8,21 +8,21 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CloseClaw extends Command {
+public class FlipIntake extends Command {
 
 	boolean isClosed; //idk
-	private PneumaticSubsystem claw = Robot.claw;
+	private PneumaticSubsystem intake = Robot.penumaticIntake;
 
 	
-	public CloseClaw(boolean isClosed) {
+	public FlipIntake(boolean isClosed) {
 		this.isClosed = isClosed;
-		requires(claw);
+		requires(Robot.penumaticIntake);
 		// Use requires() here to declare subsystem dependencies
 		// );
 	}
-	public CloseClaw()
+	public FlipIntake()
 	{
-		requires(claw);
+		requires(intake);
 	}
 
 	// Called just before this Command runs the first time
@@ -31,12 +31,13 @@ public class CloseClaw extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		claw.setSolenoid(!claw.isEngaged());
+		System.out.println(intake.isEngaged() + " intake eng");
+		intake.setSolenoid(!intake.isEngaged());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return true;
+		return true;	
 	}
 
 	// Called once after isFinished returns true

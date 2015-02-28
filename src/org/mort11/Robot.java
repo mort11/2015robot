@@ -12,12 +12,11 @@
 
 package org.mort11;
 
-import org.mort11.commands.auton.DriveBackwards;
-import org.mort11.commands.ee.CloseClaw;
-import java.io.IOException;
 import java.io.PrintStream;
 
-import org.mort11.commands.auton.DriveBackwards;
+import org.mort11.commands.auton.DriveDist;
+import org.mort11.commands.auton.GhettoerDrive;
+import org.mort11.commands.auton.ThreeTote;
 import org.mort11.commands.ee.ElevatorBrake;
 import org.mort11.commands.ee.Zero;
 import org.mort11.subsystems.dt.DTSide;
@@ -27,7 +26,6 @@ import org.mort11.subsystems.ee.ActiveIntakeLeft;
 import org.mort11.subsystems.ee.ActiveIntakeRight;
 import org.mort11.subsystems.ee.PneumaticSubsystem;
 import org.mort11.subsystems.ee.VerticalActuator;
-import org.mort11.util.Diagnostics;
 
 import com.elevendustries.firecracker.Firecracker;
 import com.elevendustries.firecracker.RGBChannel;
@@ -35,7 +33,6 @@ import com.elevendustries.firecracker.UpdateChannels;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -51,7 +48,7 @@ public class Robot extends IterativeRobot {
 	public static DTSide left;
 	public static RightDT right;
 	public static OI oi;
-	public static PneumaticSubsystem claw;
+	public static PneumaticSubsystem penumaticIntake;
 	public static PneumaticSubsystem brake;
 	public static PneumaticSubsystem autonArmUp;
 	public static PneumaticSubsystem autonLeft;
@@ -67,7 +64,7 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() { 
-		claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN);
+		penumaticIntake = new PneumaticSubsystem(RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN);
 		// Change console output to write to file
 		//System.setOut(logfile);
 
@@ -105,7 +102,9 @@ public class Robot extends IterativeRobot {
 		// new ElevateToHeight(2, true).start();// tbd
 		System.out.println("auton started");
 		// tal1.set(0.5); tal2.set(0.5);
-		new DriveBackwards().start();
+		new ElevatorBrake(false).start();
+		new Zero().start();
+		new ThreeTote().start();
 		/**
 		// Gotta write the logs
 		try {
@@ -120,7 +119,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		// Change console output to write to file
 		//System.setOut(logfile);
-
+		//Robot.left.set(1);
+    	//Robot.right.set(1);
 		Scheduler.getInstance().run();
 
 		/**

@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveBackwards extends Command {
+public class DriveDist extends Command {
 
 	private double driveDistance;
 	private DTSide left = Robot.left;
@@ -20,11 +20,10 @@ public class DriveBackwards extends Command {
 	private Timer timer;
 	private double lastTime = 0;
 	double setpoint = 0;
-	public DriveBackwards() {
+	public DriveDist(double distance) {
 		requires(left);
 		requires(right);
-		profiler = new Profiler(36, 10);
-		driveDistance = 25;
+		profiler = new Profiler(distance/2, 3); //because math
 		timer = new Timer();
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
@@ -42,16 +41,22 @@ public class DriveBackwards extends Command {
 		double currtime = timer.get();
 		double vel =  profiler.getDesiredVelocity(currtime);
 		setpoint += (currtime - lastTime) * vel;
-		double errorLeft = setpoint - left.getDist();
-		double errorRight = setpoint - right.getDist();
-		right.set(-errorRight * (DTConstants.DT_P));
-		left.set(-errorLeft * (DTConstants.DT_P - 0.06));
+		System.out.println(left.getDist() + " left ");
+		System.out.println(right.getDist() + " right ");
+		double errorLeft = (setpoint - left.getDist());		
+		double errorRight = (setpoint - right.getDist());
+		System.out.println(errorRight * DTConstants.DT_P+ " errorRight");
+		System.out.println(errorLeft * DTConstants.DT_P+ " errorLeft");
+		//System.out.println(errorLeft);
+		right.set(errorRight * DTConstants.DT_P);
+		left.set(errorLeft*DTConstants.DT_P);
+		System.out.println();
 		lastTime = currtime;		
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
+	// Make thi7s return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-			if(timer.get() > 12)
+			if(timer.get() > 3)
 				return true;
 			else
 				return false;

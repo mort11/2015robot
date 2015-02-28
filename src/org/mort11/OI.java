@@ -1,6 +1,6 @@
 package org.mort11;
 
-import org.mort11.commands.ee.CloseClaw;
+import org.mort11.commands.ee.FlipIntake;
 import org.mort11.commands.ee.ElevateToHeight;
 import org.mort11.commands.ee.ElevatorBrake;
 import org.mort11.commands.ee.IntakeBoth;
@@ -24,10 +24,10 @@ public class OI {
 
 	// Button Mapping
 	public static int a = 5;
-	Button scoringOffset = new JoystickButton(ee,
+	/**Button scoringOffset = new JoystickButton(ee,
 		TeleopConstants.SCORING_OFFSET_BUTTON);
 	Button coopPlatOffset = new JoystickButton(ee,
-		TeleopConstants.COOP_PLAT_OFFSET_BUTTON);
+		TeleopConstants.COOP_PLAT_OFFSET_BUTTON);**/
 	Button presetOneTote = new JoystickButton(ee,
 		TeleopConstants.ONE_TOTE_PRESET_BUTTON);
 	Button presetTwoTote = new JoystickButton(ee,
@@ -43,7 +43,7 @@ public class OI {
 	Button stopIntake = new JoystickButton(ee, TeleopConstants.STOP_INTAKE);
 	/**Button throttleFailsafe = new JoystickButton(ee,
 			TeleopConstants.THROTTLE_FAILSAFE);**/
-	Button brakeButton = new JoystickButton(ee,TeleopConstants.TOGGLE_BREAK_BUTTON);
+	Button intakeEng = new JoystickButton(ee,TeleopConstants.TOGGLE_BREAK_BUTTON);
 	Button manualJoyFailsafe = new JoystickButton(ee,
 			TeleopConstants.MANUAL_CONTROL_INIT);
 	Button eeIntakeIn = new JoystickButton(ee, TeleopConstants.EE_INTAKE_IN);
@@ -66,7 +66,7 @@ public class OI {
 				+ getStepOffset(),true));
 		presetSixTote.whenPressed(new ElevateToHeight(5 + getPlatformOffset()
 				+ getStepOffset(), true));
-		brakeButton.whenPressed(new ElevatorBrake());
+		intakeEng.whenPressed(new FlipIntake());
 
 		/**manualControl.whileHeld(new ElevateToHeight((getEEJoyThrottle() / 2)
 				* EEConstants.MAX_TOTES_NUM, true));**/
@@ -89,16 +89,16 @@ public class OI {
 
 	// increments all presets by the height of the platform
 	public double getPlatformOffset() {
-		if (coopPlatOffset.get() == true) {
+		if (/**coopPlatOffset.get()**/false == true) {
 			return TeleopConstants.COOP_PLAT_HEIGHT;
 		} else {
 			return 0;
 		}
 	}
 
-	// increments all presets by the height of the steppe
+	// increments all presets by t8he height of the steppe
 	public int getStepOffset() {
-		if (scoringOffset.get() == true) {
+		if (/**scoringOffset.get()**/false == true) {
 			return TeleopConstants.SCORING_OFFSET_BUTTON;
 		} else {
 			return 0;

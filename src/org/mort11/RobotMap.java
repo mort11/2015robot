@@ -23,13 +23,13 @@ public class RobotMap {
 	public static final int ELEVATOR_BOTTOM_LIM = 6;
 	public static final int ELEVATOR_TOP_LIM = 7;
 	// pneumatics
-	public static final int CLAW_CLOSED = 2;
-	public static final int CLAW_OPEN = 3;
+	public static final int CLAW_CLOSED = 0;
+	public static final int CLAW_OPEN = 1;
 	public static final int BRAKE_ENGAGED = 7;
 	public static final int BRAKE_DISENGAGED = 6;
 	// auton grabber
-	public static final int CENTER_PISTON_ENGAGED = 0;
-	public static final int CENTER_PISTON_NOT_ENGAGED = 1;
+	//public static final int CENTER_PISTON_ENGAGED = 0;
+	//public static final int CENTER_PISTON_NOT_ENGAGED = 1;
 	/**
 	 * public static final int LEFT_PISTON_ENGAGED = 6; public static final int
 	 * LEFT_PISTON_NOT_ENGAGED = 7; public static final int RIGHT_PISTON_ENGAGED
