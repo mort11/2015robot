@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj.command.Command;
 public class FlipIntake extends Command {
 
 	boolean isClosed; //idk
-	private PneumaticSubsystem intake = Robot.penumaticIntake;
+	private PneumaticSubsystem intake = Robot.PneumaticIntake;
 
 	
 	public FlipIntake(boolean isClosed) {
 		this.isClosed = isClosed;
-		requires(Robot.penumaticIntake);
+		requires(Robot.PneumaticIntake);
 		// Use requires() here to declare subsystem dependencies
 		// );
 	}

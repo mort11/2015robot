@@ -49,7 +49,7 @@ public class Robot extends IterativeRobot {
 	public static DTSide left;
 	public static RightDT right;
 	public static OI oi;
-	public static PneumaticSubsystem penumaticIntake;
+	public static PneumaticSubsystem PneumaticIntake;
 	public static PneumaticSubsystem brake;
 	public static PneumaticSubsystem autonArmUp;
 	public static PneumaticSubsystem autonLeft;
@@ -65,7 +65,7 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() { 
-		penumaticIntake = new PneumaticSubsystem(RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN);
+		PneumaticIntake = new PneumaticSubsystem(RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN);
 		// Change console output to write to file
 		//System.setOut(logfile);
 

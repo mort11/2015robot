@@ -1,0 +1,25 @@
+Testing Procedure For MAVERICK:
+
+Before Enabling:
+    Tether
+    Plug in sticks
+    make sure robot is clear
+    make sure robot is in telop mode
+    elevator is above limit switch
+    yell clear
+    hit enable on the DS
+
+*Monitor NetConsole for sane encoder readings
+On Enable:
+    Intake Comes out
+    Elevator zeroes
+    
+1. EE Check
+    a. Run Elevator Through ea. preset
+    b. Test manual mode
+2. Intake Check
+    a. Run Intake in each direction
+    b. move intake in/out
+3. DT Check
+    a. Run Left Side
+    b. Run Right Side
