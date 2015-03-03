@@ -1,4 +1,4 @@
-package org.mort11.navigation;
+package org.mort11.navigation.io;
 
 import org.mort11.RobotMap;
 
@@ -43,24 +43,24 @@ public class EncoderHandler {
 		encRight.setDistancePerPulse(dtEncoderScaleFactor);
 	}
 
-	public double getDistanceDTLeft() {
+	public void getDistanceDTLeft() {
 		distanceDTLeft = encLeft.getDistance(); // / (Math.PI * wheelSize);
-		return distanceDTLeft;
+		// return distanceDTLeft;
 	}
 
-	public double getDistanceDTRight() {
+	public void getDistanceDTRight() {
 		distanceDTRight = encRight.getDistance(); // / (Math.PI * wheelSize);
-		return distanceDTRight;
+		// return distanceDTRight;
 	}
 
-	public double getSpeedLeft() {
+	public void getSpeedLeft() {
 		dtSpeedLeft = encLeft.getRate();
-		return dtSpeedLeft;
+		// return dtSpeedLeft;
 	}
 
-	public double getSpeedRight() {
+	public void getSpeedRight() {
 		dtSpeedRight = encRight.getRate();
-		return dtSpeedRight;
+		// return dtSpeedRight;
 	}
 
 	public encoderState getDistance() {

@@ -18,7 +18,7 @@ public class HistoricalDataAnalyzer {
 		public Vector2D[] positionDataPool = new Vector2D[poolCycles];
 		public int poolIndex = 0;
 
-		public void populateDataPool(Vector2D store) {
+		private void populateDataPool(Vector2D store) {
 			Vector2D currentData = store;
 			positionDataPool[poolIndex] = currentData;
 			poolIndex++;
@@ -42,7 +42,7 @@ public class HistoricalDataAnalyzer {
 		public double[] dataPool = new double[poolCycles];
 		public int poolIndex = 0;
 
-		public void populateDataPool(double store) {
+		private void populateDataPool(double store) {
 			double currentData = store;
 			dataPool[poolIndex] = currentData;
 			poolIndex++;
@@ -57,6 +57,15 @@ public class HistoricalDataAnalyzer {
 			double dataMean = sum / samples;
 
 			return dataMean;
+		}
+
+		private double sum(int samples) {
+			double sum = 0;
+			for (int loopIndex = poolIndex - samples + 1; loopIndex <= poolIndex; loopIndex++) {
+				sum += dataPool[loopIndex];
+			}
+
+			return sum;
 		}
 	}
 

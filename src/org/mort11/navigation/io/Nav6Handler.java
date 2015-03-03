@@ -1,11 +1,11 @@
-package org.mort11.navigation;
+package org.mort11.navigation.io;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
 
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Timer;
 
-public class Nav6 {
+public class Nav6Handler {
 
 	// Global variables
 	private final static double gravitationalAccel = 32.17404855643;
@@ -32,45 +32,47 @@ public class Nav6 {
 	// private double currentVal = 0;
 
 	public class navigationalUpdate {
+		// double time and boolean for data use
 		public double timerChange;
 		public double velXChange;
 		public double velYChange;
 
 		// In degrees from init
 		public double orientation;
+		public boolean useData;
 	}
 
 	// Init timer
 	public Timer timer = new Timer();
 
-	public double setTimerChange() {
+	private void setTimerChange() {
 		currentTime = timer.get(); // Get "wall" clock value
 		double timerChange = currentTime - lastTimerVal;
 		lastTimerVal = currentTime;
 		currentTimeChange = timerChange;
-		return currentTimeChange;
+		// return currentTimeChange;
 	}
 
 	public static void zero() {
 		imu.zeroYaw();
 	}
 
-	public double setDeltaVelocityX() {
+	private void setDeltaVelocityX() {
 		double xAccel = imu.getWorldLinearAccelX() * gravitationalAccel;
 		deltaVelocityX = currentTimeChange * xAccel;
-		return deltaVelocityX;
+		// return deltaVelocityX;
 	}
 
-	public double setDeltaVelocityY() {
+	private void setDeltaVelocityY() {
 		double yAccel = -imu.getWorldLinearAccelY() * gravitationalAccel;
 		deltaVelocityY = currentTimeChange * yAccel;
-		return deltaVelocityY;
+		// return deltaVelocityY;
 	}
 
-	public double setOrientation() {
+	private void setOrientation() {
 		// In degrees clockwise
 		orientation = imu.getYaw();
-		return orientation;
+		// return orientation;
 	}
 
 	public navigationalUpdate getPosition() {

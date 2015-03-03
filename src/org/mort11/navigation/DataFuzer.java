@@ -3,10 +3,11 @@ package org.mort11.navigation;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.mort11.navigation.EncoderHandler.encoderState;
+import org.mort11.navigation.io.Nav6Handler;
+import org.mort11.navigation.io.EncoderHandler.encoderState;
 import org.mort11.util.Vector2D;
 
-public class NavigationDataHandler {
+public class DataFuzer {
 
 	// ALL VALUES ARE GIVEN IN FEET
 	public static class dataFuzer {
@@ -58,7 +59,7 @@ public class NavigationDataHandler {
 	private static double lastPositionY;
 
 	// Instantiate the objects
-	private static Nav6 nav6 = new Nav6();
+	private static Nav6Handler nav6 = new Nav6Handler();
 	private static encoderState encoder = new encoderState();
 	private static Timer timer = new Timer();
 
@@ -73,7 +74,7 @@ public class NavigationDataHandler {
 
 	private static void navRunner() {
 		// Return orientation
-		orientation = nav6.setOrientation();
+		orientation = nav6.getPosition().orientation;
 		// Return speed
 		speedLeft = encoder.speedLeft;
 		speedRight = encoder.speedRight;
@@ -92,12 +93,12 @@ public class NavigationDataHandler {
 
 	private static void setChangedPosX() {
 		changedPositionX = ((currentVelocityX + lastVelocityX) / 2)
-				* nav6.setTimerChange();
+				* nav6.getPosition().timerChange;
 	}
 
 	private static void setChangedPosY() {
 		changedPositionY = ((currentVelocityY + lastVelocityY) / 2)
-				* nav6.setTimerChange();
+				* nav6.getPosition().timerChange;
 	}
 
 	private static void setCurrentPosX() {
