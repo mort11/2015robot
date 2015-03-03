@@ -40,7 +40,11 @@ public class ManualElevate extends Command {
 	protected void execute() { 
 		System.out.println("execute");
 		System.out.println("Joystick val: " + oi.ee.getY());
-		elevator.setSpeed(oi.ee.getY());
+		if(elevator.getHeight() < 0) {
+			elevator.setSpeed(oi.getEEJoy() * 0.25);
+		} else {
+			elevator.setSpeed(oi.getEEJoy());
+		}
 		
 	}
 
@@ -49,8 +53,10 @@ public class ManualElevate extends Command {
 		System.out.println("isFinished");
 		if(oi.manuElevOff.get()){
 			return true;
+		} else {
+			return false;
 		}
-		return elevator.getBottomLim();
+		//return elevator.getBottomLim();
 	}
 
 	// Called once after isFinished returns true

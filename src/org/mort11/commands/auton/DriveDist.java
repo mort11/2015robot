@@ -23,7 +23,7 @@ public class DriveDist extends Command {
 	public DriveDist(double distance) {
 		requires(left);
 		requires(right);
-		profiler = new Profiler(distance/2, 3); //because math
+		profiler = new Profiler(11, 3); //because math
 		timer = new Timer();
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
@@ -31,6 +31,7 @@ public class DriveDist extends Command {
 	
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		System.out.println("initing");
 		right.resetEnc();
 		left.resetEnc();
 		timer.start();
@@ -39,8 +40,11 @@ public class DriveDist extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		double currtime = timer.get();
+		System.out.println(currtime + " time ");
 		double vel =  profiler.getDesiredVelocity(currtime);
+		System.out.println(vel + " vel");
 		setpoint += (currtime - lastTime) * vel;
+		System.out.println(setpoint);
 		System.out.println(left.getDist() + " left ");
 		System.out.println(right.getDist() + " right ");
 		double errorLeft = (setpoint - left.getDist());		

@@ -52,6 +52,8 @@ public class OI {
 			TeleopConstants.DRIVER_INTAKE);
 	Button driverIntakeOut = new JoystickButton(left,
 			TeleopConstants.DRIVER_INTAKE);
+	Button flipDriverIn = new JoystickButton(right,
+			2);
 
 	public OI() {
 		// Move to one tote level
@@ -72,11 +74,15 @@ public class OI {
 				* EEConstants.MAX_TOTES_NUM, true));**/
 		stopIntake.whenPressed(new IntakeBoth(0));
 		
-		eeIntakeIn.whenPressed(new IntakeBoth(-EEConstants.INTAKE_IN_SPEED));
-		eeIntakeOut.whenPressed(new IntakeBoth(EEConstants.INTAKE_OUT_SPEED));
-		driverIntakeIn.whenPressed(new IntakeBoth(EEConstants.INTAKE_IN_SPEED));
+		eeIntakeIn.whileHeld(new IntakeBoth(-EEConstants.INTAKE_IN_SPEED));
+		eeIntakeIn.whenReleased(new IntakeBoth(0));
+		eeIntakeOut.whenReleased(new IntakeBoth(0));
+		eeIntakeOut.whileHeld(new IntakeBoth(EEConstants.INTAKE_OUT_SPEED));
+		driverIntakeIn.whileHeld(new IntakeBoth(EEConstants.INTAKE_IN_SPEED));
 		driverIntakeOut.whileHeld(new IntakeBoth(EEConstants.INTAKE_OUT_SPEED));
-		
+		driverIntakeIn.whenReleased((new IntakeBoth(0)));
+		driverIntakeOut.whenReleased(new IntakeBoth(0));
+		flipDriverIn.whenPressed(new FlipIntake());
 
 		/**
 		 * throttleFailsafe.whileHeld(new ElevateToHeight((getEEJoyThrottle() /

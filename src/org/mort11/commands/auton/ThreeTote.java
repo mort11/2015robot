@@ -14,14 +14,16 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class ThreeTote extends CommandGroup {
-    
     public  ThreeTote() {
-    	for(int i = 0; i < 3; i++) {
+    	addSequential(new DriveDist(11));
+    	/**for(int i = 0; i < 3; i++) {
     		//drive up
-    		addSequential(new DriveDist(11));
+    		System.out.println("driving");
+    		addSequential(new DriveDist(5));
+    		System.out.println("done driving");
     		//pick up
     		addSequential(new Zero());
-    		addSequential(new ElevateToHeight(1, true));
+    		addSequential(new ElevateToHeight(2, true));
     		//get the can out of the way 
     		addSequential(new FlipIntake());
     		addParallel(new IntakeLeft(EEConstants.INTAKE_OUT_SPEED));
@@ -30,6 +32,6 @@ public class ThreeTote extends CommandGroup {
     		//reset state
     		addParallel(new IntakeBoth(0));
     		addSequential(new FlipIntake());
-    	}
+    	}**/
     }
 }

@@ -12,7 +12,6 @@ public class ActiveIntake extends Subsystem {
 	// here. Call these from Commands.
 
 	private Talon motors;
-
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
@@ -28,7 +27,7 @@ public class ActiveIntake extends Subsystem {
 
 	public void set(double speed) {
 		motors.set(speed);
-		System.out.println(this.getCurrentCommand());
+		//System.out.println(this.getCurrentCommand());
 	}
 
 }

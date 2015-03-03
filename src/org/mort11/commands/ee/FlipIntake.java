@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class FlipIntake extends Command {
 
-	boolean isClosed; //idk
+	boolean isClosed = true; //idk
 	private PneumaticSubsystem intake = Robot.PneumaticIntake;
 
 	

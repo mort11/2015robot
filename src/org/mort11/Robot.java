@@ -12,12 +12,9 @@
 
 package org.mort11;
 
-import java.io.IOException;
 import java.io.PrintStream;
 
-import org.mort11.commands.auton.DriveDist;
-import org.mort11.commands.auton.GhettoerDrive;
-import org.mort11.commands.auton.ThreeTote;
+import org.mort11.commands.auton.OneTote;
 import org.mort11.commands.ee.ElevatorBrake;
 import org.mort11.commands.ee.Zero;
 import org.mort11.subsystems.dt.DTSide;
@@ -104,8 +101,8 @@ public class Robot extends IterativeRobot {
 		System.out.println("auton started");
 		// tal1.set(0.5); tal2.set(0.5);
 		new ElevatorBrake(false).start();
-		new Zero().start();
-		new ThreeTote().start();
+		//new Zero().start();
+		new OneTote().start();
 		/**
 		// Gotta write the logs
 		try {

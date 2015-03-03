@@ -22,6 +22,7 @@ public class RobotMap {
 	public static final int ELEVATOR_ENC_B = 5; // DIO
 	public static final int ELEVATOR_BOTTOM_LIM = 6;
 	public static final int ELEVATOR_TOP_LIM = 7;
+	public static final int INTAKE_SWITCH = 8;
 	// pneumatics
 	public static final int CLAW_CLOSED = 0;
 	public static final int CLAW_OPEN = 1;
