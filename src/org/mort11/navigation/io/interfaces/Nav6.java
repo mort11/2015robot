@@ -1,11 +1,11 @@
-package org.mort11.navigation.io;
+package org.mort11.navigation.io.interfaces;
 
 import com.kauailabs.nav6.frc.IMUAdvanced;
 
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Timer;
 
-public class Nav6Handler {
+public class Nav6 {
 
 	// Global variables
 	private final static double gravitationalAccel = 32.17404855643;

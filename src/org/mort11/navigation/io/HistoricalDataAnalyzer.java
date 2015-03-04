@@ -1,4 +1,4 @@
-package org.mort11.navigation;
+package org.mort11.navigation.io;
 
 import org.mort11.util.Vector2D;
 

@@ -3,8 +3,8 @@ package org.mort11.navigation;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.mort11.navigation.io.Nav6Handler;
-import org.mort11.navigation.io.EncoderHandler.encoderState;
+import org.mort11.navigation.io.interfaces.Nav6;
+import org.mort11.navigation.io.interfaces.Encoders.encoderState;
 import org.mort11.util.Vector2D;
 
 public class DataFuzer {
@@ -59,7 +59,7 @@ public class DataFuzer {
 	private static double lastPositionY;
 
 	// Instantiate the objects
-	private static Nav6Handler nav6 = new Nav6Handler();
+	private static Nav6 nav6 = new Nav6();
 	private static encoderState encoder = new encoderState();
 	private static Timer timer = new Timer();
 

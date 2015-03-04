@@ -1,11 +1,11 @@
-package org.mort11.navigation.io;
+package org.mort11.navigation.io.interfaces;
 
 import org.mort11.RobotMap;
 
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
 
-public class EncoderHandler {
+public class Encoders {
 
 	public static class encoderState {
 		public double distanceLeft;
