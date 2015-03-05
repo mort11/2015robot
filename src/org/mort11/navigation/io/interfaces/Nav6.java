@@ -53,10 +53,6 @@ public class Nav6 {
 		// return currentTimeChange;
 	}
 
-	public static void zero() {
-		imu.zeroYaw();
-	}
-
 	private void setDeltaVelocityX() {
 		double xAccel = imu.getWorldLinearAccelX() * gravitationalAccel;
 		deltaVelocityX = currentTimeChange * xAccel;

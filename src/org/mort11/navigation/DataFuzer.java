@@ -3,8 +3,8 @@ package org.mort11.navigation;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.mort11.navigation.io.interfaces.Nav6;
 import org.mort11.navigation.io.interfaces.Encoders.encoderState;
+import org.mort11.navigation.io.interfaces.Nav6;
 import org.mort11.util.Vector2D;
 
 public class DataFuzer {
@@ -81,41 +81,6 @@ public class DataFuzer {
 		// Todo position
 	}
 
-	private static void setCurrentVelocityX() {
-		lastVelocityX = currentVelocityX;
-		currentVelocityX = lastVelocityX + deltaVelocityX;
-	}
-
-	private static void setCurrentVelocityY() {
-		lastVelocityY = currentVelocityY;
-		currentVelocityY = lastVelocityY + deltaVelocityY;
-	}
-
-	private static void setChangedPosX() {
-		changedPositionX = ((currentVelocityX + lastVelocityX) / 2)
-				* nav6.getPosition().timerChange;
-	}
-
-	private static void setChangedPosY() {
-		changedPositionY = ((currentVelocityY + lastVelocityY) / 2)
-				* nav6.getPosition().timerChange;
-	}
-
-	private static void setCurrentPosX() {
-		lastPositionX = currentPositionX;
-		currentPositionX = changedPositionX + lastPositionX;
-	}
-
-	private static void setCurrentPosY() {
-		lastPositionY = currentPositionY;
-		currentPositionY = changedPositionY + lastPositionY;
-	}
-
-	private static void setCurrentEncoderDistance() {
-		distanceDTLeft = encoder.distanceLeft;
-		distanceDTRight = encoder.distanceRight;
-	}
-
 	private static void generatePosVector() {
 		position = new Vector2D(currentPositionX, currentPositionY);
 	}
@@ -128,13 +93,6 @@ public class DataFuzer {
 		// Calls to roborio and encoders
 
 		navRunner();
-		setCurrentVelocityX();
-		setCurrentVelocityY();
-		setChangedPosX();
-		setChangedPosY();
-		setCurrentPosX();
-		setCurrentPosY();
-		setCurrentEncoderDistance();
 		generatePosVector();
 
 		dataHandler.orientation = orientation;
