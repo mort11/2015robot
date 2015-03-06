@@ -19,8 +19,8 @@ public class TeleopConstants {
 	public static final int CLAW_BUTTON = 5;
 	//public static final int THROTTLE_FAILSAFE = 3;
 	public static final int TOGGLE_BREAK_BUTTON = 5;
-	public static final int EE_INTAKE_IN = 3;
-	public static final int EE_INTAKE_OUT = 4;
+	public static final int EE_INTAKE_IN = 4;
+	public static final int EE_INTAKE_OUT = 3;
 	public static final int MANUAL_CONTROL_INIT = 1; // manu joy control only
 														// works when pressed
 														// (tbd)

@@ -133,7 +133,7 @@ public class OI {
 
 	public double getEEJoy() { 
 		System.out.println("oi: " + -ee.getY());
-		return (-ee.getY());
+		return -ee.getY();
 	}
 
 	public static double doThreshold(double input) {

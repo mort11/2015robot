@@ -20,7 +20,6 @@ public class ManualElevate extends Command {
 	private PneumaticSubsystem brake = Robot.brake;
 	//private OI oi = Robot.oi;
 	private double speed; //speed as given by joystick
-
 //lexi and jakob code
 	public ManualElevate() {
 		requires(elevator);
@@ -40,7 +39,9 @@ public class ManualElevate extends Command {
 	protected void execute() { 
 		System.out.println("execute");
 		System.out.println("Joystick val: " + oi.ee.getY());
-		if(elevator.getHeight() < 0) {
+		speed = oi.getEEJoy();
+		if(elevator.getHeight() < 0 && speed < 0) {
+			System.out.println("below switch");
 			elevator.setSpeed(oi.getEEJoy() * 0.25);
 		} else {
 			elevator.setSpeed(oi.getEEJoy());

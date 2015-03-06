@@ -1,39 +1,34 @@
 package org.mort11.commands.auton;
 
-import org.mort11.Robot;
-
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class GhettoerDrive extends Command {
+public class WaitTime extends Command {
 	Timer time;
-    public GhettoerDrive(double time) {
-        requires(Robot.left);
-        requires(Robot.right);
+	double timeToWait;
+    public WaitTime(double timeToWait) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	time = new Timer();
+    	this.timeToWait = timeToWait;
     }
-    
+
     // Called just before this Command runs the first time
     protected void initialize() {
-    	time = new Timer();
     	time.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	while(time.get() < 3.5) {
-    		System.out.println(Robot.left.getDist() + " left");
-    		System.out.println(Robot.right.getDist() + " right");
-    		Robot.left.set(0.45);
-    		Robot.right.set(0.45);
-    	}
+    	//partay
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (time.get() > 3.5);
+        return (time.get() > timeToWait);
     }
 
     // Called once after isFinished returns true
