@@ -1,11 +1,11 @@
-package org.mort11.navigation;
+package org.mort11.navigation.io.interfaces;
 
 import org.mort11.RobotMap;
 
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import edu.wpi.first.wpilibj.Encoder;
 
-public class EncoderHandler {
+public class Encoders {
 
 	public static class encoderState {
 		public double distanceLeft;
@@ -43,24 +43,24 @@ public class EncoderHandler {
 		encRight.setDistancePerPulse(dtEncoderScaleFactor);
 	}
 
-	public double getDistanceDTLeft() {
+	public void getDistanceDTLeft() {
 		distanceDTLeft = encLeft.getDistance(); // / (Math.PI * wheelSize);
-		return distanceDTLeft;
+		// return distanceDTLeft;
 	}
 
-	public double getDistanceDTRight() {
+	public void getDistanceDTRight() {
 		distanceDTRight = encRight.getDistance(); // / (Math.PI * wheelSize);
-		return distanceDTRight;
+		// return distanceDTRight;
 	}
 
-	public double getSpeedLeft() {
+	public void getSpeedLeft() {
 		dtSpeedLeft = encLeft.getRate();
-		return dtSpeedLeft;
+		// return dtSpeedLeft;
 	}
 
-	public double getSpeedRight() {
+	public void getSpeedRight() {
 		dtSpeedRight = encRight.getRate();
-		return dtSpeedRight;
+		// return dtSpeedRight;
 	}
 
 	public encoderState getDistance() {
