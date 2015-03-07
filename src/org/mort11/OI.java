@@ -1,10 +1,10 @@
 package org.mort11;
 
-import org.mort11.commands.ee.FlipIntake;
 import org.mort11.commands.ee.ElevateToHeight;
-import org.mort11.commands.ee.ElevatorBrake;
+import org.mort11.commands.ee.FlipIntake;
 import org.mort11.commands.ee.IntakeBoth;
 import org.mort11.commands.ee.ManualElevate;
+import org.mort11.commands.ee.Push;
 import org.mort11.commands.ee.Zero;
 import org.mort11.util.EEConstants;
 import org.mort11.util.TeleopConstants;
@@ -54,7 +54,7 @@ public class OI {
 			TeleopConstants.DRIVER_INTAKE);
 	Button flipDriverIn = new JoystickButton(right,
 			2);
-
+	Button pushCoOp = new JoystickButton(right,3);
 	public OI() {
 		// Move to one tote level
 		presetOneTote.whenPressed(new Zero());
@@ -83,7 +83,7 @@ public class OI {
 		driverIntakeIn.whenReleased((new IntakeBoth(0)));
 		driverIntakeOut.whenReleased(new IntakeBoth(0));
 		flipDriverIn.whenPressed(new FlipIntake());
-
+		//pushCoOp.whenPressed(new Push());
 		/**
 		 * throttleFailsafe.whileHeld(new ElevateToHeight((getEEJoyThrottle() /
 		 * 2) EEConstants.MAX_TOTES_NUM, true));

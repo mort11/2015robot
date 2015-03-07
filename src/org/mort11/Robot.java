@@ -14,7 +14,10 @@ package org.mort11;
 
 import java.io.PrintStream;
 
+import org.mort11.commands.auton.GhettoerDrive;
 import org.mort11.commands.auton.OneTote;
+import org.mort11.commands.auton.ToteAndCan;
+import org.mort11.commands.auton.WaitTime;
 import org.mort11.commands.ee.ElevatorBrake;
 import org.mort11.commands.ee.Zero;
 import org.mort11.subsystems.dt.DTSide;
@@ -30,7 +33,10 @@ import com.elevendustries.firecracker.RGBChannel;
 import com.elevendustries.firecracker.UpdateChannels;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -51,11 +57,13 @@ public class Robot extends IterativeRobot {
 	public static PneumaticSubsystem autonArmUp;
 	public static PneumaticSubsystem autonLeft;
 	public static PneumaticSubsystem autonRight;
+	public static PneumaticSubsystem coOpPush;
 	public static Firecracker firecracker;
 	public static PrintStream logfile;
 	public static ActiveIntakeLeft leftIntake;
 	public static ActiveIntakeRight rightIntake;
-	//Diagnostics diagnostics = new Diagnostics();
+	SendableChooser autonChooser;
+	//Diagnostics diag1nostics = new Diagnostics();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -75,8 +83,15 @@ public class Robot extends IterativeRobot {
 		left = new LeftDT();
 		leftIntake = new ActiveIntakeLeft();
 		rightIntake = new ActiveIntakeRight();
+		/*coOpPush = new PneumaticSubsystem(1, 1);*/
 		// firecracker = new Firecracker();
 		oi = new OI();
+		
+		autonChooser = new SendableChooser();
+		autonChooser.addDefault("Drive Straight", new GhettoerDrive(3.5));
+		autonChooser.addObject("One Can/Tote", new OneTote());
+		autonChooser.addObject("Do Nothing", new WaitTime(1));
+		SmartDashboard.putData("Autonomous Mode",autonChooser);
 		/**
 		 * autonArmUp = new PneumaticSubsystem(RobotMap.CENTER_PISTON_ENGAGED,
 		 * RobotMap.CENTER_PISTON_NOT_ENGAGED); autonLeft = new
@@ -101,8 +116,12 @@ public class Robot extends IterativeRobot {
 		System.out.println("auton started");
 		// tal1.set(0.5); tal2.set(0.5);
 		new ElevatorBrake(false).start();
-		//new Zero().start();
-		new OneTote().start();
+		new Zero().start();
+		Command autonCommand = (Command) autonChooser.getSelected();
+		System.out.println(autonCommand);
+		autonCommand.start();
+		//new ToteAndCan().start();
+		//new OneTote().start();
 		/**
 		// Gotta write the logs
 		try {
@@ -121,7 +140,7 @@ public class Robot extends IterativeRobot {
     	//Robot.right.set(1);
 		Scheduler.getInstance().run();
 
-		/**
+		/**11111111111
 		 // Gotta write the logs
 		try {
 			diagnostics.writeLogs(logfile);

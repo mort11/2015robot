@@ -1,6 +1,7 @@
 package org.mort11.commands.ee;
 
 import org.mort11.Robot;
+import org.mort11.util.EEConstants;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -23,7 +24,7 @@ public class Zero extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.elevator.setSpeed(-0.3);
+    	Robot.elevator.setSpeed(-EEConstants.LOWERING_SPEED);
     	System.out.println(Robot.elevator.getBottomLim());
     }
 

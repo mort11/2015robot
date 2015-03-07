@@ -46,13 +46,14 @@ public class ManualElevate extends Command {
 		} else {
 			elevator.setSpeed(oi.getEEJoy());
 		}
-		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		System.out.println("isFinished");
-		if(oi.manuElevOff.get()){
+		if(oi.manuElevOff.get() || 
+				(oi.getEEJoy() < 0.05 && oi.getEEJoy() > -0.05 && 
+				timeSinceInitialized() > 1)){
 			return true;
 		} else {
 			return false;

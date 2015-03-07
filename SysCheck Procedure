@@ -2,10 +2,10 @@ Testing Procedure For MAVERICK:
 
 Before Enabling:
     Tether
+    Turn it on
     Plug in sticks
     make sure robot is clear
     make sure robot is in telop mode
-    elevator is above limit switch
     yell clear
     hit enable on the DS
 
