@@ -48,7 +48,7 @@ public class HistoricalDataAnalyzer {
 			poolIndex++;
 		}
 
-		private double getMean(int samples) {
+		public double getMean(int samples) {
 			double sum = 0;
 			for (int loopIndex = poolIndex - samples + 1; loopIndex <= poolIndex; loopIndex++) {
 				sum += dataPool[loopIndex];
