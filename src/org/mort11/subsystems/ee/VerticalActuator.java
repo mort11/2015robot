@@ -15,12 +15,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class VerticalActuator extends Subsystem {
-	private double height;
 	private Talon elevator;
 	private DigitalInput elevatorLimBotton;
 	private DigitalInput elevatorLimTop;
 	private Encoder elevatorEnc;
-	private double speed;
 	public VerticalActuator()
 	{
 		elevator = new Talon(RobotMap.ELEVATOR_TAL1);
@@ -30,7 +28,6 @@ public class VerticalActuator extends Subsystem {
 				RobotMap.ELEVATOR_ENC_B,true, EncodingType.k4X);
 		elevatorEnc.reset();
 		elevatorEnc.setDistancePerPulse(EEConstants.INCHES_PER_PULSE);
-		speed = 0;
 	}
 	
 	public double getHeight() {

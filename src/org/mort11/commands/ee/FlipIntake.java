@@ -12,11 +12,10 @@ public class FlipIntake extends Command {
 
 	boolean isClosed = true; //idk
 	private PneumaticSubsystem intake = Robot.PneumaticIntake;
-
 	
 	public FlipIntake(boolean isClosed) {
 		this.isClosed = isClosed;
-		requires(Robot.PneumaticIntake);
+		requires(intake);
 		// Use requires() here to declare subsystem dependencies
 		// );
 	}

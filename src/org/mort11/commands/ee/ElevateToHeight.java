@@ -1,37 +1,30 @@
 package org.mort11.commands.ee;
 
-import static org.mort11.Robot.elevator;
 
 import org.mort11.Robot;
+import org.mort11.subsystems.ee.ActiveIntake;
 import org.mort11.subsystems.ee.PneumaticSubsystem;
 import org.mort11.subsystems.ee.VerticalActuator;
 import org.mort11.util.EEConstants;
-import org.mort11.util.Profiler;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ElevateToHeight extends Command {
 	double desiredHeight;
-	Timer time = new Timer();
-	Profiler profiler;
-	boolean useP;
-	private VerticalActuator moveElevator = Robot.elevator;
+	private VerticalActuator elevator = Robot.elevator;
 	private PneumaticSubsystem brake = Robot.brake;
-
+	private ActiveIntake intakeLeft = Robot.leftIntake;
+	private ActiveIntake intakeRight = Robot.rightIntake;
+	
 	/**
 	 * 
 	 * @param desiredHeight
 	 *            number of totes the elevator should rise
-	 * @param useP
-	 *            escalating using a P loop or a derpy trapezoid
 	 */
-	public ElevateToHeight(double desiredHeight, boolean useP) {
+	public ElevateToHeight(double desiredHeight) {
 		this.desiredHeight = desiredHeight * EEConstants.TOTES_TO_INCHES;
-		requires(moveElevator);
+		requires(elevator);
 		requires(brake);
-		this.useP = useP;
-		profiler = new Profiler(1, EEConstants.TIME_PER_LEVEL * desiredHeight);
 	}
 
 	// Called just before this Command runs the first time
@@ -42,14 +35,14 @@ public class ElevateToHeight extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		System.out.println(moveElevator.getHeight() + " height");
+		System.out.println(elevator.getHeight() + " height");
 		System.out.println(desiredHeight + " goal");
-		System.out.println(moveElevator.getTopLim());
-		if(desiredHeight > moveElevator.getHeight()) {
-			moveElevator.setSpeed(EEConstants.ESCALATION_SPEED);
+		System.out.println(elevator.getTopLim());
+		if(desiredHeight > elevator.getHeight()) {
+			elevator.setSpeed(EEConstants.ESCALATION_SPEED);
 		}
 		else {
-			moveElevator.setSpeed(-EEConstants.LOWERING_SPEED);
+			elevator.setSpeed(-EEConstants.LOWERING_SPEED);
 		}
 	
 
@@ -64,17 +57,8 @@ public class ElevateToHeight extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		time.start();
-		if(elevator.getBottomLim()){
+		if(elevator.getBottomLim()) {
 			elevator.resetEnc();
-			//push out of sketchy zone
-			//elevator.setSpeed(EEConstants.PUSHOUT_SPEED);
-			//while(time.get() < 0.5);
-			//System.out.println("pushing");
-		} else if (elevator.getTopLim()) {
-			//push out of sketchy zone
-			//elevator.setSpeed(-EEConstants.PUSHOUT_SPEED);
-			//while(time.get() < 0.5);
 		}
 		Robot.elevator.setSpeed(0);
 		brake.setSolenoid(true);

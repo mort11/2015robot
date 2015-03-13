@@ -15,7 +15,7 @@ public class ToteAndCan extends CommandGroup {
     
     public  ToteAndCan() {
     	addSequential(new Zero());
-    	addSequential(new ElevateToHeight(4, true));
+    	addSequential(new ElevateToHeight(4));
     	addSequential(new GhettoerDrive(0.5));
     	addSequential(new FlipIntake());
     	addSequential(new FlipIntake());

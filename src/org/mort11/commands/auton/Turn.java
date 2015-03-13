@@ -34,7 +34,7 @@ public class Turn extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Math.abs(error) < 0.05 || time.get() > 4;
+        return Math.abs(error) < 0.03 || time.get() > 4;
     }
 
     // Called once after isFinished returns true

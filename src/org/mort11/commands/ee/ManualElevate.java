@@ -1,6 +1,5 @@
 package org.mort11.commands.ee;
 
-import static org.mort11.Robot.elevator;
 
 import org.mort11.OI;
 import org.mort11.Robot;
@@ -16,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class ManualElevate extends Command {
-	private VerticalActuator moveElevator = Robot.elevator;
+	private VerticalActuator elevator = Robot.elevator;
 	private PneumaticSubsystem brake = Robot.brake;
 	//private OI oi = Robot.oi;
 	private double speed; //speed as given by joystick
@@ -52,8 +51,8 @@ public class ManualElevate extends Command {
 	protected boolean isFinished() {
 		System.out.println("isFinished");
 		if(oi.manuElevOff.get() || 
-				(oi.getEEJoy() < 0.05 && oi.getEEJoy() > -0.05 && 
-				timeSinceInitialized() > 1)){
+				(/**oi.getEEJoy() < 0.05 && oi.getEEJoy() > -0.05 && 
+				timeSinceInitialized() > 1**/false)){
 			return true;
 		} else {
 			return false;

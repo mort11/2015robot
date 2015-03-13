@@ -16,7 +16,7 @@ import java.io.PrintStream;
 
 import org.mort11.commands.auton.GhettoerDrive;
 import org.mort11.commands.auton.OneTote;
-import org.mort11.commands.auton.ToteAndCan;
+import org.mort11.commands.auton.ThreeTote;
 import org.mort11.commands.auton.WaitTime;
 import org.mort11.commands.ee.ElevatorBrake;
 import org.mort11.commands.ee.Zero;
@@ -83,7 +83,7 @@ public class Robot extends IterativeRobot {
 		left = new LeftDT();
 		leftIntake = new ActiveIntakeLeft();
 		rightIntake = new ActiveIntakeRight();
-		/*coOpPush = new PneumaticSubsystem(1, 1);*/
+		//coOpPush = new PneumaticSubsystem(2, 3);
 		// firecracker = new Firecracker();
 		oi = new OI();
 		
@@ -91,6 +91,7 @@ public class Robot extends IterativeRobot {
 		autonChooser.addDefault("Drive Straight", new GhettoerDrive(3.5));
 		autonChooser.addObject("One Can/Tote", new OneTote());
 		autonChooser.addObject("Do Nothing", new WaitTime(1));
+		autonChooser.addObject("3 TOTE MLG", new ThreeTote());
 		SmartDashboard.putData("Autonomous Mode",autonChooser);
 		/**
 		 * autonArmUp = new PneumaticSubsystem(RobotMap.CENTER_PISTON_ENGAGED,

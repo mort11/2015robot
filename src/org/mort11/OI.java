@@ -58,16 +58,11 @@ public class OI {
 	public OI() {
 		// Move to one tote level
 		presetOneTote.whenPressed(new Zero());
-		presetTwoTote.whenPressed(new ElevateToHeight(1 + getPlatformOffset()
-				+ getStepOffset(), true));
-		presetThreeTote.whenPressed(new ElevateToHeight(2  + getPlatformOffset()
-				+ getStepOffset(), true));
-		presetFourTote.whenPressed(new ElevateToHeight(3 + getPlatformOffset()
-				+ getStepOffset(), true));
-		presetFiveTote.whenPressed(new ElevateToHeight(4 + getPlatformOffset()
-				+ getStepOffset(),true));
-		presetSixTote.whenPressed(new ElevateToHeight(5 + getPlatformOffset()
-				+ getStepOffset(), true));
+		presetTwoTote.whenPressed(new ElevateToHeight(1));
+		presetThreeTote.whenPressed(new ElevateToHeight(2));
+		presetFourTote.whenPressed(new ElevateToHeight(3));
+		presetFiveTote.whenPressed(new ElevateToHeight(4));
+		presetSixTote.whenPressed(new ElevateToHeight(5));
 		intakeEng.whenPressed(new FlipIntake());
 
 		/**manualControl.whileHeld(new ElevateToHeight((getEEJoyThrottle() / 2)
@@ -94,30 +89,23 @@ public class OI {
 
 	// increments all presets by the height of the platform
 	public double getPlatformOffset() {
-		if (/**coopPlatOffset.get()**/false == true) {
+		/**if (coopPlatOffset.get()) {
 			return TeleopConstants.COOP_PLAT_HEIGHT;
 		} else {
 			return 0;
-		}
+		}**/
+		return 0;
 	}
 
 	// increments all presets by t8he height of the steppe
 	public int getStepOffset() {
-		if (/**scoringOffset.get()**/false == true) {
+		/**if (scoringOffset.get()) {
 			return TeleopConstants.SCORING_OFFSET_BUTTON;
 		} else {
 			return 0;
-		}
+		}**/
+		return 0;
 	}
-
-	// increments all presets by the height of the steppe
-//	public int getStepOffset() {
-//		if (scoringOffset.get() == true) {
-//			return TeleopConstants.SCORING_OFFSET_BUTTON;
-//		} else {
-//			return 0;
-//		}
-//	}
 
 	public double getLeftJoy() {
 		return doThreshold(-left.getY());
