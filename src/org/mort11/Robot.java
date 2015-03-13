@@ -32,6 +32,7 @@ import com.elevendustries.firecracker.Firecracker;
 import com.elevendustries.firecracker.RGBChannel;
 import com.elevendustries.firecracker.UpdateChannels;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -62,21 +63,26 @@ public class Robot extends IterativeRobot {
 	public static PrintStream logfile;
 	public static ActiveIntakeLeft leftIntake;
 	public static ActiveIntakeRight rightIntake;
+
 	SendableChooser autonChooser;
 	//Diagnostics diag1nostics = new Diagnostics();
+	public static DriverStation ds = DriverStation.getInstance();
+
+	// Diagnostics diagnostics = new Diagnostics();
 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
-	public void robotInit() { 
-		PneumaticIntake = new PneumaticSubsystem(RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN);
+	public void robotInit() {
+		PneumaticIntake = new PneumaticSubsystem(RobotMap.CLAW_CLOSED,
+				RobotMap.CLAW_OPEN);
 		// Change console output to write to file
-		//System.setOut(logfile);
+		// System.setOut(logfile);
 
 		elevator = new VerticalActuator();
-		 //claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED,
-		 //RobotMap.CLAW_OPEN);
+		// claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED,
+		// RobotMap.CLAW_OPEN);
 		brake = new PneumaticSubsystem(RobotMap.BRAKE_ENGAGED,
 				RobotMap.BRAKE_DISENGAGED);
 		right = new RightDT();
@@ -102,16 +108,14 @@ public class Robot extends IterativeRobot {
 		 * RobotMap.RIGHT_PISTON_NOT_ENGAGED); System.out.println("starting");
 		 **/
 		/**
-		// Gotta write the logs
-		try {
-			diagnostics.writeLogs(logfile);
-		} catch (IOException e) {
-		}**/
+		 * // Gotta write the logs try { diagnostics.writeLogs(logfile); } catch
+		 * (IOException e) { }
+		 **/
 	}
 
 	public void autonomousInit() {
 		// Change console output to write to file
-		//System.setOut(logfile);
+		// System.setOut(logfile);
 
 		// new ElevateToHeight(2, true).start();// tbd
 		System.out.println("auton started");
@@ -124,11 +128,9 @@ public class Robot extends IterativeRobot {
 		//new ToteAndCan().start();
 		//new OneTote().start();
 		/**
-		// Gotta write the logs
-		try {
-			diagnostics.writeLogs(logfile);
-		} catch (IOException e) {
-		}**/
+		 * // Gotta write the logs try { diagnostics.writeLogs(logfile); } catch
+		 * (IOException e) { }
+		 **/
 	}
 
 	/**
@@ -136,9 +138,9 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousPeriodic() {
 		// Change console output to write to file
-		//System.setOut(logfile);
-		//Robot.left.set(1);
-    	//Robot.right.set(1);
+		// System.setOut(logfile);
+		// Robot.left.set(1);
+		// Robot.right.set(1);
 		Scheduler.getInstance().run();
 
 		/**11111111111
@@ -147,11 +149,15 @@ public class Robot extends IterativeRobot {
 			diagnostics.writeLogs(logfile);
 		} catch (IOException e) {
 		}**/
+		/**
+		 * // Gotta write the logs try { diagnostics.writeLogs(logfile); } catch
+		 * (IOException e) { }
+		 **/
 	}
 
 	public void teleopInit() {
 		// Change console output to write to file
-		//System.setOut(logfile);
+		// System.setOut(logfile);
 
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
@@ -163,11 +169,9 @@ public class Robot extends IterativeRobot {
 		new Zero().start();
 
 		/**
-		// Gotta write the logs
-		try {
-			diagnostics.writeLogs(logfile);
-		} catch (IOException e) {
-		}**/
+		 * // Gotta write the logs try { diagnostics.writeLogs(logfile); } catch
+		 * (IOException e) { }
+		 **/
 	}
 
 	/**
@@ -175,15 +179,14 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		// Change console output to write to file
-		//System.setOut(logfile);
+		// System.setOut(logfile);
 
 		Scheduler.getInstance().run();
 		/**
-		// Gotta write the logs
-		try {
-			diagnostics.writeLogs(logfile);
-		} catch (IOException e) {
-		}**/
+		 * // Gotta write the logs try { diagnostics.writeLogs(logfile); } catch
+		 * (IOException e) { }
+		 **/
+
 	}
 
 	/**
@@ -191,15 +194,13 @@ public class Robot extends IterativeRobot {
 	 */
 	public void testPeriodic() {
 		// Change console output to write to file
-		//System.setOut(logfile);
+		// System.setOut(logfile);
 
-		//LiveWindow.run();
+		// LiveWindow.run();
 		/**
-		// Gotta write the logs
-		try {
-			diagnostics.writeLogs(logfile);
-		} catch (IOException e) {
-		}**/
+		 * // Gotta write the logs try { diagnostics.writeLogs(logfile); } catch
+		 * (IOException e) { }
+		 **/
 	}
 
 	public void writeColor(byte r, byte g, byte b) {
