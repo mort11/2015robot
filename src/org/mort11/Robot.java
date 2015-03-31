@@ -98,7 +98,9 @@ public class Robot extends IterativeRobot {
 		autonChooser.addObject("One Can/Tote", new OneTote());
 		autonChooser.addObject("Do Nothing", new WaitTime(1));
 		autonChooser.addObject("3 TOTE MLG", new ThreeTote());
-		SmartDashboard.putData("Autonomous Mode",autonChooser);
+		autonChooser.addObject("Test", new GhettoerDrive(5,0.45));
+		SmartDashboard.putData("Autonomous Mode", autonChooser);
+
 		/**
 		 * autonArmUp = new PneumaticSubsystem(RobotMap.CENTER_PISTON_ENGAGED,
 		 * RobotMap.CENTER_PISTON_NOT_ENGAGED); autonLeft = new
@@ -106,10 +108,6 @@ public class Robot extends IterativeRobot {
 		 * RobotMap.LEFT_PISTON_NOT_ENGAGED); autonRight = new
 		 * PneumaticSubsystem(RobotMap.RIGHT_PISTON_ENGAGED,
 		 * RobotMap.RIGHT_PISTON_NOT_ENGAGED); System.out.println("starting");
-		 **/
-		/**
-		 * // Gotta write the logs try { diagnostics.writeLogs(logfile); } catch
-		 * (IOException e) { }
 		 **/
 	}
 
@@ -127,15 +125,9 @@ public class Robot extends IterativeRobot {
 		autonCommand.start();
 		//new ToteAndCan().start();
 		//new OneTote().start();
-		/**
-		 * // Gotta write the logs try { diagnostics.writeLogs(logfile); } catch
-		 * (IOException e) { }
-		 **/
 	}
 
-	/**
-	 * This function is called periodically during autonomous
-	 */
+
 	public void autonomousPeriodic() {
 		// Change console output to write to file
 		// System.setOut(logfile);
@@ -167,10 +159,6 @@ public class Robot extends IterativeRobot {
 		new ElevatorBrake(false).start();
 		new Zero().start();
 
-		/**
-		 * // Gotta write the logs try { diagnostics.writeLogs(logfile); } catch
-		 * (IOException e) { }
-		 **/
 	}
 
 	/**
@@ -181,11 +169,6 @@ public class Robot extends IterativeRobot {
 		// System.setOut(logfile);
 
 		Scheduler.getInstance().run();
-		/**
-		 * // Gotta write the logs try { diagnostics.writeLogs(logfile); } catch
-		 * (IOException e) { }
-		 **/
-
 	}
 
 	/**
@@ -196,10 +179,6 @@ public class Robot extends IterativeRobot {
 		// System.setOut(logfile);
 
 		// LiveWindow.run();
-		/**
-		 * // Gotta write the logs try { diagnostics.writeLogs(logfile); } catch
-		 * (IOException e) { }
-		 **/
 	}
 
 	public void writeColor(byte r, byte g, byte b) {
