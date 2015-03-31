@@ -10,6 +10,6 @@ public class OneTote extends CommandGroup {
     	System.out.println("turning");
     	addSequential(new Turn());
     	System.out.println("turnt");
-    	addSequential(new GhettoerDrive(3.5));
+    	addSequential(new GhettoerDrive(3.5,0.45));
     }
 }

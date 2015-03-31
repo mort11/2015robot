@@ -94,7 +94,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		autonChooser = new SendableChooser();
-		autonChooser.addDefault("Drive Straight", new GhettoerDrive(3.5));
+		autonChooser.addDefault("Drive Straight", new GhettoerDrive(3.5,0.45));
 		autonChooser.addObject("One Can/Tote", new OneTote());
 		autonChooser.addObject("Do Nothing", new WaitTime(1));
 		autonChooser.addObject("3 TOTE MLG", new ThreeTote());
@@ -142,7 +142,6 @@ public class Robot extends IterativeRobot {
 		// Robot.left.set(1);
 		// Robot.right.set(1);
 		Scheduler.getInstance().run();
-
 		/**11111111111
 		 // Gotta write the logs
 		try {

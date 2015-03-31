@@ -11,10 +11,12 @@ import edu.wpi.first.wpilibj.command.Command;
 public class GhettoerDrive extends Command {
 	Timer timer;
 	double timeToDrive;
-    public GhettoerDrive(double time) {
+	double volt;
+    public GhettoerDrive(double time, double volt) {
         requires(Robot.left);
         requires(Robot.right);
         this.timeToDrive = time;
+        this.volt = volt;
     }
     
     // Called just before this Command runs the first time
@@ -26,10 +28,10 @@ public class GhettoerDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	while(timer.get() < timeToDrive) {
-    		System.out.println(Robot.left.getDist() + " left");
-    		System.out.println(Robot.right.getDist() + " right");
-    		Robot.left.set(0.45);
-    		Robot.right.set(0.45);
+    		//System.out.println(Robot.left.getDist() + " left");
+    		//System.out.println(Robot.right.getDist() + " right");
+    		Robot.left.set(volt);
+    		Robot.right.set(volt);
     	}
     }
 
@@ -40,6 +42,8 @@ public class GhettoerDrive extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.left.set(0);
+    	Robot.right.set(0);
     }
 
     // Called when another command which requires one or more of the same
