@@ -16,6 +16,7 @@ import java.io.PrintStream;
 
 import org.mort11.commands.auton.GhettoerDrive;
 import org.mort11.commands.auton.OneTote;
+import org.mort11.commands.auton.PickupCan;
 import org.mort11.commands.auton.ThreeTote;
 import org.mort11.commands.auton.WaitTime;
 import org.mort11.commands.ee.ElevatorBrake;
@@ -65,7 +66,7 @@ public class Robot extends IterativeRobot {
 	public static ActiveIntakeRight rightIntake;
 
 	SendableChooser autonChooser;
-	//Diagnostics diag1nostics = new Diagnostics();
+	// Diagnostics diag1nostics = new Diagnostics();
 	public static DriverStation ds = DriverStation.getInstance();
 
 	// Diagnostics diagnostics = new Diagnostics();
@@ -89,16 +90,17 @@ public class Robot extends IterativeRobot {
 		left = new LeftDT();
 		leftIntake = new ActiveIntakeLeft();
 		rightIntake = new ActiveIntakeRight();
-		//coOpPush = new PneumaticSubsystem(2, 3);
+		// coOpPush = new PneumaticSubsystem(2, 3);
 		// firecracker = new Firecracker();
 		oi = new OI();
-		
+
 		autonChooser = new SendableChooser();
-		autonChooser.addDefault("Drive Straight", new GhettoerDrive(3.5,0.45));
+		autonChooser.addDefault("Drive Straight", new GhettoerDrive(3.5, 0.45));
 		autonChooser.addObject("One Can/Tote", new OneTote());
 		autonChooser.addObject("Do Nothing", new WaitTime(1));
 		autonChooser.addObject("3 TOTE MLG", new ThreeTote());
-		autonChooser.addObject("Test", new GhettoerDrive(5,0.45));
+		autonChooser.addObject("Test", new GhettoerDrive(5, 0.45));
+		autonChooser.addObject("Move Can", new PickupCan());
 		SmartDashboard.putData("Autonomous Mode", autonChooser);
 
 		/**
@@ -123,10 +125,9 @@ public class Robot extends IterativeRobot {
 		Command autonCommand = (Command) autonChooser.getSelected();
 		System.out.println(autonCommand);
 		autonCommand.start();
-		//new ToteAndCan().start();
-		//new OneTote().start();
+		// new ToteAndCan().start();
+		// new OneTote().start();
 	}
-
 
 	public void autonomousPeriodic() {
 		// Change console output to write to file
@@ -134,12 +135,10 @@ public class Robot extends IterativeRobot {
 		// Robot.left.set(1);
 		// Robot.right.set(1);
 		Scheduler.getInstance().run();
-		/**11111111111
-		 // Gotta write the logs
-		try {
-			diagnostics.writeLogs(logfile);
-		} catch (IOException e) {
-		}**/
+		/**
+		 * 11111111111 // Gotta write the logs try {
+		 * diagnostics.writeLogs(logfile); } catch (IOException e) { }
+		 **/
 		/**
 		 * // Gotta write the logs try { diagnostics.writeLogs(logfile); } catch
 		 * (IOException e) { }
