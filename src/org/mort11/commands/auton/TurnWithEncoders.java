@@ -31,7 +31,7 @@ public class TurnWithEncoders extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (LeftDT.getDist() >= 100)
+		if (LeftDT.getDist() >= -10)
 			return false;
 		else
 			return true;
