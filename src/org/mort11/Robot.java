@@ -62,7 +62,7 @@ public class Robot extends IterativeRobot {
 	public static PneumaticSubsystem autonArmUp;
 	public static PneumaticSubsystem autonLeft;
 	public static PneumaticSubsystem autonRight;
-	public static PneumaticSubsystem coOpPush;
+	public static PneumaticSubsystem canArms;
 	public static Firecracker firecracker;
 	public static PrintStream logfile;
 	public static ActiveIntakeLeft leftIntake;
@@ -99,7 +99,7 @@ public class Robot extends IterativeRobot {
 		left = new LeftDT();
 		leftIntake = new ActiveIntakeLeft();
 		rightIntake = new ActiveIntakeRight();
-		// coOpPush = new PneumaticSubsystem(2, 3);
+		canArms = new PneumaticSubsystem(2, 3);
 		// firecracker = new Firecracker();
 		oi = new OI();
 

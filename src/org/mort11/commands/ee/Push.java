@@ -13,7 +13,7 @@ public class Push extends Command {
 	 * 
 	 * @author SaltNPeppa
 	 */
-	private PneumaticSubsystem coOpPush = Robot.coOpPush;
+	private PneumaticSubsystem coOpPush = Robot.canArms;
     public Push() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
