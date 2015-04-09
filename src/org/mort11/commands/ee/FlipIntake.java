@@ -21,15 +21,20 @@ public class FlipIntake extends Command {
 	}
 	public FlipIntake()
 	{
+		System.out.println("contructed");
 		requires(intake);
+		this.isClosed = !intake.isEngaged();
 	}
 
 	// Called just before this Command runs the first time
-	protected void initialize() {		
+	protected void initialize() {
+		System.out.println("init");
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		System.out.println(isClosed);
+		System.out.println("called");
 		System.out.println(intake.isEngaged() + " intake eng");
 		intake.setSolenoid(!intake.isEngaged());
 	}

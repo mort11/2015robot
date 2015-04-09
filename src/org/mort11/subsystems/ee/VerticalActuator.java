@@ -53,6 +53,14 @@ public class VerticalActuator extends Subsystem {
 	public void resetEnc() {
 		elevatorEnc.reset();
 	}
+	public double getRate()
+	{
+		return elevatorEnc.getRate();
+	}
+	public double getVoltage()
+	{
+		return elevator.get();
+	}
 }
 
 

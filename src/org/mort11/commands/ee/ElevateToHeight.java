@@ -31,6 +31,7 @@ public class ElevateToHeight extends Command {
 	protected void initialize() {
 		brake.setSolenoid(false);
 		setInterruptible(true);
+		Robot.PneumaticIntake.setSolenoid(true);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -41,12 +42,15 @@ public class ElevateToHeight extends Command {
 		// if (elevator.getHeight() < EEConstants.OPEN_INTAKE_HIGHT) {
 		// intake.setSolenoid(intake.isEngaged() == false);
 		// }
-		if (desiredHeight > elevator.getHeight()) {
+		if(elevator.getRate() == 0 && elevator.getVoltage() != 0) {
+			elevator.setSpeed(0);
+		}
+		else if (desiredHeight > elevator.getHeight()) {
 			elevator.setSpeed(EEConstants.ESCALATION_SPEED);
 		} else {
 			elevator.setSpeed(-EEConstants.LOWERING_SPEED);
 		}
-
+		Robot.PneumaticIntake.setSolenoid(true);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

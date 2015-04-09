@@ -28,7 +28,7 @@ public class IntakeBoth extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		System.out.println(intakeLeft.getSwitch() + " intake switch");
+		System.out.println(speed);
 		if(/*intakeLeft.getSwitch() && !initState*/false  ) {
 			//Robot.PneumaticIntake.setSolenoid(!Robot.PneumaticIntake.isEngaged());
 			intakeLeft.set(0);

@@ -30,6 +30,7 @@ public class Zero extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		Robot.elevator.setSpeed(-EEConstants.LOWERING_SPEED);
+		Robot.PneumaticIntake.setSolenoid(true);
 		System.out.println(elevator.getBottomLim());
 		// if (elevator.getHeight() < EEConstants.OPEN_INTAKE_HIGHT) {
 		// intake.setSolenoid(intake.isEngaged() == false);

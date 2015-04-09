@@ -17,8 +17,11 @@ import java.io.PrintStream;
 import org.mort11.commands.auton.GhettoerDrive;
 import org.mort11.commands.auton.OneTote;
 import org.mort11.commands.auton.ThreeTote;
+import org.mort11.commands.auton.ThreeToteCentered;
 import org.mort11.commands.auton.WaitTime;
+import org.mort11.commands.ee.ElevateToHeight;
 import org.mort11.commands.ee.ElevatorBrake;
+import org.mort11.commands.ee.FlipIntake;
 import org.mort11.commands.ee.Zero;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.dt.LeftDT;
@@ -99,6 +102,7 @@ public class Robot extends IterativeRobot {
 		autonChooser.addObject("Do Nothing", new WaitTime(1));
 		autonChooser.addObject("3 TOTE MLG", new ThreeTote());
 		autonChooser.addObject("Test", new GhettoerDrive(5,0.45));
+		autonChooser.addObject("3 ToTe some MLG", new ThreeToteCentered());
 		SmartDashboard.putData("Autonomous Mode", autonChooser);
 
 		/**
@@ -110,7 +114,7 @@ public class Robot extends IterativeRobot {
 		 * RobotMap.RIGHT_PISTON_NOT_ENGAGED); System.out.println("starting");
 		 **/
 	}
-
+	Command autonCommand = new WaitTime(0);
 	public void autonomousInit() {
 		// Change console output to write to file
 		// System.setOut(logfile);
@@ -119,8 +123,8 @@ public class Robot extends IterativeRobot {
 		System.out.println("auton started");
 		// tal1.set(0.5); tal2.set(0.5);
 		new ElevatorBrake(false).start();
-		new Zero().start();
-		Command autonCommand = (Command) autonChooser.getSelected();
+		//new Zero().start();
+		autonCommand = (Command) autonChooser.getSelected();
 		System.out.println(autonCommand);
 		autonCommand.start();
 		//new ToteAndCan().start();
@@ -156,8 +160,11 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		// System.out.println(left.getCurrentCommand());
 		// System.out.println(right.getCurrentCommand());
+		autonCommand.cancel();
 		new ElevatorBrake(false).start();
-		new Zero().start();
+		//new Zero().start();
+		new FlipIntake().start();
+		new ElevateToHeight(2).start();
 
 	}
 
@@ -174,11 +181,17 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This function is called periodically during test mode
 	 */
+	int i = 0;
 	public void testPeriodic() {
+		if(i == 0)
+			System.out.println("called");
+			new FlipIntake().start();
+			i++;
 		// Change console output to write to file
 		// System.setOut(logfile);
 
 		// LiveWindow.run();
+		System.out.println(PneumaticIntake.isEngaged());
 	}
 
 	public void writeColor(byte r, byte g, byte b) {

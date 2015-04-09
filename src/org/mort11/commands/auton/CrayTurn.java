@@ -8,10 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Turn extends Command {
-	Timer time;
-	double error;
-    public Turn() {
+public class CrayTurn extends Command {
+	Timer time = new Timer();
+    public CrayTurn() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.left);
@@ -20,21 +19,19 @@ public class Turn extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	time = new Timer();
     	time.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println(error + " turn error");
-    	error = 21 + Robot.right.getDist();
-    	Robot.left.set(error * 0.2);
-    	Robot.right.set(-error * 0.2);
+    	System.out.println(time.get());
+    	Robot.left.set(0.82);
+    	Robot.right.set(0.2);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Math.abs(error) < 0.03 || time.get() > 4;
+        return time.get() > 0.5;
     }
 
     // Called once after isFinished returns true
