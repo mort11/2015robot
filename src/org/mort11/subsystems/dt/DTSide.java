@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public abstract class DTSide extends Subsystem {
 
-	private Encoder enc;
+	private static Encoder enc;
 	private Talon motors;
 	private double curVal = 0;
 	private boolean motorReverse;
@@ -21,7 +21,7 @@ public abstract class DTSide extends Subsystem {
 	public DTSide(int motorPort, int encAPort, int encBPort,
 			boolean motorReverse, boolean encReverse) {
 		motors = new Talon(motorPort);
-		enc = new Encoder(encAPort, encBPort, encReverse,EncodingType.k4X);
+		enc = new Encoder(encAPort, encBPort, encReverse, EncodingType.k4X);
 		enc.setDistancePerPulse(DTConstants.INCHES_PER_PULSE);
 		this.motorReverse = motorReverse;
 
@@ -34,10 +34,11 @@ public abstract class DTSide extends Subsystem {
 	}
 
 	public void set(double lspeed) {
-		//System.out.println("going");
+		// System.out.println("going");
 		curVal = lspeed;
 		motors.set(lspeed * (motorReverse ? -1 : 1));
-		//System.out.println("setting " + motors.getChannel() + " to " + lspeed);
+		// System.out.println("setting " + motors.getChannel() + " to " +
+		// lspeed);
 	}
 
 	public double getCurVal() {
@@ -48,12 +49,12 @@ public abstract class DTSide extends Subsystem {
 		return enc.getRate();
 	}
 
-	public double getDist() {
+	public static double getDist() {
 		return enc.getDistance();
 	}
 
-	public void resetEnc() {
-		//System.out.println("resetting");
+	public static void resetEnc() {
+		// System.out.println("resetting");
 		enc.reset();
 	}
 

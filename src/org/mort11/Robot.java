@@ -18,11 +18,11 @@ import org.mort11.commands.auton.GhettoerDrive;
 import org.mort11.commands.auton.OneTote;
 import org.mort11.commands.auton.ThreeTote;
 import org.mort11.commands.auton.ThreeToteCentered;
+import org.mort11.commands.auton.TwoCan;
 import org.mort11.commands.auton.WaitTime;
 import org.mort11.commands.ee.ElevateToHeight;
 import org.mort11.commands.ee.ElevatorBrake;
 import org.mort11.commands.ee.FlipIntake;
-import org.mort11.commands.ee.Zero;
 import org.mort11.subsystems.dt.DTSide;
 import org.mort11.subsystems.dt.LeftDT;
 import org.mort11.subsystems.dt.RightDT;
@@ -34,6 +34,7 @@ import org.mort11.subsystems.ee.VerticalActuator;
 import com.elevendustries.firecracker.Firecracker;
 import com.elevendustries.firecracker.RGBChannel;
 import com.elevendustries.firecracker.UpdateChannels;
+import com.kauailabs.nav6.frc.IMUAdvanced;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -66,9 +67,15 @@ public class Robot extends IterativeRobot {
 	public static PrintStream logfile;
 	public static ActiveIntakeLeft leftIntake;
 	public static ActiveIntakeRight rightIntake;
+	/**private static SerialPort serial_port = new SerialPort(57600,
+			SerialPort.Port.kUSB);
+	private static final byte update_rate_hz = 50;**/
+	public static IMUAdvanced imu;
+	/**public static IMUAdvanced imu = new IMUAdvanced(serial_port,
+			update_rate_hz);**/
 
 	SendableChooser autonChooser;
-	//Diagnostics diag1nostics = new Diagnostics();
+	// Diagnostics diag1nostics = new Diagnostics();
 	public static DriverStation ds = DriverStation.getInstance();
 
 	// Diagnostics diagnostics = new Diagnostics();
@@ -92,18 +99,20 @@ public class Robot extends IterativeRobot {
 		left = new LeftDT();
 		leftIntake = new ActiveIntakeLeft();
 		rightIntake = new ActiveIntakeRight();
-		//coOpPush = new PneumaticSubsystem(2, 3);
+		// coOpPush = new PneumaticSubsystem(2, 3);
 		// firecracker = new Firecracker();
 		oi = new OI();
-		
+
 		autonChooser = new SendableChooser();
-		autonChooser.addDefault("Drive Straight", new GhettoerDrive(3.5,0.45));
+		autonChooser.addDefault("Drive Straight", new GhettoerDrive(3.5, 0.45));
 		autonChooser.addObject("One Can/Tote", new OneTote());
 		autonChooser.addObject("Do Nothing", new WaitTime(1));
 		autonChooser.addObject("3 TOTE MLG", new ThreeTote());
 		autonChooser.addObject("Test", new GhettoerDrive(5,0.45));
 		autonChooser.addObject("3 ToTe some MLG", new ThreeToteCentered());
+		autonChooser.addObject("2 can", new TwoCan());
 		SmartDashboard.putData("Autonomous Mode", autonChooser);
+
 
 		/**
 		 * autonArmUp = new PneumaticSubsystem(RobotMap.CENTER_PISTON_ENGAGED,
@@ -127,10 +136,9 @@ public class Robot extends IterativeRobot {
 		autonCommand = (Command) autonChooser.getSelected();
 		System.out.println(autonCommand);
 		autonCommand.start();
-		//new ToteAndCan().start();
-		//new OneTote().start();
+		// new ToteAndCan().start();
+		// new OneTote().start();
 	}
-
 
 	public void autonomousPeriodic() {
 		// Change console output to write to file
@@ -138,12 +146,10 @@ public class Robot extends IterativeRobot {
 		// Robot.left.set(1);
 		// Robot.right.set(1);
 		Scheduler.getInstance().run();
-		/**11111111111
-		 // Gotta write the logs
-		try {
-			diagnostics.writeLogs(logfile);
-		} catch (IOException e) {
-		}**/
+		/**
+		 * 11111111111 // Gotta write the logs try {
+		 * diagnostics.writeLogs(logfile); } catch (IOException e) { }
+		 **/
 		/**
 		 * // Gotta write the logs try { diagnostics.writeLogs(logfile); } catch
 		 * (IOException e) { }
