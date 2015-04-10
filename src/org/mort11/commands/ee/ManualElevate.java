@@ -43,7 +43,7 @@ public class ManualElevate extends Command {
 		// }
 		if (elevator.getHeight() < 0 && speed < 0) {
 			System.out.println("below switch");
-			elevator.setSpeed(oi.getEEJoy() * 0.25);
+			elevator.setSpeed(oi.getEEJoy());
 		} else {
 			elevator.setSpeed(oi.getEEJoy());
 		}

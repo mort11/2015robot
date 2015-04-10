@@ -1,15 +1,15 @@
 package org.mort11.commands.auton;
-
+//swag
 import org.mort11.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *d
  */
 public class TwoCan extends Command {
-	Timer time;
+	Timer time = new Timer();
     public TwoCan() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -21,8 +21,8 @@ public class TwoCan extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	time.start();
-    	//drop arms
-    	Robot.canArms.setSolenoid(!Robot.canArms.isEngaged()); //if the arms
+    	//drop arms 
+    	Robot.canArms.setSolenoid(false); //if the arms
     						//drop out automatically then comment out this line
     															
     }
@@ -31,8 +31,8 @@ public class TwoCan extends Command {
     protected void execute() {
     	//flip positive to negative to change direction of the spin
     	//this part is the turn
-    	Robot.left.set(-0.9);
-    	Robot.right.set(0.9);
+    	//Robot.left.set(0.6);
+    	//Robot.right.set(0.6);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -44,7 +44,7 @@ public class TwoCan extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	//stow away the arms after cans have been grabbed
-    	/**Robot.canArms.setSolenoid(!Robot.canArms.isEngaged());**/ //comment this in
+    	Robot.canArms.setSolenoid(true); //comment this in
     													//to put the arms back in    
     	}
 

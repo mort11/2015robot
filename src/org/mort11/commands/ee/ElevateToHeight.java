@@ -42,10 +42,7 @@ public class ElevateToHeight extends Command {
 		// if (elevator.getHeight() < EEConstants.OPEN_INTAKE_HIGHT) {
 		// intake.setSolenoid(intake.isEngaged() == false);
 		// }
-		if(elevator.getRate() == 0 && elevator.getVoltage() != 0) {
-			elevator.setSpeed(0);
-		}
-		else if (desiredHeight > elevator.getHeight()) {
+	    if (desiredHeight > elevator.getHeight()) {
 			elevator.setSpeed(EEConstants.ESCALATION_SPEED);
 		} else {
 			elevator.setSpeed(-EEConstants.LOWERING_SPEED);

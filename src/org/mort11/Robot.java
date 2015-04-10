@@ -16,6 +16,7 @@ import java.io.PrintStream;
 
 import org.mort11.commands.auton.GhettoerDrive;
 import org.mort11.commands.auton.OneTote;
+import org.mort11.commands.auton.PickupCan;
 import org.mort11.commands.auton.ThreeTote;
 import org.mort11.commands.auton.ThreeToteCentered;
 import org.mort11.commands.auton.TwoCan;
@@ -99,7 +100,7 @@ public class Robot extends IterativeRobot {
 		left = new LeftDT();
 		leftIntake = new ActiveIntakeLeft();
 		rightIntake = new ActiveIntakeRight();
-		canArms = new PneumaticSubsystem(2, 3);
+		canArms = new PneumaticSubsystem(4, 5);
 		// firecracker = new Firecracker();
 		oi = new OI();
 
@@ -109,8 +110,9 @@ public class Robot extends IterativeRobot {
 		autonChooser.addObject("Do Nothing", new WaitTime(1));
 		autonChooser.addObject("3 TOTE MLG", new ThreeTote());
 		autonChooser.addObject("Test", new GhettoerDrive(5,0.45));
-		autonChooser.addObject("3 ToTe some MLG", new ThreeToteCentered());
+		//autonChooser.addObject("3 ToTe some MLG", new ThreeToteCentered());
 		autonChooser.addObject("2 can", new TwoCan());
+		autonChooser.addObject("Pickup Can", new PickupCan());
 		SmartDashboard.putData("Autonomous Mode", autonChooser);
 
 
@@ -170,7 +172,6 @@ public class Robot extends IterativeRobot {
 		new ElevatorBrake(false).start();
 		//new Zero().start();
 		new FlipIntake().start();
-		new ElevateToHeight(2).start();
 
 	}
 
