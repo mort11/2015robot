@@ -1,27 +1,15 @@
-/*       __  __  ____  _____ _______   __ __
-        |  \/  |/ __ \|  __ \__   __| /_ /_ |
-        | \  / | |  | | |__) | | |     | || |
-        | |\/| | |  | |  _  /  | |     | || |
-        | |  | | |__| | | \ \  | |     | || |
-        |_|  |_|\____/|_|  \_\ |_|     |_||_|
- 
-           FRC Team 11, Flanders NJ 07836
- 
-        Copyright (c) 2015 Mount Olive Robotics Team
- */
-
 package org.mort11;
 
-import java.io.PrintStream;
-
-import org.mort11.commands.auton.GhettoerDrive;
-import org.mort11.commands.auton.OneTote;
-import org.mort11.commands.auton.PickupCan;
-import org.mort11.commands.auton.ThreeTote;
-import org.mort11.commands.auton.ThreeToteCentered;
-import org.mort11.commands.auton.TwoCan;
-import org.mort11.commands.auton.WaitTime;
-import org.mort11.commands.ee.ElevateToHeight;
+import com.elevendustries.firecracker.Firecracker;
+import com.elevendustries.firecracker.RGBChannel;
+import com.elevendustries.firecracker.UpdateChannels;
+import com.kauailabs.nav6.frc.IMUAdvanced;
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.mort11.commands.auton.*;
 import org.mort11.commands.ee.ElevatorBrake;
 import org.mort11.commands.ee.FlipIntake;
 import org.mort11.subsystems.dt.DTSide;
@@ -32,179 +20,87 @@ import org.mort11.subsystems.ee.ActiveIntakeRight;
 import org.mort11.subsystems.ee.PneumaticSubsystem;
 import org.mort11.subsystems.ee.VerticalActuator;
 
-import com.elevendustries.firecracker.Firecracker;
-import com.elevendustries.firecracker.RGBChannel;
-import com.elevendustries.firecracker.UpdateChannels;
-import com.kauailabs.nav6.frc.IMUAdvanced;
-
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
- */
-
 public class Robot extends IterativeRobot {
 
-	public static VerticalActuator elevator;
-	public static DTSide left;
-	public static RightDT right;
-	public static OI oi;
-	public static PneumaticSubsystem PneumaticIntake;
-	public static PneumaticSubsystem brake;
-	public static PneumaticSubsystem autonArmUp;
-	public static PneumaticSubsystem autonLeft;
-	public static PneumaticSubsystem autonRight;
-	public static PneumaticSubsystem canArms;
-	public static Firecracker firecracker;
-	public static PrintStream logfile;
-	public static ActiveIntakeLeft leftIntake;
-	public static ActiveIntakeRight rightIntake;
-	/**private static SerialPort serial_port = new SerialPort(57600,
-			SerialPort.Port.kUSB);
-	private static final byte update_rate_hz = 50;**/
-	public static IMUAdvanced imu;
-	/**public static IMUAdvanced imu = new IMUAdvanced(serial_port,
-			update_rate_hz);**/
-
-	SendableChooser autonChooser;
-	// Diagnostics diag1nostics = new Diagnostics();
-	public static DriverStation ds = DriverStation.getInstance();
-
-	// Diagnostics diagnostics = new Diagnostics();
-
-	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
-	 */
-	public void robotInit() {
-		PneumaticIntake = new PneumaticSubsystem(RobotMap.CLAW_CLOSED,
-				RobotMap.CLAW_OPEN);
-		// Change console output to write to file
-		// System.setOut(logfile);
-
-		elevator = new VerticalActuator();
-		// claw = new PneumaticSubsystem(RobotMap.CLAW_CLOSED,
-		// RobotMap.CLAW_OPEN);
-		brake = new PneumaticSubsystem(RobotMap.BRAKE_ENGAGED,
-				RobotMap.BRAKE_DISENGAGED);
-		right = new RightDT();
-		left = new LeftDT();
-		leftIntake = new ActiveIntakeLeft();
-		rightIntake = new ActiveIntakeRight();
-		canArms = new PneumaticSubsystem(4, 5);
-		// firecracker = new Firecracker();
-		oi = new OI();
-
-		autonChooser = new SendableChooser();
-		autonChooser.addDefault("Drive Straight", new GhettoerDrive(3.5, 0.45));
-		autonChooser.addObject("One Can/Tote", new OneTote());
-		autonChooser.addObject("Do Nothing", new WaitTime(1));
-		autonChooser.addObject("3 TOTE MLG", new ThreeTote());
-		autonChooser.addObject("Test", new GhettoerDrive(5,0.45));
-		//autonChooser.addObject("3 ToTe some MLG", new ThreeToteCentered());
-		autonChooser.addObject("2 can", new TwoCan());
-		autonChooser.addObject("Pickup Can", new PickupCan());
-		SmartDashboard.putData("Autonomous Mode", autonChooser);
+    public static VerticalActuator elevator;
+    public static DTSide left;
+    public static RightDT right;
+    public static OI oi;
+    public static PneumaticSubsystem PneumaticIntake;
+    public static PneumaticSubsystem brake;
+    public static PneumaticSubsystem autonArmUp;
+    public static PneumaticSubsystem autonLeft;
+    public static PneumaticSubsystem autonRight;
+    public static PneumaticSubsystem canArms;
+    public static Firecracker firecracker;
+    public static ActiveIntakeLeft leftIntake;
+    public static ActiveIntakeRight rightIntake;
+    public static IMUAdvanced imu;
 
 
-		/**
-		 * autonArmUp = new PneumaticSubsystem(RobotMap.CENTER_PISTON_ENGAGED,
-		 * RobotMap.CENTER_PISTON_NOT_ENGAGED); autonLeft = new
-		 * PneumaticSubsystem(RobotMap.LEFT_PISTON_ENGAGED,
-		 * RobotMap.LEFT_PISTON_NOT_ENGAGED); autonRight = new
-		 * PneumaticSubsystem(RobotMap.RIGHT_PISTON_ENGAGED,
-		 * RobotMap.RIGHT_PISTON_NOT_ENGAGED); System.out.println("starting");
-		 **/
-	}
-	Command autonCommand = new WaitTime(0);
-	public void autonomousInit() {
-		// Change console output to write to file
-		// System.setOut(logfile);
+    SendableChooser autonChooser;
 
-		// new ElevateToHeight(2, true).start();// tbd
-		System.out.println("auton started");
-		// tal1.set(0.5); tal2.set(0.5);
-		new ElevatorBrake(false).start();
-		//new Zero().start();
-		autonCommand = (Command) autonChooser.getSelected();
-		System.out.println(autonCommand);
-		autonCommand.start();
-		// new ToteAndCan().start();
-		// new OneTote().start();
-	}
+    public void robotInit() {
+        PneumaticIntake = new PneumaticSubsystem(RobotMap.CLAW_CLOSED,RobotMap.CLAW_OPEN);
 
-	public void autonomousPeriodic() {
-		// Change console output to write to file
-		// System.setOut(logfile);
-		// Robot.left.set(1);
-		// Robot.right.set(1);
-		Scheduler.getInstance().run();
-		/**
-		 * 11111111111 // Gotta write the logs try {
-		 * diagnostics.writeLogs(logfile); } catch (IOException e) { }
-		 **/
-		/**
-		 * // Gotta write the logs try { diagnostics.writeLogs(logfile); } catch
-		 * (IOException e) { }
-		 **/
-	}
+        elevator = new VerticalActuator();
+        brake = new PneumaticSubsystem(RobotMap.BRAKE_ENGAGED, RobotMap.BRAKE_DISENGAGED);
+        right = new RightDT();
+        left = new LeftDT();
+        leftIntake = new ActiveIntakeLeft();
+        rightIntake = new ActiveIntakeRight();
+        canArms = new PneumaticSubsystem(4, 5);
+        oi = new OI();
 
-	public void teleopInit() {
-		// Change console output to write to file
-		// System.setOut(logfile);
+        autonChooser = new SendableChooser();
+        autonChooser.addDefault("Drive Straight", new GhettoerDrive(3.5, 0.45));
+        autonChooser.addObject("One Can/Tote", new OneTote());
+        autonChooser.addObject("Do Nothing", new WaitTime(1));
+        autonChooser.addObject("3 TOTE MLG", new ThreeTote());
+        autonChooser.addObject("Test", new GhettoerDrive(5, 0.45));
+        autonChooser.addObject("2 can", new TwoCan());
+        autonChooser.addObject("Pickup Can", new PickupCan());
+        SmartDashboard.putData("Autonomous Mode", autonChooser);
+    }
 
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
-		// System.out.println(left.getCurrentCommand());
-		// System.out.println(right.getCurrentCommand());
-		autonCommand.cancel();
-		new ElevatorBrake(false).start();
-		//new Zero().start();
-		new FlipIntake().start();
+    Command autonCommand = new WaitTime(0);
 
-	}
+    public void autonomousInit() {
+        System.out.println("auton started");
+        new ElevatorBrake(false).start();
+        autonCommand = (Command) autonChooser.getSelected();
+        System.out.println(autonCommand);
+        autonCommand.start();
+    }
 
-	/**
-	 * This function is called periodically during operator control
-	 */
-	public void teleopPeriodic() {
-		// Change console output to write to file
-		// System.setOut(logfile);
+    public void autonomousPeriodic() {
+        Scheduler.getInstance().run();
+    }
 
-		Scheduler.getInstance().run();
-	}
+    public void teleopInit() {
+        autonCommand.cancel();
+        new ElevatorBrake(false).start();
+        new FlipIntake().start();
 
-	/**
-	 * This function is called periodically during test mode
-	 */
-	int i = 0;
-	public void testPeriodic() {
-		if(i == 0)
-			System.out.println("called");
-			new FlipIntake().start();
-			i++;
-		// Change console output to write to file
-		// System.setOut(logfile);
+    }
 
-		// LiveWindow.run();
-		System.out.println(PneumaticIntake.isEngaged());
-	}
+    public void teleopPeriodic() {
+        Scheduler.getInstance().run();
+    }
 
-	public void writeColor(byte r, byte g, byte b) {
-		RGBChannel thing = new RGBChannel(1, 2, 3, firecracker);
-		thing.setRGB(255, 255, 0);
-		new UpdateChannels(firecracker);
-	}
+    int i = 0;
 
+    public void testPeriodic() {
+        if (i == 0)
+            System.out.println("called");
+        new FlipIntake().start();
+        i++;
+        System.out.println(PneumaticIntake.isEngaged());
+    }
+
+    public void writeColor(byte r, byte g, byte b) {
+        RGBChannel thing = new RGBChannel(1, 2, 3, firecracker);
+        thing.setRGB(255, 255, 0);
+        new UpdateChannels(firecracker);
+    }
 }
