@@ -39,9 +39,11 @@ public class Robot extends IterativeRobot {
 
 
     SendableChooser autonChooser;
+    Command autonCommand = new WaitTime(0);
+    int i = 0;
 
     public void robotInit() {
-        PneumaticIntake = new PneumaticSubsystem(RobotMap.CLAW_CLOSED,RobotMap.CLAW_OPEN);
+        PneumaticIntake = new PneumaticSubsystem(RobotMap.CLAW_CLOSED, RobotMap.CLAW_OPEN);
 
         elevator = new VerticalActuator();
         brake = new PneumaticSubsystem(RobotMap.BRAKE_ENGAGED, RobotMap.BRAKE_DISENGAGED);
@@ -62,8 +64,6 @@ public class Robot extends IterativeRobot {
         autonChooser.addObject("Pickup Can", new PickupCan());
         SmartDashboard.putData("Autonomous Mode", autonChooser);
     }
-
-    Command autonCommand = new WaitTime(0);
 
     public void autonomousInit() {
         System.out.println("auton started");
@@ -87,8 +87,6 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
     }
-
-    int i = 0;
 
     public void testPeriodic() {
         if (i == 0)

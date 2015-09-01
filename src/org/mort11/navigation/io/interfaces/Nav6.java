@@ -8,39 +8,21 @@ public class Nav6 {
 
     // Global variables
     private final static double gravitationalAccel = 32.17404855643;
-
-    // IMU
-    private static SerialPort serial_port = new SerialPort(57600,
-            SerialPort.Port.kUSB);
     private static final byte update_rate_hz = 50;
-    private static IMUAdvanced imu = new IMUAdvanced(serial_port,
-            update_rate_hz);
-
+    // IMU
+    private static SerialPort serial_port = new SerialPort(57600, SerialPort.Port.kUSB);
+    private static IMUAdvanced imu = new IMUAdvanced(serial_port, update_rate_hz);
+    // Init timer
+    public Timer timer = new Timer();
     private double lastTimerVal = 0;
     private double currentTimeChange = 0;
-
     // Velocity
     private double deltaVelocityX;
     private double deltaVelocityY;
 
+    // private double currentVal = 0;
     // Orientation
     private double orientation;
-
-    // private double currentVal = 0;
-
-    public class navigationalUpdate {
-        // double time and boolean for data use
-        public double timerChange;
-        public double velXChange;
-        public double velYChange;
-
-        // In degrees from init
-        public double orientation;
-        public boolean useData;
-    }
-
-    // Init timer
-    public Timer timer = new Timer();
 
     private void setTimerChange() {
         double currentTime = timer.get();
@@ -86,5 +68,16 @@ public class Nav6 {
         navState.velYChange = deltaVelocityY;
         navState.orientation = orientation;
         return navState;
+    }
+
+    public class navigationalUpdate {
+        // double time and boolean for data use
+        public double timerChange;
+        public double velXChange;
+        public double velYChange;
+
+        // In degrees from init
+        public double orientation;
+        public boolean useData;
     }
 }
